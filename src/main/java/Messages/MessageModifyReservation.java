@@ -1,4 +1,4 @@
-package messages;
+package Messages;
 
 public class MessageModifyReservation {
 
