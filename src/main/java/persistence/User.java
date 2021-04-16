@@ -14,8 +14,15 @@ public class User {
 	private String userMobile;
 	private String userPassword;
 	private String userName;
+	private Authorization authorization;
 
 	
+	public Authorization getAuthorization() {
+		return authorization;
+	}
+	public void setAuthorization(Authorization authorization) {
+		this.authorization = authorization;
+	}
 	public int getUserId() {
 		return userId;
 	}
