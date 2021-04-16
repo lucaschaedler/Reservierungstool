@@ -1,27 +1,18 @@
-package persistence;
+package ch.mgmt.messages;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import ch.mgmt.persistence.Authorization;
 
-@Entity
-public class AccountRequest {
-
-	@Id @GeneratedValue
-	private Integer accountRequestId;
+public class MessageNewAccountRequest {
+	public String accountRequestEmail;
+	public String accountRequestMobile;
+	public String accountRequestName;
+	public String accountRequestPassword;
+	public Authorization authorization = Authorization.user;//ist immer User, andere berechtigungen sind hart codiert
 	
-	private String accountRequestEmail;
-	private String accountRequestMobile;
-	private String accountRequestName;
-	private String accountRequestPassword;
-
+	public MessageNewAccountRequest(){
+		
+	}
 	
-	public int getAccountRequestId() {
-		return accountRequestId;
-	}
-	public void setAccountRequestId(int accountRequestId) {
-		this.accountRequestId = accountRequestId;
-	}
 	public String getAccountRequestEmail() {
 		return accountRequestEmail;
 	}
@@ -46,7 +37,6 @@ public class AccountRequest {
 	public void setAccountRequestPassword(String accountRequestPassword) {
 		this.accountRequestPassword = accountRequestPassword;
 	}
-	
 
 
 }

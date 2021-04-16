@@ -1,11 +1,10 @@
-package Logger;
+package ch.mgmt.logger;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.springframework.stereotype.Component;
 
 public class LoggerClass {
 

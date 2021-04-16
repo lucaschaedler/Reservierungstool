@@ -1,28 +1,17 @@
-package persistence;
+package ch.mgmt.messages;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
-public class Reservation {
+public class MessageNewReservation {
 	
-	@Id @GeneratedValue
-	private Integer reservationId;
+	public int court;
+	public String date; //date wird noch geändert
+	public String startTime;
+	public String endTime;
+	public String playerNames;
 	
-	private int court;
-	private String date; //date wird noch geändert
-	private String startTime;
-	private String endTime;
-	private String playerNames;
-
-	
-	public int getReservationId() {
-		return reservationId;
+	MessageNewReservation(){
 	}
-	public void setReservationId(int reservationId) {
-		this.reservationId = reservationId;
-	}
+	
+	
 	public int getCourt() {
 		return court;
 	}
@@ -54,7 +43,5 @@ public class Reservation {
 		this.playerNames = playerNames;
 	}
 	
-	
-
 
 }

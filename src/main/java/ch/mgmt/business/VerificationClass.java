@@ -1,8 +1,10 @@
-package business;
+package ch.mgmt.business;
 
 import org.springframework.stereotype.Service;
 
-import Logger.LoggerClass;
+import ch.mgmt.logger.LoggerClass;
+
+
 
 @Service
 public class VerificationClass {

@@ -1,4 +1,4 @@
-package messages;
+package ch.mgmt.messages;
 
 public class MessageModifyUser {
 	public String email;

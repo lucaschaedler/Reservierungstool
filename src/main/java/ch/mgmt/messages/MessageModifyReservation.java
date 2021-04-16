@@ -1,6 +1,6 @@
-package messages;
+package ch.mgmt.messages;
 
-import persistence.Reservation;
+import ch.mgmt.persistence.Reservation;
 
 public class MessageModifyReservation {
 	

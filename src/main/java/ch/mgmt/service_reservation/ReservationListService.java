@@ -1,21 +1,24 @@
-package service_account;
+package ch.mgmt.service_reservation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import Logger.LoggerClass;
-import business.VerificationClass;
-import persistence.AccountRequestRepository;
+import ch.mgmt.business.VerificationClass;
+import ch.mgmt.logger.LoggerClass;
+import ch.mgmt.persistence.ReservationRepository;
+
+
 
 @RestController
-public class AccountRequestListService {
+public class ReservationListService {
 	
 	@Autowired
-	private AccountRequestRepository accountRepository;
+	private ReservationRepository reservationRepository;
 	
 	@Autowired
 	private VerificationClass verificationClass;
 	
 	LoggerClass logger = new LoggerClass();
+
 
 }

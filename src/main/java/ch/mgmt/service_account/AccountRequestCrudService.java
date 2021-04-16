@@ -1,11 +1,12 @@
-package service_account;
+package ch.mgmt.service_account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import Logger.LoggerClass;
-import business.VerificationClass;
-import persistence.AccountRequestRepository;
+import ch.mgmt.business.VerificationClass;
+import ch.mgmt.logger.LoggerClass;
+import ch.mgmt.persistence.AccountRequestRepository;
+
 
 @RestController
 public class AccountRequestCrudService {

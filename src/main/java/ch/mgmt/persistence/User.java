@@ -1,4 +1,4 @@
-package persistence;
+package ch.mgmt.persistence;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,10 +23,10 @@ public class User {
 	public void setAuthorization(Authorization authorization) {
 		this.authorization = authorization;
 	}
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 	public String getUserEmail() {
