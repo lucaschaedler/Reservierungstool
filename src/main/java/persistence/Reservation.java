@@ -11,47 +11,50 @@ public class Reservation {
 	private int reservationId;
 	
 	private int court;
-	private String date; //date wird evtl. noch geändert
+	private String date; //date wird noch geändert
 	private String startTime;
 	private String endTime;
 	private String playerNames;
+
 	
-	
-	private int getReservationId() {
+	public int getReservationId() {
 		return reservationId;
 	}
-	private void setReservationId(int reservationId) {
+	public void setReservationId(int reservationId) {
 		this.reservationId = reservationId;
 	}
-	private int getCourt() {
+	public int getCourt() {
 		return court;
 	}
-	private void setCourt(int court) {
+	public void setCourt(int court) {
 		this.court = court;
 	}
-	private String getDate() {
+	public String getDate() {
 		return date;
 	}
-	private void setDate(String date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	private String getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
-	private void setStartTime(String startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-	private String getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
-	private void setEndTime(String endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-	private String getPlayerNames() {
+	public String getPlayerNames() {
 		return playerNames;
 	}
-	private void setPlayerNames(String playerNames) {
+	public void setPlayerNames(String playerNames) {
 		this.playerNames = playerNames;
 	}
+	
+	
+
 
 }

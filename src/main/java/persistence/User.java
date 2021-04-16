@@ -9,41 +9,45 @@ public class User {
 	@Id @GeneratedValue
 	private int userId;
 	
-	private String email;
-	private String mobile;
-	private String password;
+	private String userEmail;
+	private String userMobile;
+	private String userPassword;
 	private String userName;
 
 	
-	private int getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	private void setUserId(int userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	private String getEmail() {
-		return email;
+	public String getUserEmail() {
+		return userEmail;
 	}
-	private void setEmail(String email) {
-		this.email = email;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
-	private String getMobile() {
-		return mobile;
+	public String getUserMobile() {
+		return userMobile;
 	}
-	private void setMobile(String mobile) {
-		this.mobile = mobile;
+	public void setUserMobile(String userMobile) {
+		this.userMobile = userMobile;
 	}
-	private String getPassword() {
-		return password;
+	public String getUserPassword() {
+		return userPassword;
 	}
-	private void setPassword(String password) {
-		this.password = password;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
-	private String getUserName() {
+	public String getUserName() {
 		return userName;
 	}
-	private void setUserName(String userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
+	
+
+
 	
 }

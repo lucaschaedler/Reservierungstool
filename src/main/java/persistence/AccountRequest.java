@@ -14,37 +14,39 @@ public class AccountRequest {
 	private String accountRequestMobile;
 	private String accountRequestName;
 	private String accountRequestPassword;
-	
 
-	private int getAccountRequestId() {
+	
+	public int getAccountRequestId() {
 		return accountRequestId;
 	}
-	private void setAccountRequestId(int accountRequestId) {
+	public void setAccountRequestId(int accountRequestId) {
 		this.accountRequestId = accountRequestId;
 	}
-	private String getAccountRequestEmail() {
+	public String getAccountRequestEmail() {
 		return accountRequestEmail;
 	}
-	private void setAccountRequestEmail(String accountRequestEmail) {
+	public void setAccountRequestEmail(String accountRequestEmail) {
 		this.accountRequestEmail = accountRequestEmail;
 	}
-	private String getAccountRequestMobile() {
+	public String getAccountRequestMobile() {
 		return accountRequestMobile;
 	}
-	private void setAccountRequestMobile(String accountRequestMobile) {
+	public void setAccountRequestMobile(String accountRequestMobile) {
 		this.accountRequestMobile = accountRequestMobile;
 	}
-	private String getAccountRequestName() {
+	public String getAccountRequestName() {
 		return accountRequestName;
 	}
-	private void setAccountRequestName(String accountRequestName) {
+	public void setAccountRequestName(String accountRequestName) {
 		this.accountRequestName = accountRequestName;
 	}
-	private String getAccountRequestPassword() {
+	public String getAccountRequestPassword() {
 		return accountRequestPassword;
 	}
-	private void setAccountRequestPassword(String accountRequestPassword) {
+	public void setAccountRequestPassword(String accountRequestPassword) {
 		this.accountRequestPassword = accountRequestPassword;
 	}
 	
+
+
 }
