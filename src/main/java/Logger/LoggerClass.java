@@ -12,6 +12,8 @@ public class LoggerClass {
 	public static final String LOGGER_NAME = LoggerClass.class.getSimpleName();
 	private Logger logger = null; // The logger object for this class
 
+	//write logs on a textfile in xml an din the console
+	
 	public LoggerClass() {
 		logger = Logger.getLogger(LOGGER_NAME);
 		logger.setLevel(Level.INFO);
