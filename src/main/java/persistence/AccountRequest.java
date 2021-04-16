@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class AccountRequest {
 
 	@Id @GeneratedValue
-	private int accountRequestId;
+	private Integer accountRequestId;
 	
 	private String accountRequestEmail;
 	private String accountRequestMobile;

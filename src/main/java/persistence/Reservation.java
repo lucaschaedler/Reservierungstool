@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Reservation {
 	
 	@Id @GeneratedValue
-	private int reservationId;
+	private Integer reservationId;
 	
 	private int court;
 	private String date; //date wird noch geändert

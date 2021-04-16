@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class User {
 	
 	@Id @GeneratedValue
-	private int userId;
+	private Integer userId;
 	
 	private String userEmail;
 	private String userMobile;
