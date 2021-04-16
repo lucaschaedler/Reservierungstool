@@ -14,13 +14,13 @@ public class MessageModifyReservation {
 		
 	}
 	// Erstellen eine ArtikelMessage basierend auf einem ArticleEntity, wird eventuell benötigt
-	//public void MessageModifyreservation(Reservation r) {
-	//	court = r.getCourt();
-	//	startTime = r.getStartTime();
-	//	endTime = r.getEndTime();
-	//	date = r.getDate();
-	//	playerNames = r.getPlayerNames();
-	//}
+	public void MessageModifyreservation(Reservation r) {
+		court = r.getCourt();
+		startTime = r.getStartTime();
+		endTime = r.getEndTime();
+		date = r.getDate();
+		playerNames = r.getPlayerNames();
+	}
 
 	public int getCourt() {
 		return court;
