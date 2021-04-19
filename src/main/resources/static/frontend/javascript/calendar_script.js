@@ -12,6 +12,7 @@ court1Btn.addEventListener("click", () => {
   court2Tbl.hidden = true;
   court2Btn.disabled = false;
   court1Btn.disabled = true;
+  console.log("Tabelle 1 wird angezeigt");
 });
 
 //Wenn Platz 2 angezeigt wird, ist der Button für Platz 2 disabled + Button für Platz 1 enabled
@@ -20,6 +21,7 @@ court2Btn.addEventListener("click", () => {
   court2Tbl.hidden = false;
   court2Btn.disabled = true;
   court1Btn.disabled = false;
+  console.log("Tabelle 2 wird angezeigt");
 });
 
 //Datepicker-Funktion
@@ -31,14 +33,14 @@ $(function () {
 dateObject = $("#datepicker").datepicker({
   onSelect: function () {
     dateObject = $(this).datepicker("getDate");
-    alert("Neues Datum ausgewählt: " + dateObject);
+    console.log("Neues Datum ausgewählt: " + dateObject);
     updateTable();
   },
 });
 
 // Tabelle wird auf den Tag angepasst
 function updateTable() {
-  alert("table updated");
+  console.log("table updated");
 }
 
 //JSON-File wird bearbeitet
