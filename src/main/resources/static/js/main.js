@@ -1,3 +1,4 @@
+console.log("Hallo Konsole, alles fresh?");
 function setFormMessage(formElement, type, message) {
   const messageElement = formElement.querySelector(".form__message");
 
