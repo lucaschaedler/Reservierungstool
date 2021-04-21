@@ -3,13 +3,14 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
+    <link rel="shortcut icon" href="#" />
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link
       href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       rel="stylesheet"
       id="bootstrap-css"
     />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>Login</title>
     <link rel="stylesheet" href="css/main.css" />
   </head>
@@ -27,6 +28,7 @@
     <div class="main">
       <div class="col-md-6 col-sm-12">
         <div class="login-form">
+          <!--REST API eintragen bei Action-->
           <form action="" class="form" id="login">
             <div class="form__message form__message--error"></div>
             <div class="form-group">
@@ -35,14 +37,17 @@
                 class="form-control"
                 placeholder="Email"
                 autofocus
+                required
               />
             </div>
             <div class="form-group">
               <input
+                id="password-field"
                 type="password"
                 class="form-control"
                 placeholder="Passwort"
                 autofocus
+                required
               />
             </div>
             <div class="d-flex justify-content-left">
@@ -59,14 +64,16 @@
     <div class="main">
       <div class="col-md-6 col-sm-12">
         <div class="register-form">
+          <!--REST API eintragen bei Action-->
           <form action="" class="form form--hidden" id="requestAccount">
-            <div id="message-error"></div>
+            <div class="form__message form__message--error"></div>
             <div class="form-group">
               <input
                 type="text"
                 class="form-control"
                 placeholder="Name"
                 autofocus
+                required
               />
             </div>
             <div class="form-group">
@@ -75,6 +82,7 @@
                 class="form-control"
                 placeholder="Email"
                 autofocus
+                required
               />
             </div>
             <div class="form-group">
@@ -83,6 +91,7 @@
                 class="form-control"
                 placeholder="Mobile"
                 autofocus
+                required
               />
             </div>
             <div class="form-group">
@@ -91,6 +100,7 @@
                 class="form-control"
                 placeholder="Passwort"
                 autofocus
+                required
               />
             </div>
             <div class="form-group">
@@ -99,6 +109,7 @@
                 class="form-control"
                 placeholder="Passwort wiederholen"
                 autofocus
+                required
               />
             </div>
             <div class="d-flex justify-content-left">

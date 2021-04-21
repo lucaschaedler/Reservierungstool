@@ -65,7 +65,7 @@ button:active {
   }
 
   .register-form {
-    margin-top: 20%;
+    margin-top: 10%;
   }
 }
 
@@ -104,10 +104,6 @@ button:active {
 .form__input--error {
   color: var(--color-error);
   border-color: var(--color-error);
-}
-
-#btn-bar {
-  margin-top: 20px;
 }
 
 .form__message--success {

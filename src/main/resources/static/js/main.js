@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loginForm.classList.remove("form--hidden");
     requestAccountForm.classList.add("form--hidden");
   });
+  //Login-Prozess
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -41,6 +42,29 @@ document.addEventListener("DOMContentLoaded", () => {
         loginForm,
         "error",
         "Email/Passwort Kombination stimmt nicht überein!"
+      );
+    }
+  });
+
+  //AccountRequest-Prozess
+  requestAccountForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Ajax Prozess --> Rest-Service Aufruf
+
+    //je nach Rückgabewert von VerificationClass
+    var isLoggedIn = true;
+    if (isLoggedIn) {
+      setFormMessage(
+        requestAccountForm,
+        "success",
+        "Sie haben eine Accountanfrage verschickt!"
+      );
+    } else {
+      setFormMessage(
+        requestAccountForm,
+        "error",
+        "Die Accountanfrage war nicht erfolgreich"
       );
     }
   });
