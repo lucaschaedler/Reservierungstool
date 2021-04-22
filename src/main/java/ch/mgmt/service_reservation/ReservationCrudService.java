@@ -66,8 +66,8 @@ public class ReservationCrudService {
 			
 			reservationRepository.save(r);
 
-			user.addReservationToList(r);
-			System.out.println(user.getReservationList());
+			//user.addReservationToList(r);
+			//System.out.println(user.getReservationList());
 
 		}
 		return r.getReservationId();
