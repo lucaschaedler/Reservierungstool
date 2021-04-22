@@ -32,9 +32,9 @@ public class Application {
 
 		Reservation r = new Reservation();
 		r.setCourt(1);
-		r.setDate("12");
-		r.setEndTime("13");
-		r.setStartTime("20");
+		r.setDate(2020, 12, 30);
+		r.setStartTime(15, 30);
+		r.setEndTime(16, 30);
 		r.setPlayerNames("homoQ");
 		//r.setUserId(12);
 

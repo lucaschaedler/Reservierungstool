@@ -1,8 +1,14 @@
 package ch.mgmt.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class User {
@@ -15,6 +21,21 @@ public class User {
 	private String userPassword;
 	private String userName;
 	private Authorization authorization;
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Reservation> userReservationList = new ArrayList();
+	
+	public List<Reservation> getReservationList() {
+		return userReservationList;
+	}
+
+	public void setReservationList(List<Reservation> reservationList) {
+		this.userReservationList = userReservationList;
+	}
+	
+	public void addReservationToList(Reservation r) {
+		userReservationList.add(r);
+	}
 
 	
 	public Authorization getAuthorization() {
@@ -53,6 +74,13 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+	public User actuel() {
+		
+		return null;
+	}
+	
+	
 	
 	
 
