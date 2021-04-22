@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+
 @Entity
 public class Reservation {
 
@@ -21,16 +22,16 @@ public class Reservation {
 	private LocalTime endTime;
 	private String playerNames;
 	
-//	@OneToOne
-//	private User user;
-//
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
+	@OneToOne
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public void setStartTime(int hour, int minute) {
 		this.startTime = LocalTime.of(hour, minute);
