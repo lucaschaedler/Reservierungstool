@@ -31,7 +31,6 @@ public class AccountRequestCrudService {
 		a.setAccountRequestMobile(accountRequest.getAccountRequestMobile());
 		a.setAccountRequestName(accountRequest.getAccountRequestName());
 		a.setAccountRequestPassword(accountRequest.getAccountRequestPassword());
-		//a.setDeleted(false);
 		if (verificationClass.validateAccountRequest(a)) {
 			accountRepository.save(a);
 			logger.getLogger().info(this.getClass().getName() + "||AccountRequest created||");
