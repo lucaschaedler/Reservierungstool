@@ -15,15 +15,15 @@ public class Reservation {
 	private String startTime;
 	private String endTime;
 	private String playerNames;
-	private int userId;
+	//private int userId;
 
 	
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+//	public int getUserId() {
+//		return userId;
+//	}
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
 	public Integer getReservationId() {
 		return reservationId;
 	}
