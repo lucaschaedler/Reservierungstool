@@ -18,5 +18,6 @@ public class ReservationCrudService {
 	private VerificationClass verificationClass;
 	
 	LoggerClass logger = new LoggerClass();
+	
 
 }
