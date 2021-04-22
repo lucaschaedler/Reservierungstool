@@ -36,6 +36,7 @@ public class Application {
 		r.setEndTime("13");
 		r.setStartTime("20");
 		r.setPlayerNames("homoQ");
+		//r.setUserId(12);
 
 
 		reservationRepository.save(r);
