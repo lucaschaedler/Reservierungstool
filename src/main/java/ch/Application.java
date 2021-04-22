@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ch.mgmt.logger.LoggerClass;
 import ch.mgmt.persistence.Reservation;
 import ch.mgmt.persistence.ReservationRepository;
+import ch.mgmt.persistence.User;
+import ch.mgmt.persistence.UserRepository;
 
 
 ;
@@ -19,6 +21,10 @@ public class Application {
 
 	@Autowired
 	private ReservationRepository reservationRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
 
 	LoggerClass logger = new LoggerClass();
 
@@ -37,9 +43,16 @@ public class Application {
 		r.setEndTime(16, 30);
 		r.setPlayerNames("homoQ");
 		//r.setUserId(12);
+		
+		User u = new User();
+		u.setUserEmail("wehfgirw");
+		u.setUserMobile("efgfr");
+		u.setUserName("hans");
+		u.setUserPassword("homo");
 
 
 		reservationRepository.save(r);
+		userRepository.save(u);
 
 	}
 }

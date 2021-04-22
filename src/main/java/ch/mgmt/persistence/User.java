@@ -20,7 +20,7 @@ public class User {
 	private String userMobile;
 	private String userPassword;
 	private String userName;
-	private Authorization authorization;
+	private Authorization authorization = Authorization.user;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Reservation> userReservationList = new ArrayList();

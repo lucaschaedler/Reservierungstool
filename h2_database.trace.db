@@ -1260,3 +1260,7 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/Luc
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
 	... 46 more
+2021-04-22 16:08:47 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "USER_USER_RESERVATION_LIST[*]"; erwartet "UPDATE, USE"
+Syntax error in SQL statement "USER_USER_RESERVATION_LIST[*]"; expected "UPDATE, USE"; SQL statement:
+USER_USER_RESERVATION_LIST [42001-200]
