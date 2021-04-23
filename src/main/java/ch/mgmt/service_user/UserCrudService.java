@@ -90,8 +90,8 @@ public class UserCrudService {
 
 	@PostMapping(path = "login", produces = "application/json")
 	public boolean login(@RequestBody MessageLogin m) {
-		String tempEmail = m.getEmail();
-		String tempPassword = m.getPassword();
+		String tempEmail = m.getUserEmail();
+		String tempPassword = m.getUserPassword();
 
 		if (verificationClass.VerifyLogin(tempEmail, tempPassword)) {
 			logger.getLogger().info(this.getClass().getName() + "||Login Successfull||");
