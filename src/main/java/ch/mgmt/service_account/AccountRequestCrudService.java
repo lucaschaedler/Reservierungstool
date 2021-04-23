@@ -27,11 +27,11 @@ public class AccountRequestCrudService {
 	
 	LoggerClass logger = new LoggerClass();
 	
-	@PostMapping(path = "/api/article/account_request", produces = "application/json")
+	@PostMapping(path = "/api/account_request", produces = "application/json")
 	public AccountRequest createAccountRequest(@RequestBody MessageNewAccountRequest m) {
 		
+		System.out.println("fickennnnnnnn!");
 		AccountRequest a = new AccountRequest();
-
 		a.setAccountRequestEmail(m.getAccountRequestEmail());
 		a.setAccountRequestMobile(m.getAccountRequestMobile());
 		a.setAccountRequestName(m.getAccountRequestName());
