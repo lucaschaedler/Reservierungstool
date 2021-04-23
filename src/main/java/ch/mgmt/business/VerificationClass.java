@@ -21,7 +21,7 @@ public class VerificationClass {
 		//process --> verify accountrequest!
 		
 		logger.getLogger().info(this.getClass().getName() + "||AccountRequest verified||");
-		return false;
+		return true;
 	}
 
 	public boolean VerifyLogin(String tempEmail, String tempPassword) {
