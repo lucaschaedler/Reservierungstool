@@ -32,8 +32,10 @@ public class UserCrudService {
 
 	LoggerClass logger = new LoggerClass();
 
-	@PostMapping(path = "createUser", produces = "application/json") // wird von requestliste direkt aufgerufen
-	public int createUser(@RequestBody MessageNewUser m) {
+	// Wird nur von ITVerantwortlichen aufgerufen idem er die AccountAnfrage
+	// bestätigt --> wandelt dann anfrage in User um
+	@PostMapping(path = "createUser", produces = "application/json")
+	public boolean createUser(@RequestBody MessageNewUser m) {
 
 		// verifizieren das alle angaben korrekt sind
 
@@ -45,12 +47,11 @@ public class UserCrudService {
 
 		userRepository.save(u);
 		logger.getLogger().info(this.getClass().getName() + "||User created||");
-		return u.getUserId();
+		return true;
 
 	}
 
-	@DeleteMapping(path = "user/delete/{userid}", produces = "apllication/json") // nur via userliste admin rechte
-																					// zugreifbar
+@DeleteMapping(path = "user/delete/{uderid}", produces = "apllication/json")
 	public boolean deleteUser(@PathVariable int userid) {
 		if (userRepository.existsById(userid)) {
 			userRepository.deleteById(userid);
@@ -62,20 +63,31 @@ public class UserCrudService {
 		}
 	}
 
-	@GetMapping("users") // für admin abrufbar
+	// Listes alle Users auf, wird für Deletemethode verwendet
+	@GetMapping("users")
 	public List<User> getUsers() {
 		logger.getLogger().info(this.getClass().getName() + "||List of user displayed||");
 		return this.userRepository.findAll();
 	}
 
+	// Von allen User aufrufbar --> können so UserDaten ändern
 	@PutMapping(path = "user/{userid}/modify", produces = "application/json") // für user zugreifbar
 	public boolean modifyUser(@PathVariable int userid, @RequestBody MessageModifyUser m) {
 		if (userRepository.existsById(userid)) {
 			User u = userRepository.getOne(userid);
-			u.setUserName(m.getUserName());
-			u.setUserPassword(m.getPassword());
-			u.setUserMobile(m.getMobile());
-			u.setUserEmail(m.getEmail());
+			// prüft ob der das Messageattribut leer ist oder nicht
+			if (m.getUserName() != "") {
+				u.setUserName(m.getUserName());
+			}
+			if (m.getPassword() != "") {
+				u.setUserPassword(m.getPassword());
+			}
+			if (m.getMobile() != "") {
+				u.setUserMobile(m.getMobile());
+			}
+			if (m.getEmail() != "") {
+				u.setUserEmail(m.getEmail());
+			}
 
 			logger.getLogger().info(this.getClass().getName() + "||User has been updated||");
 			return true;
@@ -88,17 +100,18 @@ public class UserCrudService {
 
 	}
 
+	// Login --> wird geprüft ob Email und Passswort stimmen
 	@PostMapping(path = "login", produces = "application/json")
-	public boolean login(@RequestBody MessageLogin m) {
+	public int login(@RequestBody MessageLogin m) {
 		String tempEmail = m.getUserEmail();
 		String tempPassword = m.getUserPassword();
 
-		if (verificationClass.VerifyLogin(tempEmail, tempPassword)) {
+		User u = verificationClass.VerifyLogin(tempEmail, tempPassword);
+		if (u != null) {
 			logger.getLogger().info(this.getClass().getName() + "||Login Successfull||");
-			return true;
+			return u.getUserId();
 		} else {
-			logger.getLogger().info(this.getClass().getName() + "||Loginin Failed||");
-			return false;
+			return -1;// wenn zahl -1 ist dann ist login fehlgeschlagen
 		}
 
 	}

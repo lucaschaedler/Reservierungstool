@@ -37,14 +37,16 @@ public class Application {
 	public void createHardCodedData() {
 		logger.getLogger().info(this.getClass().getName() + "||Application has successfully started||");
 
+		
+		//test Reservation erstellt
 		Reservation r = new Reservation();
 		r.setCourt(1);
 		r.setDate(2020, 12, 30);
 		r.setStartTime(15, 30);
 		r.setEndTime(16, 30);
 		r.setPlayerNames("homoQ");
-		//r.setUserId(12);
 		
+		//Test User erstellt
 		User u = new User();
 		u.setUserEmail("homo123");
 		u.setUserMobile("efgfr");
