@@ -45,7 +45,7 @@ public class ReservationCrudService {
 			logger.getLogger().info(this.getClass().getName() + "||Reservation has been deleted||");
 			return true;
 		} else
-			logger.getLogger().info(this.getClass().getName() + "||Reservation to be deleted not found||");
+			logger.getLogger().info(this.getClass().getName() + "||Reservation to be deleted could not be found||");
 		return false;
 
 	}
@@ -53,7 +53,7 @@ public class ReservationCrudService {
 	@PostMapping(path = "api/reservation", produces = "application/json")
 	public int createReservation(@RequestBody MessageNewReservation m) {
 
-//		Optional<User> list = userRepository.findById(4);//id muss ich angepasst werde auf der der eingeloggt ist
+//		Optional<User> list = userRepository.findById(4); //id muss angepasst werde auf aktuell eingeloggten user
 //		if (list.isPresent()) {
 //			User user = list.get();
 		Reservation r = new Reservation();
@@ -86,7 +86,7 @@ public class ReservationCrudService {
 			logger.getLogger().info(this.getClass().getName() + "||Reservation has been updated||");
 			return true;
 		}else {
-			logger.getLogger().info(this.getClass().getName() + "||Reservation has been not found||");
+			logger.getLogger().info(this.getClass().getName() + "||Reservation could not be found||");
 			return false;
 		}
 			
