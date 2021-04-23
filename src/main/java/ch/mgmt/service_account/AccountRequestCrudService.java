@@ -1,8 +1,12 @@
 package ch.mgmt.service_account;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.mgmt.business.VerificationClass;
@@ -40,5 +44,14 @@ public class AccountRequestCrudService {
 			logger.getLogger().info(this.getClass().getName() + "||AccountRequest failed||");
 			return null;
 		}
+	}
+	
+	@GetMapping(path = "/api/accountRequests", produces = "application/json")
+	public List<AccountRequest> getAccountRequests(@RequestParam(required = false) String filter) {
+		
+		//verify user --> verificationClass
+		
+		return accountRepository.findAll();
+
 	}
 }
