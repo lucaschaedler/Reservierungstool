@@ -22,6 +22,10 @@ public class User {
 	private String userName;
 	private Authorization authorization = Authorization.user;
 	
+//	public User() {
+//		this.authorization = Authorization.user;
+//	}
+	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Reservation> userReservationList = new ArrayList();
 	
