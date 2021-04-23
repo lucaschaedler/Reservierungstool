@@ -32,7 +32,9 @@ public class UserCrudService {
 
 	LoggerClass logger = new LoggerClass();
 
-	@PostMapping(path = "createUser", produces = "application/json") // wird von requestliste direkt aufgerufen
+	// Wird nur von ITVerantwortlichen aufgerufen idem er die AccountAnfrage
+	// bestätigt --> wandelt dann anfrage in User um
+	@PostMapping(path = "createUser", produces = "application/json")
 	public int createUser(@RequestBody MessageNewUser m) {
 
 		// verifizieren das alle angaben korrekt sind
@@ -49,8 +51,9 @@ public class UserCrudService {
 
 	}
 
-	@DeleteMapping(path = "user/delete/{uderid}", produces = "apllication/json") // nur via userliste admin rechte
-																					// zugreifbar
+	// kann nur vom Admin und ITVerantwortlichen aufgerufen werden über UserListe
+	// --> löscht angewählten account
+	@DeleteMapping(path = "user/delete/{uderid}", produces = "apllication/json")
 	public boolean deleteUser(@PathVariable int userid) {
 		if (userRepository.existsById(userid)) {
 			userRepository.deleteById(userid);
@@ -62,20 +65,30 @@ public class UserCrudService {
 		}
 	}
 
-	@GetMapping("users") // für admin abrufbar
+	// Listes alle Users auf, wird für Deletemethode verwendet
+	@GetMapping("users")
 	public List<User> getUsers() {
 		logger.getLogger().info(this.getClass().getName() + "||List of user displayed||");
 		return this.userRepository.findAll();
 	}
 
+	// Von allen User aufrufbar --> können so UserDaten ändern
 	@PutMapping(path = "user/{userid}/modify", produces = "application/json") // für user zugreifbar
 	public boolean modifyUser(@PathVariable int userid, @RequestBody MessageModifyUser m) {
 		if (userRepository.existsById(userid)) {
 			User u = userRepository.getOne(userid);
-			u.setUserName(m.getUserName());
-			u.setUserPassword(m.getPassword());
-			u.setUserMobile(m.getMobile());
-			u.setUserEmail(m.getEmail());
+			if (m.getUserName() != null) {
+				u.setUserName(m.getUserName());
+			}
+			if (m.getPassword() != null) {
+				u.setUserPassword(m.getPassword());
+			}
+			if (m.getMobile() != null) {
+				u.setUserMobile(m.getMobile());
+			}
+			if (m.getEmail() != null) {
+				u.setUserEmail(m.getEmail());
+			}
 
 			logger.getLogger().info(this.getClass().getName() + "||User has been updated||");
 			return true;
@@ -87,7 +100,7 @@ public class UserCrudService {
 		}
 
 	}
-
+	//Login --> wird geprüft ob Email und Passswort stimmen
 	@PostMapping(path = "login", produces = "application/json")
 	public boolean login(@RequestBody MessageLogin m) {
 		String tempEmail = m.getEmail();
