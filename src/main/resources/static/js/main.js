@@ -1,4 +1,4 @@
-function setFormMessage(formElement, response, message) {
+function setFormMessage(formElement, message, response) {
   const messageElement = formElement.querySelector(".form__message");
   messageElement.textContent = message;
   messageElement.classList.remove(
@@ -87,8 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
         accountRequestMobile: a_mobile,
         accountRequestPassword: a_password,
       }),
-      success: setFormMessage(requestAccountForm, response, "erfolgreich"),
-      error: setFormMessage(requestAccountForm, false, "fehlgeschlagen"),
+      success: setFormMessage(requestAccountForm, "erfolgreich"),
+      error: setFormMessage(requestAccountForm, "fehlgeschlagen"),
       dataType: "json",
       contentType: "application/json",
     });
