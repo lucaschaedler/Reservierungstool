@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.mgmt.business.VerificationClass;
 import ch.mgmt.logger.LoggerClass;
+import ch.mgmt.messages.MessageLogin;
 import ch.mgmt.messages.MessageModifyUser;
 import ch.mgmt.messages.MessageNewUser;
 import ch.mgmt.persistence.User;
@@ -61,6 +62,12 @@ public class UserCrudService {
 		}
 	}
 
+	@GetMapping("users") // für admin abrufbar
+	public List<User> getUsers() {
+		logger.getLogger().info(this.getClass().getName() + "||List of user displayed||");
+		return this.userRepository.findAll();
+	}
+
 	@PutMapping(path = "user/{userid}/modify", produces = "application/json") // für user zugreifbar
 	public boolean modifyUser(@PathVariable int userid, @RequestBody MessageModifyUser m) {
 		if (userRepository.existsById(userid)) {
@@ -81,10 +88,19 @@ public class UserCrudService {
 
 	}
 
-	@GetMapping("users")
-	public List<User> getUsers() {
-		logger.getLogger().info(this.getClass().getName() + "||List of user displayed||");
-		return this.userRepository.findAll();
+	@PostMapping(path = "login", produces = "application/json")
+	public boolean login(@RequestBody MessageLogin m) {
+		String tempEmail = m.getEmail();
+		String tempPassword = m.getPassword();
+
+		if (verificationClass.VerifyLogin(tempEmail, tempPassword)) {
+			logger.getLogger().info(this.getClass().getName() + "||Login Successfull||");
+			return true;
+		} else {
+			logger.getLogger().info(this.getClass().getName() + "||Loginin Failed||");
+			return false;
+		}
+
 	}
 
 }
