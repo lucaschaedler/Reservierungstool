@@ -36,11 +36,8 @@ public class VerificationClass {
 			return x;
 		} else
 			logger.getLogger().info(this.getClass().getName() + "||User not found||");
-			return null;
+		return null;
 
 	}
-
-	// do business stuff
-	// logger.getLoogger().info(this.getClass().getName() + " ||infos");
 
 }
