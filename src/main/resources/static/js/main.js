@@ -1,18 +1,23 @@
-function setFormMessage(formElement, type, message) {
+function setFormMessage(formElement, response, message) {
   const messageElement = formElement.querySelector(".form__message");
-
   messageElement.textContent = message;
   messageElement.classList.remove(
     "form__message--success",
     "form__message--error"
   );
-  messageElement.classList.add("form__message--" + type);
+  if (response == true) {
+    messageElement.classList.add("form__message--success");
+  } else {
+    messageElement.classList.add("form__message--error");
+  }
 }
 
+//Wenn Login erfolgreich wird die Kalendersicht angezeigt
 function showCalendar(response) {
-	console.log(response);
-	if(response > 0) {
-  		window.location.href="frontend/html/calendar.html";
+  console.log(response);
+  if (response != -1) {
+    //-1 --> login failed
+    window.location.href = "html/calendar.html";
   }
 }
 
@@ -80,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         accountRequestName: a_name,
         accountRequestEmail: a_email,
         accountRequestMobile: a_mobile,
-        accountRequestPassword: a_password
+        accountRequestPassword: a_password,
       }),
       success: setFormMessage(requestAccountForm, "success", "erfolgreich"),
       error: setFormMessage(requestAccountForm, "error", "fehlgeschlagen"),
