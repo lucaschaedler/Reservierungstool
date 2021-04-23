@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import ch.mgmt.logger.LoggerClass;
+import ch.mgmt.persistence.Authorization;
 import ch.mgmt.persistence.Reservation;
 import ch.mgmt.persistence.ReservationRepository;
 import ch.mgmt.persistence.User;
@@ -49,6 +50,7 @@ public class Application {
 		u.setUserMobile("efgfr");
 		u.setUserName("hans");
 		u.setUserPassword("homo");
+		u.setAuthorization(Authorization.itResponisble);
 
 
 		reservationRepository.save(r);
