@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }),
       success: function (response) {
         console.log(response); //response sollte boolean sein
-      }
+      },
       //error: setFormMessage(requestAccountForm, "fehlgeschlagen"),
       dataType: "json",
       contentType: "application/json",
