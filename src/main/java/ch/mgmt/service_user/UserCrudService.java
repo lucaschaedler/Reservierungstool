@@ -35,7 +35,7 @@ public class UserCrudService {
 	// Wird nur von ITVerantwortlichen aufgerufen idem er die AccountAnfrage
 	// bestätigt --> wandelt dann anfrage in User um
 	@PostMapping(path = "createUser", produces = "application/json")
-	public int createUser(@RequestBody MessageNewUser m) {
+	public boolean createUser(@RequestBody MessageNewUser m) {
 
 		// verifizieren das alle angaben korrekt sind
 
@@ -47,7 +47,7 @@ public class UserCrudService {
 
 		userRepository.save(u);
 		logger.getLogger().info(this.getClass().getName() + "||User created||");
-		return u.getUserId();
+		return true;
 
 	}
 
@@ -103,17 +103,18 @@ public class UserCrudService {
 	}
 	//Login --> wird geprüft ob Email und Passswort stimmen
 	@PostMapping(path = "login", produces = "application/json")
-	public boolean login(@RequestBody MessageLogin m) {
+	public int login(@RequestBody MessageLogin m) {
 		String tempEmail = m.getEmail();
 		String tempPassword = m.getPassword();
 
-		if (verificationClass.VerifyLogin(tempEmail, tempPassword)) {
+		User u = verificationClass.VerifyLogin(tempEmail, tempPassword);
+		if(u != null) {
 			logger.getLogger().info(this.getClass().getName() + "||Login Successfull||");
-			return true;
-		} else {
-			logger.getLogger().info(this.getClass().getName() + "||Loginin Failed||");
-			return false;
+			return u.getUserId();
+		}else {
+			return-1;//wenn zahl -1 ist dann ist login fehlgeschlagen
 		}
+		
 
 	}
 

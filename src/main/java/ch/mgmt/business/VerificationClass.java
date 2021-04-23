@@ -29,14 +29,14 @@ public class VerificationClass {
 
 	}
 
-	public boolean VerifyLogin(String tempEmail, String tempPassword) {
+	public User VerifyLogin(String tempEmail, String tempPassword) {
 		User x = userRepository.findByUserEmailAndUserPassword(tempEmail, tempPassword);
 		if (x != null) {
 			logger.getLogger().info(this.getClass().getName() + "||User found||");
-			return true;
+			return x;
 		} else
 			logger.getLogger().info(this.getClass().getName() + "||User not found||");
-			return false;
+			return null;
 
 	}
 
