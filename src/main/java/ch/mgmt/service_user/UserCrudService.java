@@ -77,16 +77,17 @@ public class UserCrudService {
 	public boolean modifyUser(@PathVariable int userid, @RequestBody MessageModifyUser m) {
 		if (userRepository.existsById(userid)) {
 			User u = userRepository.getOne(userid);
-			if (m.getUserName() != null) {
+			//prüft ob der das Messageattribut leer ist oder nicht
+			if (m.getUserName() != "") {
 				u.setUserName(m.getUserName());
 			}
-			if (m.getPassword() != null) {
+			if (m.getPassword() != "") {
 				u.setUserPassword(m.getPassword());
 			}
-			if (m.getMobile() != null) {
+			if (m.getMobile() != "") {
 				u.setUserMobile(m.getMobile());
 			}
-			if (m.getEmail() != null) {
+			if (m.getEmail() != "") {
 				u.setUserEmail(m.getEmail());
 			}
 
