@@ -9,8 +9,11 @@ function setFormMessage(formElement, type, message) {
   messageElement.classList.add("form__message--" + type);
 }
 
-function showCalendar() {
-  window.location.href("html/calendar.html");
+function showCalendar(response) {
+	console.log(response);
+	if(response > 0) {
+  		window.location.href="frontend/html/calendar.html";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -34,16 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let u_email = document.querySelector("#u_email").value;
-    let u_password = document.querySelector("#u_passwort").value;
+    let u_password = document.querySelector("#u_password").value;
     // Ajax Prozess --> Rest-Service Aufruf
     $.ajax({
       type: "POST",
-      url: "/api/account_request",
+      url: "/api/login",
       data: JSON.stringify({
-        userEmail: a_name,
-        userPassword: a_email,
+        userEmail: u_email,
+        userPassword: u_password,
       }),
-      //success: showCalendar(),
+      success: showCalendar,
       dataType: "json",
       contentType: "application/json",
     });

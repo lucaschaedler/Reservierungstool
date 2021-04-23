@@ -49,7 +49,7 @@ public class UserCrudService {
 
 	}
 
-	@DeleteMapping(path = "user/delete/{uderid}", produces = "apllication/json") // nur via userliste admin rechte
+	@DeleteMapping(path = "user/delete/{userid}", produces = "apllication/json") // nur via userliste admin rechte
 																					// zugreifbar
 	public boolean deleteUser(@PathVariable int userid) {
 		if (userRepository.existsById(userid)) {
