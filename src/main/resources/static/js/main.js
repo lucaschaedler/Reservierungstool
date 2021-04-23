@@ -55,17 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
       dataType: "json",
       contentType: "application/json",
     });
-    //je nach Rückgabewert von VerificationClass
-    var isLoggedIn = true;
-    if (isLoggedIn) {
-      setFormMessage(loginForm, "success", "Sie sind angemeldet!");
-    } else {
-      setFormMessage(
-        loginForm,
-        "error",
-        "Email/Passwort Kombination stimmt nicht überein!"
-      );
-    }
   });
 
   //AccountRequest-Prozess
@@ -87,8 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
         accountRequestMobile: a_mobile,
         accountRequestPassword: a_password,
       }),
-      success: setFormMessage(requestAccountForm, "erfolgreich"),
-      error: setFormMessage(requestAccountForm, "fehlgeschlagen"),
+      success: function (response) {
+        console.log(response); //response sollte boolean sein
+      }
+      //error: setFormMessage(requestAccountForm, "fehlgeschlagen"),
       dataType: "json",
       contentType: "application/json",
     });
