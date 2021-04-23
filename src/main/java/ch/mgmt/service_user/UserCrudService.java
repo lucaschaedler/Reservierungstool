@@ -1,7 +1,10 @@
 package ch.mgmt.service_user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -45,7 +48,8 @@ public class UserCrudService {
 
 	}
 
-	@DeleteMapping(path = "user/delete/{uderid}", produces = "apllication/json")//nur via userliste admin rechte zugreifbar
+	@DeleteMapping(path = "user/delete/{uderid}", produces = "apllication/json") // nur via userliste admin rechte
+																					// zugreifbar
 	public boolean deleteUser(@PathVariable int userid) {
 		if (userRepository.existsById(userid)) {
 			userRepository.deleteById(userid);
@@ -57,7 +61,7 @@ public class UserCrudService {
 		}
 	}
 
-	@PutMapping(path = "user/{userid}/modify", produces = "application/json")//für user zugreifbar
+	@PutMapping(path = "user/{userid}/modify", produces = "application/json") // für user zugreifbar
 	public boolean modifyUser(@PathVariable int userid, @RequestBody MessageModifyUser m) {
 		if (userRepository.existsById(userid)) {
 			User u = userRepository.getOne(userid);
@@ -75,6 +79,12 @@ public class UserCrudService {
 
 		}
 
+	}
+
+	@GetMapping("users")
+	public List<User> getUsers() {
+		logger.getLogger().info(this.getClass().getName() + "||List of user displayed||");
+		return this.userRepository.findAll();
 	}
 
 }
