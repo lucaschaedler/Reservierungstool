@@ -27,22 +27,22 @@ public class AccountRequestCrudService {
 	
 	LoggerClass logger = new LoggerClass();
 	
-	@PostMapping(path = "/api/article/account_request", produces = "application/json")
+	@PostMapping(path = "/api/account_request", produces = "application/json")
 	public AccountRequest createAccountRequest(@RequestBody MessageNewAccountRequest m) {
 		
+		System.out.println("fickennnnnnnn!");
 		AccountRequest a = new AccountRequest();
-
 		a.setAccountRequestEmail(m.getAccountRequestEmail());
 		a.setAccountRequestMobile(m.getAccountRequestMobile());
 		a.setAccountRequestName(m.getAccountRequestName());
 		a.setAccountRequestPassword(m.getAccountRequestPassword());
-		if (verificationClass.validateAccountRequest(a)) {
+		if (verificationClass.validateAccountRequest(a)) {//ob email schon vergeben ist
 			accountRepository.save(a);
 			logger.getLogger().info(this.getClass().getName() + "||AccountRequest created||");
 			return a;
 		} else {
 			logger.getLogger().info(this.getClass().getName() + "||AccountRequest failed||");
-			return null;
+			return null;//sagen das email schon vorhanden ist
 		}
 	}
 	

@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         accountRequestName: a_name,
         accountRequestEmail: a_email,
         accountRequestMobile: a_mobile,
-        accountRequestPassword: a_password,
+        accountRequestPassword: a_password
       }),
       success: setFormMessage(requestAccountForm, "success", "erfolgreich"),
       error: setFormMessage(requestAccountForm, "error", "fehlgeschlagen"),

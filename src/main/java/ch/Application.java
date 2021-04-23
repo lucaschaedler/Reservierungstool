@@ -46,10 +46,10 @@ public class Application {
 		//r.setUserId(12);
 		
 		User u = new User();
-		u.setUserEmail("wehfgirw");
+		u.setUserEmail("homo123");
 		u.setUserMobile("efgfr");
 		u.setUserName("hans");
-		u.setUserPassword("homo");
+		u.setUserPassword("homo1");
 		u.setAuthorization(Authorization.itResponisble);
 
 

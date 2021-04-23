@@ -1,13 +1,11 @@
 package ch.mgmt.messages;
 
-import ch.mgmt.persistence.Authorization;
 
 public class MessageNewAccountRequest {
 	public String accountRequestEmail;
 	public String accountRequestMobile;
 	public String accountRequestName;
 	public String accountRequestPassword;
-	public Authorization authorization = Authorization.user;//ist immer User, andere berechtigungen sind hart codiert
 	
 	public MessageNewAccountRequest(){
 		
