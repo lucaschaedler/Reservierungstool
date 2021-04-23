@@ -49,9 +49,26 @@ document.addEventListener("DOMContentLoaded", () => {
   //AccountRequest-Prozess
   requestAccountForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    let a_name = document.querySelector("#a_name").value;
+    let a_email = document.querySelector("#a_email").value;
+    let a_mobile = document.querySelector("#a_mobile").value;
+    let a_password = document.querySelector("#a_password").value;
+    // erste verifikation der daten
 
     // Ajax Prozess --> Rest-Service Aufruf
-
+    $.ajax({
+      type: "POST",
+      url: "/api/account_request",
+      data: JSON.stringify({
+        name: a_name,
+        email: a_email,
+        mobile: a_mobile,
+        password: a_password,
+      }),
+      //success: orderCreated,
+      dataType: "json",
+      contentType: "application/json",
+    });
     //je nach Rückgabewert von VerificationClass
     var isLoggedIn = true;
     if (isLoggedIn) {
