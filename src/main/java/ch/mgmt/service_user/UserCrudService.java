@@ -77,7 +77,7 @@ public class UserCrudService {
 	public boolean modifyUser(@PathVariable int userid, @RequestBody MessageModifyUser m) {
 		if (userRepository.existsById(userid)) {
 			User u = userRepository.getOne(userid);
-			//prüft ob der das Messageattribut leer ist oder nicht
+			// prüft ob der das Messageattribut leer ist oder nicht
 			if (m.getUserName() != "") {
 				u.setUserName(m.getUserName());
 			}
@@ -101,20 +101,20 @@ public class UserCrudService {
 		}
 
 	}
-	//Login --> wird geprüft ob Email und Passswort stimmen
+
+	// Login --> wird geprüft ob Email und Passswort stimmen
 	@PostMapping(path = "login", produces = "application/json")
 	public int login(@RequestBody MessageLogin m) {
-		String tempEmail = m.getEmail();
-		String tempPassword = m.getPassword();
+		String tempEmail = m.getUserEmail();
+		String tempPassword = m.getUserPassword();
 
 		User u = verificationClass.VerifyLogin(tempEmail, tempPassword);
-		if(u != null) {
+		if (u != null) {
 			logger.getLogger().info(this.getClass().getName() + "||Login Successfull||");
 			return u.getUserId();
-		}else {
-			return-1;//wenn zahl -1 ist dann ist login fehlgeschlagen
+		} else {
+			return -1;// wenn zahl -1 ist dann ist login fehlgeschlagen
 		}
-		
 
 	}
 

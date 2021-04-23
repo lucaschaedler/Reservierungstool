@@ -1,4 +1,3 @@
-console.log("Hallo Konsole, alles fresh?");
 function setFormMessage(formElement, type, message) {
   const messageElement = formElement.querySelector(".form__message");
 
@@ -8,6 +7,10 @@ function setFormMessage(formElement, type, message) {
     "form__message--error"
   );
   messageElement.classList.add("form__message--" + type);
+}
+
+function showCalendar() {
+  window.location.href("html/calendar.html");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,9 +33,20 @@ document.addEventListener("DOMContentLoaded", () => {
   //Login-Prozess
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
+    let u_email = document.querySelector("#u_email").value;
+    let u_password = document.querySelector("#u_passwort").value;
     // Ajax Prozess --> Rest-Service Aufruf
-
+    $.ajax({
+      type: "POST",
+      url: "/api/account_request",
+      data: JSON.stringify({
+        userEmail: a_name,
+        userPassword: a_email,
+      }),
+      //success: showCalendar(),
+      dataType: "json",
+      contentType: "application/json",
+    });
     //je nach Rückgabewert von VerificationClass
     var isLoggedIn = true;
     if (isLoggedIn) {
@@ -65,24 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
         accountRequestMobile: a_mobile,
         accountRequestPassword: a_password
       }),
-      //success: orderCreated,
+      success: setFormMessage(requestAccountForm, "success", "erfolgreich"),
+      error: setFormMessage(requestAccountForm, "error", "fehlgeschlagen"),
       dataType: "json",
       contentType: "application/json",
     });
-    //je nach Rückgabewert von VerificationClass
-    var isLoggedIn = true;
-    if (isLoggedIn) {
-      setFormMessage(
-        requestAccountForm,
-        "success",
-        "Sie haben eine Accountanfrage verschickt!"
-      );
-    } else {
-      setFormMessage(
-        requestAccountForm,
-        "error",
-        "Die Accountanfrage war nicht erfolgreich"
-      );
-    }
   });
 });
