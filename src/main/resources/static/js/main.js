@@ -87,8 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
         accountRequestMobile: a_mobile,
         accountRequestPassword: a_password,
       }),
-      success: setFormMessage(requestAccountForm, "success", "erfolgreich"),
-      error: setFormMessage(requestAccountForm, "error", "fehlgeschlagen"),
+      success: setFormMessage(requestAccountForm, response, "erfolgreich"),
+      error: setFormMessage(requestAccountForm, false, "fehlgeschlagen"),
       dataType: "json",
       contentType: "application/json",
     });
