@@ -1,4 +1,7 @@
-console.log(active_user);
+import { active_user } from './main.js';
+
+const id = active_user;
+console.log("modul calendar_script.js: " + id);
 
 let court1Btn = document.querySelector("#button_show_court1");
 let court2Btn = document.querySelector("#button_show_court2");
