@@ -5,5 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountRequestRepository extends JpaRepository<AccountRequest, Integer>{
+	
+	AccountRequest findByAccountRequestEmail(String tempEmail);
 
 }

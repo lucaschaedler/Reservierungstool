@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import ch.mgmt.logger.LoggerClass;
 import ch.mgmt.persistence.AccountRequest;
+import ch.mgmt.persistence.AccountRequestRepository;
 import ch.mgmt.persistence.User;
 import ch.mgmt.persistence.UserRepository;
 
@@ -13,13 +14,17 @@ public class VerificationClass {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	AccountRequestRepository accountRequestrepository;
 
 	LoggerClass logger = new LoggerClass();
 
 	public boolean validateAccountRequest(AccountRequest accountRequest) {
 
-		String tempEmail = accountRequest.getAccountRequestEmail();
-		User x = userRepository.findByUserEmail(tempEmail);
+		String tempEmail = accountRequest.getAccountRequestEmail();//funktioniert gibt e mail zurück
+		AccountRequest x = accountRequestrepository.findByAccountRequestEmail(tempEmail);
+		System.out.println(x);
 		if (x == null) {
 			logger.getLogger().info(this.getClass().getName() + "||UserEmail are unique||");
 			return true;
