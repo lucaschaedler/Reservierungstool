@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     let u_email = document.querySelector("#u_email").value;
     let u_password = document.querySelector("#u_password").value;
-    requestAccountForm.reset(); //Felder leeren!
 
     // Ajax Prozess --> Rest-Service Aufruf
     $.ajax({
@@ -66,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let a_email = document.querySelector("#a_email").value;
     let a_mobile = document.querySelector("#a_mobile").value;
     let a_password = document.querySelector("#a_password").value;
-    requestAccountForm.reset(); //Felder leeren!
 
     // Ajax Prozess --> Rest-Service Aufruf
     $.ajax({
@@ -80,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }),
       success: function (response) {
         console.log(response); //response sollte boolean sein
+        requestAccountForm.reset(); //Felder leeren!
       },
       //error: setFormMessage(requestAccountForm, "fehlgeschlagen"),
       dataType: "json",
