@@ -21,7 +21,7 @@ function showCalendar(response) {
 
   if (active_user != -1) {
     //-1 --> login failed
-    window.location.href = "html/calendar.html";
+    window.location.href = "calendar.html";
   }
 }
 
