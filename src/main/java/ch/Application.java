@@ -39,24 +39,23 @@ public class Application {
 
 		
 		//test Reservation erstellt
-		Reservation r = new Reservation();
-		r.setCourt(1);
-		r.setDate(2020, 12, 30);
-		r.setStartTime(15, 30);
-		r.setEndTime(16, 30);
-		r.setPlayerNames("homoQ");
-		
-		//Test User erstellt
-		User u = new User();
-		u.setUserEmail("homo123");
-		u.setUserMobile("efgfr");
-		u.setUserName("hans");
-		u.setUserPassword("homo1");
-		u.setAuthorization(Authorization.itResponisble);
-
-
-		reservationRepository.save(r);
-		userRepository.save(u);
+//		Reservation r = new Reservation();
+//		r.setCourt(1);
+//		r.setDate(2020, 12, 30);
+//		r.setStartTime(15, 30);
+//		r.setEndTime(16, 30);
+//		r.setPlayerNames("homoQ");
+//		
+//		//Test User erstellt
+//		User u = new User();
+//		u.setUserEmail("roberto@hotmail.com");
+//		u.setUserMobile("0695554323");
+//		u.setUserName("roberto");
+//		u.setUserPassword("baba123");
+//		u.setAuthorization(Authorization.administrator);
+//
+//		reservationRepository.save(r);
+//		userRepository.save(u);
 
 	}
 }
