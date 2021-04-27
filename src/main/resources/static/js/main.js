@@ -1,4 +1,4 @@
-var active_user = 0;
+console.log("hallo console");
 
 function setFormMessage(formElement, message, response) {
   const messageElement = formElement.querySelector(".form__message");
