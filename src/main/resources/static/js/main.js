@@ -1,3 +1,5 @@
+var active_user = 0;
+
 function setFormMessage(formElement, message, response) {
   const messageElement = formElement.querySelector(".form__message");
   messageElement.textContent = message;
@@ -12,7 +14,7 @@ function setFormMessage(formElement, message, response) {
   }
 }
 //Wenn Login erfolgreich wird die Kalendersicht angezeigt
-var active_user = 0;
+
 function showCalendar(response) {
   active_user = response;
   console.log("modul main.js: " + active_user);
