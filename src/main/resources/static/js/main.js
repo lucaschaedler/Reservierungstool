@@ -1,3 +1,5 @@
+console.log("hallo console");
+
 function setFormMessage(formElement, message, response) {
   const messageElement = formElement.querySelector(".form__message");
   messageElement.textContent = message;
@@ -15,11 +17,11 @@ function setFormMessage(formElement, message, response) {
 var active_user;
 function showCalendar(response) {
   active_user = response;
-  console.log(active_user);
+  console.log("modul main.js: " + active_user);
 
   if (active_user != -1) {
     //-1 --> login failed
-    window.location.href = "html/calendar.html";
+    window.location.href = "calendar.html";
   }
 }
 
