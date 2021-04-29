@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.mgmt.business.VerificationClass;
@@ -36,7 +37,7 @@ public class UserCrudService {
 	// bestätigt --> wandelt dann anfrage in User um
 	@PostMapping(path = "createUser", produces = "application/json")
 	public boolean createUser(@RequestBody MessageNewUser m) {
-
+//ändern als paramete rkommt nur id vom request rein
 		// verifizieren das alle angaben korrekt sind
 
 		User u = new User();
@@ -65,7 +66,7 @@ public class UserCrudService {
 
 	// Listes alle Users auf, wird für Deletemethode verwendet
 	@GetMapping("users")
-	public List<User> getUsers() {
+	public List<User> getUsers(@RequestParam(required = false) String filter) {
 		logger.getLogger().info(this.getClass().getName() + "||List of user displayed||");
 		return this.userRepository.findAll();
 	}
