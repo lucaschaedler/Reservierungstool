@@ -1,0 +1,61 @@
+<!doctype html>
+ <html lang="de">
+<head>
+ <meta charset="utf-8">
+
+<title>UserListService</title>
+
+ </head>
+
+ <body>
+<button id = "userlistbtn">Userliste</button>
+<button id = "accountrequestbtn">Accountanfragen</button>
+
+<div id = "userPanel" hidden = "true">
+ <h1>UserListe</h1>
+
+   
+      Filter : <input type = "text" id = "inpUserList"/>
+      <button onClick = "javascript:applyFilter()"> Filter anweden </button>
+ <table id="tblUserList">
+    <thead>
+     <tr>
+        <td>UserID</td>
+        <td>Name</td>
+        <td>E-Mail</td>
+        <td>Mobile</td>
+        <td>Rolle</td>
+     </tr>
+    </thead>
+ <tbody>
+
+ </tbody>
+ </table>
+</div>
+
+<div id = "accountRequestPanel" hidden = "true">
+   <h1>Accountanfragen Liste</h1>
+  
+     
+        Filter : <input type = "text" id = "inpAcc"/>
+        <button onClick = "javascript:applyFilterAcc()"> Filter anweden </button>
+   <table id="tblAccList">
+      <thead>
+       <tr>
+          <td>Accountanfrage ID</td>
+          <td>Name</td>
+          <td>E-Mail</td>
+          <td>Mobile</td>
+       </tr>
+      </thead>
+   <tbody>
+  
+   </tbody>
+   </table>
+  </div>
+ <script src="https://code.jquery.com/jquery-3.5.1.js"
+ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+crossorigin="anonymous"></script>
+ <script src="js/userlist.js"></script>
+</body>
+</html>
