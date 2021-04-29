@@ -2,6 +2,32 @@ const loginForm = document.querySelector("#login");
 const requestAccountForm = document.querySelector("#requestAccount");
 var active_user;
 
+function verifyPassword(password) {
+  isCorrect = false;
+  //minimum password length validation
+  if (password.length < 8) {
+    window.alert("Passwort muss zwischen 8-15 Zeichen enthalten");
+    return false;
+  }
+
+  //maximum length of password validation
+  if (pw.length > 15) {
+    window.alert("Passwort muss zwischen 8-15 Zeichen enthalten");
+    return false;
+  } else {
+    return true;
+  }
+}
+function matchPassword(password, password_repeat) {
+  isIdentical = false;
+  if (password == password_repeat) {
+    isIdentical = true;
+  } else {
+    window.alert("Passwörter stimmen nicht überein");
+  }
+  return isIdentical;
+}
+
 function setFormMessage(formElement, message, response) {
   const messageElement = formElement.querySelector(".form__message");
   messageElement.textContent = message;
@@ -69,26 +95,32 @@ document.addEventListener("DOMContentLoaded", () => {
     let a_email = document.querySelector("#a_email").value;
     let a_mobile = document.querySelector("#a_mobile").value;
     let a_password = document.querySelector("#a_password").value;
+    let a_password_repeat = document.querySelector("#a_password_repeat").value;
 
-    // Ajax Prozess --> Rest-Service Aufruf
-    $.ajax({
-      type: "POST",
-      url: "/api/account_request",
-      data: JSON.stringify({
-        accountRequestName: a_name,
-        accountRequestEmail: a_email,
-        accountRequestMobile: a_mobile,
-        accountRequestPassword: a_password,
-      }),
-      success: function (response) {
-        let message = "Accountanfrage erfolgreich";
-        if (!response) {
-          message = "Accountanfrage fehlgeschlagen";
-        }
-        setFormMessage(requestAccountForm, message, response);
-      },
-      dataType: "json",
-      contentType: "application/json",
-    });
+    if (
+      matchPassword(a_password, a_password_repeat) &&
+      verifyPassword(a_password)
+    ) {
+      // Ajax Prozess --> Rest-Service Aufruf
+      $.ajax({
+        type: "POST",
+        url: "/api/account_request",
+        data: JSON.stringify({
+          accountRequestName: a_name,
+          accountRequestEmail: a_email,
+          accountRequestMobile: a_mobile,
+          accountRequestPassword: a_password,
+        }),
+        success: function (response) {
+          let message = "Accountanfrage erfolgreich";
+          if (!response) {
+            message = "Accountanfrage fehlgeschlagen";
+          }
+          setFormMessage(requestAccountForm, message, response);
+        },
+        dataType: "json",
+        contentType: "application/json",
+      });
+    }
   });
 });
