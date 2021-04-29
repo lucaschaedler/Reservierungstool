@@ -9,7 +9,7 @@ function setFormMessage(formElement, message, response) {
     "form__message--success",
     "form__message--error"
   );
-  if (response == true) {
+  if (response) {
     messageElement.classList.add("form__message--success");
   } else {
     messageElement.classList.add("form__message--error");
@@ -81,18 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
         accountRequestPassword: a_password,
       }),
       success: function (response) {
-        setFormMessage(
-          requestAccountForm,
-          "Accountanfrage erfolgreich",
-          response
-        );
-      },
-      error: function (response) {
-        setFormMessage(
-          requestAccountForm,
-          "Accountanfrage fehlgeschlagen",
-          response
-        );
+        let message = "Accountanfrage erfolgreich";
+        if (!response) {
+          message = "Accountanfrage fehlgeschlagen";
+        }
+        setFormMessage(requestAccountForm, message, response);
       },
       dataType: "json",
       contentType: "application/json",
