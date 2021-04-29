@@ -47,15 +47,15 @@ public class Application {
 //		r.setPlayerNames("homoQ");
 //		
 //		//Test User erstellt
-//		User u = new User();
-//		u.setUserEmail("roberto@hotmail.com");
-//		u.setUserMobile("0695554323");
-//		u.setUserName("roberto");
-//		u.setUserPassword("baba123");
-//		u.setAuthorization(Authorization.administrator);
+		User u = new User();
+		u.setUserEmail("roberto@hotmail.com");
+		u.setUserMobile("0695554323");
+		u.setUserName("roberto");
+		u.setUserPassword("baba123");
+		u.setAuthorization(Authorization.administrator);
 //
 //		reservationRepository.save(r);
-//		userRepository.save(u);
+		userRepository.save(u);
 
 	}
 }

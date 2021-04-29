@@ -18,6 +18,8 @@ import ch.mgmt.logger.LoggerClass;
 import ch.mgmt.messages.MessageLogin;
 import ch.mgmt.messages.MessageModifyUser;
 import ch.mgmt.messages.MessageNewUser;
+import ch.mgmt.persistence.AccountRequest;
+import ch.mgmt.persistence.AccountRequestRepository;
 import ch.mgmt.persistence.User;
 import ch.mgmt.persistence.UserRepository;
 
@@ -30,29 +32,39 @@ public class UserCrudService {
 
 	@Autowired
 	private VerificationClass verificationClass;
+	
+	@Autowired
+	private AccountRequestRepository accountRequestRepository;
 
 	LoggerClass logger = new LoggerClass();
 
 	// Wird nur von ITVerantwortlichen aufgerufen idem er die AccountAnfrage
 	// bestätigt --> wandelt dann anfrage in User um
-	@PostMapping(path = "createUser", produces = "application/json")
-	public boolean createUser(@RequestBody MessageNewUser m) {
-//ändern als paramete rkommt nur id vom request rein
-		// verifizieren das alle angaben korrekt sind
-
+	@PostMapping(path = "createUser/{reqid}", produces = "application/json")
+	public boolean createUser(@PathVariable int reqid) {
+		if (accountRequestRepository.existsById(reqid)) {
+			AccountRequest a = accountRequestRepository.getOne(reqid);
+		
 		User u = new User();
-		u.setUserName(m.getUserName());
-		u.setUserPassword(m.getUserPassword());
-		u.setUserMobile(m.getUserMobile());
-		u.setUserEmail(m.getUserEmail());
-
+		u.setUserName(a.getAccountRequestName());
+		u.setUserEmail(a.getAccountRequestEmail());
+		u.setUserMobile(a.getAccountRequestMobile());
+		u.setUserPassword(a.getAccountRequestPassword());
 		userRepository.save(u);
-		logger.getLogger().info(this.getClass().getName() + "||User created||");
+		logger.getLogger().info(this.getClass().getName() + "||User has been created||");
+		accountRequestRepository.deleteById(reqid);
+		logger.getLogger().info(this.getClass().getName() + "||Accountrequest has been deleted||");
 		return true;
+		}else {
+			logger.getLogger().info(this.getClass().getName() + "||Accountrequest not found||");
+			return false;
+		}
+		
 
+		
 	}
 
-@DeleteMapping(path = "user/delete/{uderid}", produces = "apllication/json")
+@DeleteMapping(path = "user/delete/{userid}", produces = "application/json")
 	public boolean deleteUser(@PathVariable int userid) {
 		if (userRepository.existsById(userid)) {
 			userRepository.deleteById(userid);

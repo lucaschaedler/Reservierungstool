@@ -82,14 +82,14 @@ function accountRequestlistclicked(){
              }
 
             function deleteUser(id){
-                var urlstring = "user/delete/"+id;
+                var urlstring = "api/user/delete/"+id;
                 console.log("delete  " + id);
               $.ajax({
                 type: "DELETE",
-                url: "urlstring",
+                url: urlstring,
                 success: deleteUserRespons,
                 dataType: "json",
-               contentType: "application/jsin",
+               contentType: "application/json",
 
               })
             }
@@ -101,20 +101,20 @@ function accountRequestlistclicked(){
                         var urlstring = "/api/deleteAccountRequest/"+id;
                 $.ajax({
                 type: "DELETE",
-                url: "urlstring",
+                url: urlstring,
                 success: deleteReqRespons,
                 dataType: "json",
-                contentType: "application/jsin",
+                contentType: "application/json",
 
               })
                         }
 
                         function createUser(id){
                         console.log("create user"+id);
-                        var urlstring = "api/createUser"+id;
+                        var urlstring = "api/createUser/"+id;
                         $.ajax({
                             type: "Post",
-                            url: "urlstring",
+                            url: urlstring,
                             success: createUserResponse,
                             dataType: "json",
                             contentType: "application/jsin",
