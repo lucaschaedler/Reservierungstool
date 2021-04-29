@@ -1,3 +1,4 @@
+import
 console.log(active_user);
 
 let court1Btn = document.querySelector("#button_show_court1");

@@ -12,7 +12,7 @@ function setFormMessage(formElement, message, response) {
   }
 }
 //Wenn Login erfolgreich wird die Kalendersicht angezeigt
-active_user = 0;
+var active_user;
 function showCalendar(response) {
   active_user = response;
   console.log(active_user);
