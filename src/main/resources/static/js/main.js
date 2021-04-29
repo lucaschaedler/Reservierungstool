@@ -1,4 +1,6 @@
-console.log("hallo console");
+const loginForm = document.querySelector("#login");
+const requestAccountForm = document.querySelector("#requestAccount");
+var active_user;
 
 function setFormMessage(formElement, message, response) {
   const messageElement = formElement.querySelector(".form__message");
@@ -12,23 +14,21 @@ function setFormMessage(formElement, message, response) {
   } else {
     messageElement.classList.add("form__message--error");
   }
+  messageElement.reset(); //Felder leeren
 }
-//Wenn Login erfolgreich wird die Kalendersicht angezeigt
-var active_user;
+//Wenn Login erfolgreich wird die Kalendersicht angezeigen
 function showCalendar(response) {
   active_user = response;
   console.log("modul main.js: " + active_user);
-
   if (active_user != -1) {
-    //-1 --> login failed
+    setFormMessage(loginForm, "Login erfolgreich", true);
     window.location.href = "calendar.html";
+  } else {
+    setFormMessage(loginForm, "Login fehlgeschlagen", false);
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.querySelector("#login");
-  const requestAccountForm = document.querySelector("#requestAccount");
-
   document
     .querySelector("#linkRequestAccount")
     .addEventListener("click", (e) => {
@@ -81,10 +81,19 @@ document.addEventListener("DOMContentLoaded", () => {
         accountRequestPassword: a_password,
       }),
       success: function (response) {
-        console.log(response); //response sollte boolean sein
-        requestAccountForm.reset(); //Felder leeren!
+        setFormMessage(
+          requestAccountForm,
+          "Accountanfrage erfolgreich",
+          response
+        );
       },
-      //error: setFormMessage(requestAccountForm, "fehlgeschlagen"),
+      error: function (response) {
+        setFormMessage(
+          requestAccountForm,
+          "Accountanfrage fehlgeschlagen",
+          response
+        );
+      },
       dataType: "json",
       contentType: "application/json",
     });
