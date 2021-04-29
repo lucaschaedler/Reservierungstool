@@ -14,7 +14,7 @@ function setFormMessage(formElement, message, response) {
   } else {
     messageElement.classList.add("form__message--error");
   }
-  messageElement.reset(); //Felder leeren
+  formElement.reset(); //Felder leeren
 }
 //Wenn Login erfolgreich wird die Kalendersicht angezeigen
 function showCalendar(response) {
