@@ -1,8 +1,11 @@
+/*import { active_user } from "./main.js";
+const id = active_user;
+console.log("modul calendar_script.js: " + id);*/
+
 let court1Btn = document.querySelector("#button_show_court1");
 let court2Btn = document.querySelector("#button_show_court2");
 let court1Tbl = document.querySelector("#table_court_1");
 let court2Tbl = document.querySelector("#table_court_2");
-
 let datePicker = document.querySelector("#datepicker");
 let dateObject;
 
@@ -59,6 +62,7 @@ getData();
 */
 
 //reservation-ajax-api
+/*
 $(document).ready(function () {
   $.getJSON("../test/reservations.json", function (data) {
     var reservation_data = "";
@@ -75,3 +79,5 @@ $(document).ready(function () {
     $("#table_court_1").append(reservation_data);
   });
 });
+
+*/

@@ -1,3 +1,7 @@
+const loginForm = document.querySelector("#login");
+const requestAccountForm = document.querySelector("#requestAccount");
+var active_user;
+
 function setFormMessage(formElement, message, response) {
   const messageElement = formElement.querySelector(".form__message");
   messageElement.textContent = message;
@@ -5,26 +9,26 @@ function setFormMessage(formElement, message, response) {
     "form__message--success",
     "form__message--error"
   );
-  if (response == true) {
+  if (response) {
     messageElement.classList.add("form__message--success");
   } else {
     messageElement.classList.add("form__message--error");
   }
+  formElement.reset(); //Felder leeren
 }
-
-//Wenn Login erfolgreich wird die Kalendersicht angezeigt
+//Wenn Login erfolgreich wird die Kalendersicht angezeigen
 function showCalendar(response) {
-  console.log(response);
-  if (response != -1) {
-    //-1 --> login failed
-    window.location.href = "html/calendar.html";
+  active_user = response;
+  console.log("modul main.js: " + active_user);
+  if (active_user != -1) {
+    setFormMessage(loginForm, "Login erfolgreich", true);
+    window.location.href = "calendar.html";
+  } else {
+    setFormMessage(loginForm, "Login fehlgeschlagen", false);
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.querySelector("#login");
-  const requestAccountForm = document.querySelector("#requestAccount");
-
   document
     .querySelector("#linkRequestAccount")
     .addEventListener("click", (e) => {
@@ -77,10 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
         accountRequestPassword: a_password,
       }),
       success: function (response) {
-        console.log(response); //response sollte boolean sein
-        requestAccountForm.reset(); //Felder leeren!
+        let message = "Accountanfrage erfolgreich";
+        if (!response) {
+          message = "Accountanfrage fehlgeschlagen";
+        }
+        setFormMessage(requestAccountForm, message, response);
       },
-      //error: setFormMessage(requestAccountForm, "fehlgeschlagen"),
       dataType: "json",
       contentType: "application/json",
     });
