@@ -7,6 +7,7 @@ import Header from "./Header";
 import Calendar from "../Calendar";
 import { Link, Redirect } from "react-router-dom";
 import { result } from "lodash";
+import { useHistory } from "react-router";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -37,6 +38,9 @@ class LoginForm extends React.Component {
   }
   showCalendar() {
     console.log("showCalendar");
+              let path ='/calendar';
+          let history = useHistory();
+          history.push(path);
     return <Redirect to="/calendar" />;
   }
 
@@ -72,7 +76,9 @@ class LoginForm extends React.Component {
           this.showCalendar();
           console.log("current_user_id: " + UserStore.id);
           this.resetForm();
-          this.setState;
+          
+
+
         } else {
           console.log("login fehlgeschlagen", response);
           this.resetForm();

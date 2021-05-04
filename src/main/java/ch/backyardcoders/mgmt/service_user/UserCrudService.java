@@ -15,15 +15,18 @@ import ch.backyardcoders.mgmt.business.VerificationClass;
 import ch.backyardcoders.mgmt.logger.LoggerClass;
 import ch.backyardcoders.mgmt.messages.MessageLogin;
 import ch.backyardcoders.mgmt.messages.MessageModifyUser;
-import ch.backyardcoders.mgmt.messages.MessageNewUser;
 import ch.backyardcoders.mgmt.persistence.AccountRequest;
 import ch.backyardcoders.mgmt.persistence.AccountRequestRepository;
 import ch.backyardcoders.mgmt.persistence.User;
 import ch.backyardcoders.mgmt.persistence.UserRepository;
+import ch.backyardcoders.mgmt.security.PasswordHash;
 
 @RestController
 @RequestMapping("api/")
 public class UserCrudService {
+	
+	@Autowired
+	private PasswordHash passwordHash;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -115,7 +118,7 @@ public class UserCrudService {
 	@PostMapping(path = "login", produces = "application/json")
 	public int login(@RequestBody MessageLogin m) {
 		String tempEmail = m.getUserEmail();
-		String tempPassword = m.getUserPassword();
+		String tempPassword = passwordHash.hashPassword(m.getUserPassword());
 
 		User u = verificationClass.VerifyLogin(tempEmail, tempPassword);
 		if (u != null) {

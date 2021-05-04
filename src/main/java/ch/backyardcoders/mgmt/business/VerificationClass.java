@@ -22,10 +22,10 @@ public class VerificationClass {
 
 	public boolean validateAccountRequest(AccountRequest accountRequest) {
 
-		String tempEmail = accountRequest.getAccountRequestEmail();//funktioniert gibt e mail zurück
+		String tempEmail = accountRequest.getAccountRequestEmail();
 		AccountRequest x = accountRequestrepository.findByAccountRequestEmail(tempEmail);
-		System.out.println(x);
-		if (x == null) {
+		User u = userRepository.findUserByUserEmail(tempEmail);//überprüft ob es user mit dieser e mail gibt und auch request
+		if (x == null && u == null) {
 			logger.getLogger().info(this.getClass().getName() + "||UserEmail are unique||");
 			return true;
 		} else {

@@ -14,39 +14,7 @@ class App extends React.Component {
       console.log("Calendar");
     }
   }
-  /*
-async componentDidMount() {
-  await fetch(UserStore.isLoggedIn) {
-    console.log("is logged in");
-  }
   
-    try {
-      let res = await fetch("/isLoggedIn", {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      let result = await res.json();
-
-      if (result && result.success) {
-        UserStore.loading = false;
-        UserStore.isLoggedIn = true;
-        UserStore.userName = result.userName;
-      } else {
-        UserStore.loading = false;
-        UserStore.isLoggedIn = false;
-      }
-    } catch (e) {
-      UserStore.loading = false;
-      UserStore.isLoggedIn = false;
-      console.log(e);
-    }
-    
-  }
-  */
   render() {
     return (
       <Router>
