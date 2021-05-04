@@ -45,30 +45,11 @@ async componentDidMount() {
   }
   */
   render() {
-    if (!UserStore.isLoggedIn) {
-      return (
-        <Router>
-          <div>
-            {" "}
-            create Navigation bar with links!!!!
-            <Link to="calendar">Calendar</Link>
-            <Switch>
-              <Route path="/" exact component={Home}></Route>
-              <Route path="/calendar" exact component={Calendar}></Route>
-            </Switch>
-          </div>
-        </Router>
-      );
-    }
-    {
-      /*else {
-      return (
-        <div>
-          <Calendar />
-        </div>
-      );
-    }*/
-    }
+    return(
+      <div>
+      <Home/>
+    </div>
+    );
   }
 }
 

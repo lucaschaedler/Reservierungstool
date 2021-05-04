@@ -5,6 +5,7 @@ import SubmitButton from "./SubmitButton";
 import UserStore from "../stores/UserStore";
 import Header from "./Header";
 import { result } from "lodash";
+import { useHistory } from "react-router";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -65,6 +66,11 @@ class LoginForm extends React.Component {
           UserStore.email = this.state.email;
           console.log("current_user_id: " + UserStore.id);
           this.resetForm();
+          
+          let path ='/calendar';
+          let history = useHistory();
+          history.push(path);
+
         } else {
           console.log("login fehlgeschlagen", response);
           this.resetForm();
