@@ -14,10 +14,14 @@ import ch.backyardcoders.mgmt.logger.LoggerClass;
 import ch.backyardcoders.mgmt.messages.MessageNewAccountRequest;
 import ch.backyardcoders.mgmt.persistence.AccountRequest;
 import ch.backyardcoders.mgmt.persistence.AccountRequestRepository;
+import ch.backyardcoders.mgmt.security.PasswordHash;
 
 @RestController
 public class AccountRequestCrudService {
 
+	@Autowired
+	private PasswordHash passwordHash;
+	
 	@Autowired
 	private AccountRequestRepository accountRepository;
 
@@ -33,8 +37,10 @@ public class AccountRequestCrudService {
 		a.setAccountRequestEmail(m.getAccountRequestEmail());
 		a.setAccountRequestMobile(m.getAccountRequestMobile());
 		a.setAccountRequestName(m.getAccountRequestName());
-		a.setAccountRequestPassword(m.getAccountRequestPassword());
-		if (verificationClass.validateAccountRequest(a)) {// ob email schon vergeben ist
+		
+		a.setAccountRequestPassword(passwordHash.hashPassword(m.getAccountRequestPassword()));
+		
+		if (verificationClass.validateAccountRequest(a)) {// ob email schon vergeben ist noch vom user überprüfen auch noch
 			accountRepository.save(a);
 			logger.getLogger().info(this.getClass().getName() + "||AccountRequest created||");
 			return true;
