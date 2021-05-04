@@ -4,6 +4,8 @@ import InputField from "./InputField";
 import SubmitButton from "./SubmitButton";
 import UserStore from "../stores/UserStore";
 import Header from "./Header";
+import Calendar from "../Calendar";
+import { Link, Redirect } from "react-router-dom";
 import { result } from "lodash";
 
 class LoginForm extends React.Component {
@@ -32,6 +34,10 @@ class LoginForm extends React.Component {
       password: "",
       buttonDisabled: false,
     });
+  }
+  showCalendar() {
+    console.log("showCalendar");
+    return <Redirect to="/calendar" />;
   }
 
   doLogin() {
@@ -63,8 +69,10 @@ class LoginForm extends React.Component {
           UserStore.isLoggedIn = true;
           UserStore.id = response.data; //current user id wird zugewiesen
           UserStore.email = this.state.email;
+          this.showCalendar();
           console.log("current_user_id: " + UserStore.id);
           this.resetForm();
+          this.setState;
         } else {
           console.log("login fehlgeschlagen", response);
           this.resetForm();

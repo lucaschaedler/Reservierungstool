@@ -8,8 +8,11 @@ import UserList from "./UserList";
 import Calendar from "./Calendar";
 
 class App extends React.Component {
-  componentDidMount() {
-    console.log("blabla");
+  componentDidUpdate() {
+    if (UserStore.id != -1 && UserStore.id != 0) {
+      console.log(UserStore.id);
+      console.log("Calendar");
+    }
   }
   /*
 async componentDidMount() {
@@ -45,30 +48,39 @@ async componentDidMount() {
   }
   */
   render() {
-    if (!UserStore.isLoggedIn) {
-      return (
-        <Router>
-          <div>
-            {" "}
-            create Navigation bar with links!!!!
-            <Link to="calendar">Calendar</Link>
-            <Switch>
-              <Route path="/" exact component={Home}></Route>
-              <Route path="/calendar" exact component={Calendar}></Route>
-            </Switch>
-          </div>
-        </Router>
-      );
-    }
-    {
-      /*else {
-      return (
+    return (
+      <Router>
         <div>
-          <Calendar />
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/calendar">Calendar</Link>
+              </li>
+              <li>
+                <Link to="/userlist">Userlist</Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* A <Switch> looks through its children <Route>s and
+                renders the first one that matches the current URL. */}
+          <Switch>
+            <Route path="/calendar">
+              <Calendar />
+            </Route>
+            <Route path="/userlist">
+              <UserList />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
         </div>
-      );
-    }*/
-    }
+      </Router>
+    );
   }
 }
 
