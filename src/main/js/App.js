@@ -1,13 +1,22 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import UserStore from "./stores/UserStore";
-import LoginForm from "./components/LoginForm";
-import RegisterForm from "./components/RegisterForm";
-import SubmitButton from "./components/SubmitButton";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import UserStore from "./stores/UserStore";
+import Home from "./Home";
+import UserList from "./UserList";
+import Calendar from "./Calendar";
 
 class App extends React.Component {
-  /*async componentDidMount() {
+  componentDidMount() {
+    console.log("blabla");
+  }
+  /*
+async componentDidMount() {
+  await fetch(UserStore.isLoggedIn) {
+    console.log("is logged in");
+  }
+  
     try {
       let res = await fetch("/isLoggedIn", {
         method: "post",
@@ -32,15 +41,34 @@ class App extends React.Component {
       UserStore.isLoggedIn = false;
       console.log(e);
     }
+    
   }
   */
   render() {
-    return (
-      <div>
-        <LoginForm />
-        <RegisterForm />
-      </div>
-    );
+    if (!UserStore.isLoggedIn) {
+      return (
+        <Router>
+          <div>
+            {" "}
+            create Navigation bar with links!!!!
+            <Link to="calendar">Calendar</Link>
+            <Switch>
+              <Route path="/" exact component={Home}></Route>
+              <Route path="/calendar" exact component={Calendar}></Route>
+            </Switch>
+          </div>
+        </Router>
+      );
+    }
+    {
+      /*else {
+      return (
+        <div>
+          <Calendar />
+        </div>
+      );
+    }*/
+    }
   }
 }
 

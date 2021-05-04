@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class WebService {
 	
-	//bei jedem aufruf wird template/index.html(root) aufgerufen
+	//Spring wird gezeigt wo der web entry point ist
 	@RequestMapping(value = "/")
 	public String index() {
 		return "index";
