@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import UserStore from "./stores/UserStore";
 import Home from "./Home";
 import UserList from "./UserList";
 import Calendar from "./Calendar";
 
 class App extends React.Component {
-  componentDidMount() {}
+  componentDidUpdate() {
+    if (UserStore.id != -1 && UserStore.id != 0) {
+      console.log(UserStore.id);
+      console.log("Calendar");
+    }
+  }
 
   render() {
     return (
-      <Router>
+     <Router>
         <div>
           <nav>
             <ul>
