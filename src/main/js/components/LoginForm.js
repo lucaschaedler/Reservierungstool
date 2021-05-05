@@ -39,7 +39,7 @@ class LoginForm extends React.Component {
     });
   }
 
-  componentWillUnmount() {
+  componentWillUnmount() {//from Stackoverflow to fix a warning
     // fix Warning: Can't perform a React state update on an unmounted component
     this.setState = (state, callback)=>{
         return;
