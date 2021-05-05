@@ -20,10 +20,11 @@ class App extends React.Component {
     return (
      <Router>
         <div>
-          <nav>
+        { /* wären links um zu testen
+              <nav>
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/home">Home</Link>
               </li>
               <li>
                 <Link to="/calendar">Calendar</Link>
@@ -32,7 +33,8 @@ class App extends React.Component {
                 <Link to="/userlist">Userlist</Link>
               </li>
             </ul>
-          </nav>
+         </nav>
+       */}  
 
           {/* A <Switch> looks through its children <Route>s and
                 renders the first one that matches the current URL. */}
