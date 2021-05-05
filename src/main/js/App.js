@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import UserStore from "./stores/UserStore";
 import Home from "./Home";
 import UserList from "./UserList";
@@ -14,10 +14,11 @@ class App extends React.Component {
       console.log("Calendar");
     }
   }
-  
+
+
   render() {
     return (
-      <Router>
+     <Router>
         <div>
           <nav>
             <ul>

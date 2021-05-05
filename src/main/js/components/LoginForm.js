@@ -5,9 +5,11 @@ import SubmitButton from "./SubmitButton";
 import UserStore from "../stores/UserStore";
 import Header from "./Header";
 import Calendar from "../Calendar";
-import { Link, Redirect } from "react-router-dom";
 import { result } from "lodash";
-import { useHistory } from "react-router";
+import App from "../App"; 
+import ReactDOM from 'react-dom'; 
+import { withRouter } from 'react-router'
+
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -36,13 +38,17 @@ class LoginForm extends React.Component {
       buttonDisabled: false,
     });
   }
+
+  componentWillUnmount() {
+    // fix Warning: Can't perform a React state update on an unmounted component
+    this.setState = (state,callback)=>{
+        return;
+    };
+}
   showCalendar() {
-    console.log("showCalendar");
-              let path ='/calendar';
-          let history = useHistory();
-          history.push(path);
-    return <Redirect to="/calendar" />;
-  }
+    const { history: { push } } = this.props;
+    push('/calendar');
+}
 
   doLogin() {
     if (!this.state.email) {
@@ -111,9 +117,9 @@ class LoginForm extends React.Component {
           disabled={this.state.buttonDisabled}
           onClick={() => this.doLogin()}
         />
+    
       </div>
     );
   }
 }
-
-export default LoginForm;
+export default withRouter(LoginForm);
