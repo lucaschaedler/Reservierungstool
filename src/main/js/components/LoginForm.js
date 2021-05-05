@@ -37,11 +37,7 @@ class LoginForm extends React.Component {
     });
   }
   showCalendar() {
-    console.log("showCalendar");
-              let path ='/calendar';
-          let history = useHistory();
-          history.push(path);
-    return <Redirect to="/calendar" />;
+    React.render(<Calendar />);
   }
 
   doLogin() {
@@ -73,12 +69,9 @@ class LoginForm extends React.Component {
           UserStore.isLoggedIn = true;
           UserStore.id = response.data; //current user id wird zugewiesen
           UserStore.email = this.state.email;
-          this.showCalendar();
           console.log("current_user_id: " + UserStore.id);
           this.resetForm();
-          
-
-
+          this.showCalendar();
         } else {
           console.log("login fehlgeschlagen", response);
           this.resetForm();

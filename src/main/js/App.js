@@ -8,13 +8,8 @@ import UserList from "./UserList";
 import Calendar from "./Calendar";
 
 class App extends React.Component {
-  componentDidUpdate() {
-    if (UserStore.id != -1 && UserStore.id != 0) {
-      console.log(UserStore.id);
-      console.log("Calendar");
-    }
-  }
-  
+  componentDidMount() {}
+
   render() {
     return (
       <Router>
