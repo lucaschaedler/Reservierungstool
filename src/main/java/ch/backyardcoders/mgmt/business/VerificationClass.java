@@ -14,7 +14,7 @@ public class VerificationClass {
 
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	AccountRequestRepository accountRequestrepository;
 
@@ -24,14 +24,14 @@ public class VerificationClass {
 
 		String tempEmail = accountRequest.getAccountRequestEmail();
 		AccountRequest x = accountRequestrepository.findByAccountRequestEmail(tempEmail);
-		User u = userRepository.findUserByUserEmail(tempEmail);//überprüft ob es user mit dieser e mail gibt und auch request
+		User u = userRepository.findUserByUserEmail(tempEmail);// überprüft ob es user mit dieser e mail gibt und auch
+																// request
 		if (x == null && u == null) {
 			logger.getLogger().info(this.getClass().getName() + "||UserEmail are unique||");
 			return true;
 		} else {
 			return false;
 		}
-
 	}
 
 	public User VerifyLogin(String tempEmail, String tempPassword) {

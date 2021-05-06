@@ -93,7 +93,7 @@ public class UserCrudService {
 			if (m.getUserName() != "") {
 				u.setUserName(m.getUserName());
 			}
-			if (m.getPassword() != "") {
+			if (m.getPassword() != "") {//hashen nicht vergessen
 				u.setUserPassword(m.getPassword());
 			}
 			if (m.getMobile() != "") {
