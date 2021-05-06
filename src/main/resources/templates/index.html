@@ -1,13 +1,244 @@
 <!DOCTYPE html>
-<html>
-  <head lang="en">
-    <meta charset="UTF-8" />
-    <title>IT-Projekt</title>
-    <link rel="stylesheet" href="/main.css" />
+<html lang="de">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="#" />
+    <!--home-scripts-->
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!--calendar-scripts-->
+    
+    <!--script-import-END-->
+    <title>Login</title>
+    <link rel="stylesheet" href="main.css" />
   </head>
+
   <body>
-    <div id="container"></div>
-	<h1>hallo</h1>
-    <script src="/main.js"></script>
+    <!--HOME-START-->
+    <div id="home">
+      <a href="userlist.html"> test</a>
+      <div class="sidenav">
+        <div class="login-main-text">
+          <h2>
+            Reservierungstool<br />
+            Login
+          </h2>
+          <p>Login or register from here to access.</p>
+        </div>
+      </div>
+      <div class="main">
+        <div class="col-md-6 col-sm-12">
+          <div class="login-form">
+            <form class="form" id="login">
+              <div class="form__message form__message--error"></div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  id="u_email"
+                  autofocus
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Passwort"
+                  id="u_password"
+                  autofocus
+                  required
+                />
+              </div>
+              <div class="d-flex justify-content-left">
+                <a class="form-link" href="./" id="linkRequestAccount"
+                  >Noch keinen Account?</a
+                >
+              </div>
+              <button type="submit" class="btn btn-info">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="col-md-6 col-sm-12">
+          <div class="register-form">
+            <form class="form form--hidden" id="requestAccount">
+              <div class="form__message form__message--error"></div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="a_name"
+                  placeholder="Name"
+                  autofocus
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  id="a_email"
+                  autofocus
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="tel"
+                  class="form-control"
+                  placeholder="Mobile"
+                  id="a_mobile"
+                  autofocus
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Passwort"
+                  id="a_password"
+                  autofocus
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Passwort wiederholen"
+                  id="a_password_repeat"
+                  autofocus
+                  required
+                />
+              </div>
+              <div class="d-flex justify-content-left">
+                <a class="form-link" href="./" id="linkLogin"
+                  >Im Besitz eines Accounts?</a
+                >
+              </div>
+              <button type="submit" class="btn btn-info">Registrieren</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--HOME-END-->
+    <!--CALENDAR-START-->
+    <div id="calendar" hidden="true">
+    <div class="row">
+      <div id="title_container "class="col-sm-12">
+      <h1 id="hure" align="center">Booking Calendar</h1>
+      <h3 align="center">BC Rohrdorf</h3>
+      </div>
+ </div>
+ <div id="calendar_container" class="row">
+      <div class="col-sm-4" id="table_navigation_bar">
+           <div id="datepicker"></div>
+           <button class="btn btn-secondary btn-lm" id="button_show_court1" disabled="true">Court 1</button>
+           <button class="btn btn-secondary btn-lm" id="button_show_court2">Court 2</button>
+           <button class="btn btn-secondary btn-lm" id="button_userlist" hidden >Userlist</button>
+           <button class="btn btn-secondary btn-lm" id="button_accreqlist" hidden>Account Request List</button>
+           <button class="btn btn-secondary btn-lm" id="logoutbtn">Logout</button>
+
+      </div>
+      <div class="col-sm-8" id=table_container>
+           <table id="table_court_1" class="table table-bordered">  
+                <thead>  
+                     <tr>  
+                          <th>Uhrzeit 1</th>
+                          <th>Belegung 1</th>
+                     </tr> 
+                </thead>  
+           </table>
+           <table id="table_court_2" class="table table-bordered" hidden="true">  
+                <thead>  
+                     <tr>  
+                          <th>Uhrzeit 2</th>
+                          <th>Belegung 2</th>
+                          <tr>
+                               <td>15.00</td>
+                               <td>Blerta, Marianne</td>
+                          </tr>
+                          <tr>
+                               <td>16.00</td>
+                               <td>Jennifer, Josef</td>
+                          </tr>  
+                     </tr>  
+                </thead>  
+           </table> 
+      </div>
+ </div>  
+</div>
+<!--CALENDAR-END--> 
+    <!--USERLIST-START-->
+    <div id="userlist" hidden="true">
+      <h1>UserListService</h1>
+      <button id="userlistreturnbtn">zurück</button>
+    <!--
+           Filter : <input type = "text" id = "inpUserList"/>
+           <button onClick = "javascript:applyFilter()"> Filter anweden </button>
+           -->
+      <table id="tblUserList">
+         <thead>
+          <tr>
+             <th>UserID</th>
+             <th>Name</th>
+             <th>E-Mail</th>
+             <th>Mobile</th>
+             <th>Rolle</th>
+          </tr>
+         </thead>
+      <tbody>
+     
+      </tbody>
+      </table>
+     </div>
+    </div>
+    <!--USERLIST-END-->
+    <!--ACCREQLIST-START-->
+    <div id="accreqlist" hidden="true">
+      <h1>Accountanfragen Liste</h1>
+      <button id="accreqreturnbtn">zurück</button>
+    <!--
+        Filter : <input type = "text" id = "inpAcc"/>
+        <button onClick = "javascript:applyFilterAcc()"> Filter anweden </button>
+        -->
+   <table id="tblAccList">
+      <thead>
+       <tr>
+          <th>Accountanfrage ID</th>
+          <th>Name</th>
+          <th>E-Mail</th>
+          <th>Mobile</th>
+       </tr>
+      </thead>
+   <tbody>
+  
+   </tbody>
+   </table>
+  </div>
+
+
+    </div>
+    <!--ACCREQLIST-END-->
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
   </body>
 </html>
