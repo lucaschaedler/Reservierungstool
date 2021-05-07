@@ -34,18 +34,7 @@ function getMonday() {
   return new Date(monday.getTime());
 }
 
-function getOrdinal(number) {
-  var d = number % 10;
-  return ~~((number % 100) / 10) === 1
-    ? "th"
-    : d === 1
-    ? "st"
-    : d === 2
-    ? "nd"
-    : d === 3
-    ? "rd"
-    : "th";
-}
+
 
 function load() {
   if (typeof window.Storage !== "undefined")
@@ -74,8 +63,7 @@ function updateHeader() {
         days[i] +
         " " +
         date.getDate() +
-        getOrdinal(date.getDate()) +
-        " " +
+        ". " +
         months[date.getMonth()] +
         " " +
         date.getFullYear() +
@@ -86,9 +74,10 @@ function updateHeader() {
 
 function addRows() {
   //Create a new row for each time
-  for (var i = openTime; i < closeTime; i++) {
+  for (var i = openTime; i < closeTime; i+=2) {
     $("#booking-table").append("<tr id='slot-" + i + "'></tr>");
-    $("#slot-" + i).append("<td class='time'>" + i + ":00</td>");
+    $("#slot-" + i).append("<td class='time'>" + i + ":00 - " +(i+2)+ ":00" +"</td>");
+
 
     //Create a new cell for each time & day pair
     for (var y = 0; y < 7; y++) {
