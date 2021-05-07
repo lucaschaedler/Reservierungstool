@@ -33,12 +33,17 @@ public class ReservationCrudService {
 	LoggerClass logger = new LoggerClass();
 
 	@GetMapping(path = "/api/reservation/{reservationid}", produces = "application/json")
-	public Reservation getReservation(@PathVariable int reservationid) {
+	public Reservation getReservation(@PathVariable int reservationid, int userId) {
+		
+		if(reservationRepository.existsById(reservationid)) {
+			Reservation r = reservationRepository.getOne(reservationid);
+
+		}
 		logger.getLogger().info(this.getClass().getName() + "||Reservation found by ID||");
 		return reservationRepository.findById(reservationid).get();
 	}
 
-	@DeleteMapping(path = "/api/reservation/{reservationid}", produces = "application/json")
+	@DeleteMapping(path = "/api/reservation/{reservationid}{userId}", produces = "application/json")
 	public boolean deleteReservation(@PathVariable int reservationid) {
 
 		if (reservationRepository.existsById(reservationid)) {// berechtigung hinzufügen nur eigene löschen
@@ -54,26 +59,10 @@ public class ReservationCrudService {
 	@PostMapping(path = "api/reservation", produces = "application/json")
 	public int createReservation(@RequestBody MessageNewReservation m) {
 
-//		Optional<User> list = userRepository.findById(4); //id muss angepasst werde auf aktuell eingeloggten user
-//		if (list.isPresent()) {
-//			User user = list.get();
-		Reservation r = new Reservation();
-		r.setCourt(m.getCourt());
-		r.setPlayerNames(m.getPlayerNames());
-		r.setDate(m.getYear(), m.getMonth(), m.getDay());
-		r.setStartTime(m.getStartHour(), m.getStartMinute());
-		r.setEndTime(m.getStartHour(), m.getEndMinute());
-
-		reservationRepository.save(r);
-
-//			user.addReservationToList(r);
-//			System.out.println(user.getReservationList());
-
-//		}
-		return r.getReservationId();
+		return (Integer) null;
 	}
 
-	@PutMapping(path = "api/reservation/{reservationid}/modify", produces = "application/json")
+	@PutMapping(path = "api/reservation/{reservationid}{userId}/modify", produces = "application/json")
 	public boolean updateReservation(@PathVariable int reservationid, @RequestBody MessageModifyReservation m) {
 		Reservation r = reservationRepository.getOne(reservationid);
 		if (reservationRepository.existsById(reservationid)) {
@@ -94,8 +83,7 @@ public class ReservationCrudService {
 	}
 
 	@GetMapping(path = "api/reservations", produces = " apllication/json")
-	public List<Reservation> getReservations(@RequestParam(required = false) String filter) {// filter kann man ev ins
-																								// gui einbauen
+	public List<Reservation> getReservations() {
 		logger.getLogger().info(this.getClass().getName() + "||All reservation has been displayed||");
 		return reservationRepository.findAll();
 	}

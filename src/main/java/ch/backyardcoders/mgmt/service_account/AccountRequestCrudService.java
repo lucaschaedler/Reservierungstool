@@ -51,7 +51,7 @@ public class AccountRequestCrudService {
 	}
 
 	@GetMapping(path = "/api/accountRequests", produces = "application/json")
-	public List<AccountRequest> getAccountRequests(@RequestParam(required = false) String filter) {
+	public List<AccountRequest> getAccountRequests() {
 
 		// verify user --> verificationClass
 

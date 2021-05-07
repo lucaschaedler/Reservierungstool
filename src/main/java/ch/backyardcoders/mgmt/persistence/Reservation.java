@@ -21,16 +21,14 @@ public class Reservation {
 	private LocalTime startTime;
 	private LocalTime endTime;
 	private String playerNames;
-	
-	@OneToOne
-	private User user;
+	private int userIdReservation;
 
-	public User getUser() {
-		return user;
+	public int getUserIdReservation() {
+		return userIdReservation;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserIdReservation(int userIdReservation) {
+		this.userIdReservation = userIdReservation;
 	}
 
 	public void setStartTime(int hour, int minute) {

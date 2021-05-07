@@ -79,7 +79,7 @@ public class UserCrudService {
 
 	// Listes alle Users auf, wird für Deletemethode verwendet
 	@GetMapping("users")
-	public List<User> getUsers(@RequestParam(required = false) String filter) {
+	public List<User> getUsers() {
 		logger.getLogger().info(this.getClass().getName() + "||List of user displayed||");
 		return this.userRepository.findAll();
 	}
