@@ -2,7 +2,7 @@ body {
   padding: 30px;
 }
 
-.booking-container {
+/*.booking-container {
   font-family: "Roboto", "Arial";
   padding: 20px;
   background-color: white;
@@ -10,6 +10,7 @@ body {
     0 2px 1px -1px rgba(0, 0, 0, 0.12);
   display: inline-block;
 }
+*/
 
 h1 {
   margin: 0;

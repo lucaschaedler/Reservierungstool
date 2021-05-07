@@ -1,8 +1,16 @@
+// Booking - START
 var today = new Date();
 var monday = new Date();
 monday.setDate(today.getDate() - today.getDay() + 1);
 var weeksAhead = 0;
 var current_slot = "";
+var reservation_id = 0;
+var idArray = [];
+
+const booking_table = document.querySelector("#booking_table");
+const booking_form = document.querySelector("#booking_form");
+const reservierreturnbtn = document.querySelector("#reservierreturnbtn");
+const date = document.querySelector("#date");
 
 var days = [
   "Monday",
@@ -27,7 +35,15 @@ var months = [
   "November",
   "December",
 ];
-var openDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+var openDays = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
 var openTime = 8;
 var closeTime = 18;
 
@@ -40,7 +56,6 @@ function load() {
     window.checked = window.localStorage.getItem("checked");
   if (window.checked === null) window.checked = [];
   else window.checked = JSON.parse(window.checked);
-  document.getElementById("total").innerHTML = checked.length;
 }
 
 function save() {
@@ -70,11 +85,38 @@ function updateHeader() {
     );
   }
 }
-
-function timeSlotSelected(button) {
-  console.log(button.id);
-  button.disabled = true;
+function splitForInt(buttonid) {
+  //aus btnid Reservationsid gemacht
+  var str = buttonid;
+  idArray = str.split(";");
+  let idAsString = "";
+  for (let index = 0; index < idArray.length; index++) {
+    idAsString += idArray[index];
+  }
+  reservation_id = parseInt(idAsString);
 }
+function timeSlotSelected(button) {
+  splitForInt(button.id); //aus String der btn ID ein int gemacht für Reservationsid
+  booking_table.hidden = true;
+  booking_form.hidden = false;
+  var month = parseInt(idArray[1]) + 1;
+  var endTime = parseInt(idArray[2]) + 2;
+  date.innerHTML =
+    "Datum und Uhrzeit der Reservation " +
+    idArray[0] +
+    "." +
+    month +
+    " " +
+    idArray[2] +
+    ":00" +
+    " bis " +
+    endTime +
+    ":00";
+}
+reservierreturnbtn.addEventListener("click", () => {
+  booking_table.hidden = false;
+  booking_form.hidden = true;
+});
 function addRows() {
   //Create a new row for each time
   for (var i = openTime; i < closeTime; i += 2) {
@@ -96,7 +138,7 @@ function addRows() {
       var day = new Date();
       day.setDate(monday.getDate() + y);
 
-      var identifier = day.getDate() + "/" + day.getMonth() + ":" + hour;
+      var identifier = day.getDate() + ";" + day.getMonth() + ";" + hour;
       var open = openDays.indexOf(days[y]) != -1;
       $("#slot-" + i).append(
         open
@@ -118,7 +160,6 @@ function incrementWeek() {
   weeksAhead++;
   updateHeader();
   addRows();
-  registerListeners();
 }
 
 function decrementWeek() {
@@ -126,37 +167,17 @@ function decrementWeek() {
   weeksAhead--;
   updateHeader();
   addRows();
-  registerListeners();
-}
-
-var updateSelection = function () {
-  var checkbox = document.getElementById(this.htmlFor);
-  if (!checkbox.checked) checked.push(this.htmlFor);
-  else checked.splice(checked.indexOf(this.htmlFor), 1);
-  document.getElementById("total").innerHTML = checked.length;
-  save();
-};
-
-function registerListeners() {
-  var inputs = document.getElementsByTagName("label");
-  for (var i = 0; i < inputs.length; i++) {
-    inputs[i].onclick = updateSelection;
-  }
 }
 
 function generate() {
   load();
   updateHeader();
   addRows();
-  registerListeners();
 }
 
 document.getElementById("next").addEventListener("click", incrementWeek);
 document.getElementById("previous").addEventListener("click", decrementWeek);
-document.getElementById("clear").addEventListener("click", function () {
-  window.checked = [];
-  save();
-  generate();
-});
 
 generate();
+
+// Booking - END

@@ -12,17 +12,34 @@
     <title>reservationstool</title>
   </head>
   <body>
-    <div class="booking-container">
+    <!--BOOKING_TABLE - START-->
+    <div class="booking-container" id="booking_table">
       <h1>Avaliable Bookings</h1>
       <table id="booking-table" cellspacing="0"></table>
-      <div class="hours-counter">
-        Hours selected:
-        <div id="total">0</div>
-      </div>
       <div class="pagination" id="previous">Previous Week</div>
       <div class="pagination" id="next">Next Week</div>
-      <div class="pagination" id="clear">Clear Selection</div>
     </div>
+    <!-- Start eingabe für Reservatîonen-->
+    <div class="booking-container" id="booking_form" hidden>
+      <h1 id="booking-label">Reservationangaben</h1>
+      <h3 id="date"></h3>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="playernames"
+          placeholder="Spielernamen"
+          autofocus
+          required
+        />
+      </div>
+
+      <button type="submit" class="reservierbtn">Reservieren</button>
+      <button id="reservierreturnbtn">Zurück</button>
+    </div>
+
+    <!-- Ende eingabe für Reservatîonen-->
+    <!--BOOKING_TABLE - ENDE-->
 
     <script src="booking_main.js"></script>
   </body>

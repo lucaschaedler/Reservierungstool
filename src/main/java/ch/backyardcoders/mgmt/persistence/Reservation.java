@@ -1,10 +1,12 @@
 package ch.backyardcoders.mgmt.persistence;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Reservation {
 
+	@Id
 	private int reservationId;
 
 	private int court = 1;

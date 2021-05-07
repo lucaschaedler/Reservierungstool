@@ -153,32 +153,34 @@
            <button class="btn btn-secondary btn-lm" id="logoutbtn">Logout</button>
 
       </div>
-      <div class="col-sm-8" id=table_container>
-           <table id="table_court_1" class="table table-bordered">  
-                <thead>  
-                     <tr>  
-                          <th>Uhrzeit 1</th>
-                          <th>Belegung 1</th>
-                     </tr> 
-                </thead>  
-           </table>
-           <table id="table_court_2" class="table table-bordered" hidden="true">  
-                <thead>  
-                     <tr>  
-                          <th>Uhrzeit 2</th>
-                          <th>Belegung 2</th>
-                          <tr>
-                               <td>15.00</td>
-                               <td>Blerta, Marianne</td>
-                          </tr>
-                          <tr>
-                               <td>16.00</td>
-                               <td>Jennifer, Josef</td>
-                          </tr>  
-                     </tr>  
-                </thead>  
-           </table> 
+          <!--BOOKING_TABLE - START-->
+    <div class="booking-container" id="booking_table">
+      <h1>Avaliable Bookings</h1>
+      <table id="booking-table" cellspacing="0"></table>
+      <div class="pagination" id="previous">Previous Week</div>
+      <div class="pagination" id="next">Next Week</div>
+    </div>
+    <!-- Start eingabe für Reservatîonen-->
+    <div class="booking-container" id="booking_form" hidden>
+      <h1 id="booking-label">Reservationangaben</h1>
+      <h3 id="date"></h3>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="playernames"
+          placeholder="Spielernamen"
+          autofocus
+          required
+        />
       </div>
+
+      <button type="submit" class="reservierbtn">Reservieren</button>
+      <button id="reservierreturnbtn">Zurück</button>
+    </div>
+
+    <!-- Ende eingabe für Reservatîonen-->
+    <!--BOOKING_TABLE - ENDE-->
  </div>  
 </div>
 <!--CALENDAR-END--> 
