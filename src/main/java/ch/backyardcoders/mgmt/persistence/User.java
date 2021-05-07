@@ -22,26 +22,6 @@ public class User {
 	private String userName;
 	private Authorization authorization = Authorization.user;
 	
-//	public User() {
-//		this.authorization = Authorization.user;
-//	}
-	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Reservation> userReservationList = new ArrayList();
-	
-	public List<Reservation> getReservationList() {
-		return userReservationList;
-	}
-
-	public void setReservationList(List<Reservation> reservationList) {
-		this.userReservationList = userReservationList;
-	}
-	
-	public void addReservationToList(Reservation r) {
-		userReservationList.add(r);
-	}
-
-	
 	public Authorization getAuthorization() {
 		return authorization;
 	}
