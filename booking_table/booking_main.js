@@ -2,6 +2,7 @@ var today = new Date();
 var monday = new Date();
 monday.setDate(today.getDate() - today.getDay() + 1);
 var weeksAhead = 0;
+var current_slot = "";
 
 var days = [
   "Monday",
@@ -33,8 +34,6 @@ var closeTime = 18;
 function getMonday() {
   return new Date(monday.getTime());
 }
-
-
 
 function load() {
   if (typeof window.Storage !== "undefined")
@@ -72,12 +71,17 @@ function updateHeader() {
   }
 }
 
+function timeSlotSelected(button) {
+  console.log(button.id);
+  button.disabled = true;
+}
 function addRows() {
   //Create a new row for each time
-  for (var i = openTime; i < closeTime; i+=2) {
+  for (var i = openTime; i < closeTime; i += 2) {
     $("#booking-table").append("<tr id='slot-" + i + "'></tr>");
-    $("#slot-" + i).append("<td class='time'>" + i + ":00 - " +(i+2)+ ":00" +"</td>");
-
+    $("#slot-" + i).append(
+      "<td class='time'>" + i + ":00 - " + (i + 2) + ":00" + "</td>"
+    );
 
     //Create a new cell for each time & day pair
     for (var y = 0; y < 7; y++) {
@@ -96,7 +100,7 @@ function addRows() {
       var open = openDays.indexOf(days[y]) != -1;
       $("#slot-" + i).append(
         open
-          ? "<td><input type='checkbox' id='" +
+          ? "<td><input type='button' value='button' onClick='return timeSlotSelected(this)' id='" +
               identifier +
               "'></input><label for='" +
               identifier +

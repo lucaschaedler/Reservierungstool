@@ -38,7 +38,7 @@ input[type="checkbox"] {
   display: none;
 }
 
-label {
+/*label {
   display: block;
   height: 15px;
   width: 15px;
@@ -49,6 +49,7 @@ label {
   border-radius: 5px;
   cursor: pointer;
 }
+*/
 
 input[type="checkbox"]:checked + label {
   background-color: #419bf9;
