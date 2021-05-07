@@ -68,9 +68,9 @@ public class ReservationCrudService {
 		if (reservationRepository.existsById(reservationid)) {
 			r.setCourt(m.getCourt());
 			r.setPlayerNames(m.getPlayerNames());
-			r.setDate(m.getYear(), m.getMonth(), m.getDay());
-			r.setStartTime(m.getStartHour(), m.getStartMinute());
-			r.setEndTime(m.getEndHour(), m.getEndMinute());
+//			r.setDate(m.getYear(), m.getMonth(), m.getDay());
+//			r.setStartTime(m.getStartHour(), m.getStartMinute());
+//			r.setEndTime(m.getEndHour(), m.getEndMinute());
 
 			// ev eingabe prüfen
 			logger.getLogger().info(this.getClass().getName() + "||Reservation has been updated||");
