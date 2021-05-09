@@ -59,7 +59,7 @@ public class ReservationCrudService {
 	@PostMapping(path = "api/reservation", produces = "application/json")
 	public int createReservation(@RequestBody MessageNewReservation m) {
 
-		return (Integer) null;
+		return 0;
 	}
 
 	@PutMapping(path = "api/reservation/{reservationid}{userId}/modify", produces = "application/json")

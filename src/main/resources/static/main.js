@@ -169,8 +169,6 @@ let court1Btn = document.querySelector("#button_show_court1");
 let court2Btn = document.querySelector("#button_show_court2");
 let court1Tbl = document.querySelector("#table_court_1");
 let court2Tbl = document.querySelector("#table_court_2");
-let datePicker = document.querySelector("#datepicker");
-let dateObject;
 
 //überprüft die Berechtigung ob man die listen a^nschsuen darf
 
@@ -215,49 +213,52 @@ court2Btn.addEventListener("click", () => {
 
 // Booking - START
 var today = new Date();
+var year = new Date().getFullYear(); //aktuelles Jahr
 var monday = new Date();
 monday.setDate(today.getDate() - today.getDay() + 1);
 var weeksAhead = 0;
 var current_slot = "";
 var reservation_id = 0;
+var player_names = "";
 var idArray = [];
 
 const booking_table = document.querySelector("#booking_table");
 const booking_form = document.querySelector("#booking_form");
-const reservierreturnbtn = document.querySelector("#reservierreturnbtn");
-const date = document.querySelector("#date");
+const confirmBookingBtn = document.querySelector("#confirmBookingBtn");
+const backToBookingTblBtn = document.querySelector("#backToBookingTblBtn");
+const currentReservationLbl = document.querySelector("#currentReservationLbl");
 
 var days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  "Montag",
+  "Dienstag",
+  "Mittwoch",
+  "Donnerstag",
+  "Freitag",
+  "Samstag",
+  "Sonntag",
 ];
 var months = [
-  "January",
-  "February",
-  "March",
+  "Januar",
+  "Februar",
+  "März",
   "April",
-  "May",
-  "June",
-  "July",
+  "Mai",
+  "Juni",
+  "Juli",
   "August",
   "September",
-  "October",
+  "Oktober",
   "November",
-  "December",
+  "Dezember",
 ];
 var openDays = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  "Montag",
+  "Dienstag",
+  "Mittwoch",
+  "Donnerstag",
+  "Freitag",
+  "Samstag",
+  "Sonntag",
 ];
 var openTime = 8;
 var closeTime = 18;
@@ -295,40 +296,74 @@ function updateHeader() {
         ". " +
         months[date.getMonth()] +
         " " +
-        date.getFullYear() +
+        year +
         "</td>"
     );
   }
 }
-function splitForInt(buttonid) {
+function convertIdtoInteger(buttonid) {
   //aus btnid Reservationsid gemacht
-  var str = buttonid;
+  let str = buttonid;
   idArray = str.split(";");
   let idAsString = "";
-  for (let index = 0; index < idArray.length; index++) {
-    idAsString += idArray[index];
+  for (let i = 0; i < idArray.length; i++) {
+    idAsString += idArray[i];
   }
   reservation_id = parseInt(idAsString);
 }
 function timeSlotSelected(button) {
-  splitForInt(button.id); //aus String der btn ID ein int gemacht für Reservationsid
+  convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
   booking_table.hidden = true;
   booking_form.hidden = false;
   var month = parseInt(idArray[1]) + 1;
   var endTime = parseInt(idArray[2]) + 2;
-  date.innerHTML =
-    "Datum und Uhrzeit der Reservation " +
+  var fullDate = idArray[0] + "/" + month + "/" + year;
+  let dayName = days[new Date(fullDate).getDay()];
+  let monthName = months[idArray[1]];
+  currentReservationLbl.innerHTML =
+    "Datum und Uhrzeit der Reservation: " +
+    dayName +
+    ", " +
     idArray[0] +
-    "." +
-    month +
+    ". " +
+    monthName +
     " " +
+    year +
+    " | " +
     idArray[2] +
     ":00" +
     " bis " +
     endTime +
-    ":00";
+    ":00 |";
 }
-reservierreturnbtn.addEventListener("click", () => {
+
+//createReservation-Prozess
+confirmBookingBtn.addEventListener("click", () => {
+  player_names = document.querySelector("#playernames").value;
+  if (player_names == null) {
+    alert("Bitte Spieler einschreiben");
+    return;
+  }
+  $.ajax({
+    type: "POST",
+    url: "/api/reservation",
+    data: JSON.stringify({
+      reservationId: reservation_id,
+      playerNames: player_names,
+      userIdReservation: user.userid,
+    }),
+    success: reservationSuccess,
+    dataType: "json",
+    contentType: "application/json",
+  });
+});
+
+function reservationSuccess(response) {
+  console.log("Reservaton erstellt! | " + response);
+  //was passiert nachdem die reservation erfolgreich erstellt wurde??
+}
+
+backToBookingTblBtn.addEventListener("click", () => {
   booking_table.hidden = false;
   booking_form.hidden = true;
 });
