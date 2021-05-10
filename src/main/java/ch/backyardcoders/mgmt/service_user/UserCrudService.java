@@ -87,11 +87,14 @@ public class UserCrudService {
 	public boolean modifyUser(@PathVariable int userid, @RequestBody MessageModifyUser m) {
 		if (userRepository.existsById(userid)) {
 			User u = userRepository.getOne(userid);
-			
-			u.setUserName(m.getUserName());
-			u.setUserPassword(passwordHash.hashPassword(m.getUserPassword()));
-			u.setUserMobile(m.getUserMobile());
-			u.setUserEmail(m.getUserEmail());
+			if(m.getUserName()!="") {
+			u.setUserName(m.getUserName());}
+			if(m.getUserPassword()!="") {
+			u.setUserPassword(passwordHash.hashPassword(m.getUserPassword()));}
+			if(m.getUserMobile()!="") {
+			u.setUserMobile(m.getUserMobile());}
+			if(m.getUserEmail()!="") {
+			u.setUserEmail(m.getUserEmail());}
 			userRepository.save(u);
 
 			logger.getLogger().info(this.getClass().getName() + "||User has been updated||");
