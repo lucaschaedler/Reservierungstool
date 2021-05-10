@@ -88,15 +88,11 @@ public class UserCrudService {
 		if (userRepository.existsById(userid)) {
 			User u = userRepository.getOne(userid);
 			
-			if(u != null)
-		logger.getLogger().info("Usergefunden"+ u);
-			
 			u.setUserName(m.getUserName());
 			u.setUserPassword(passwordHash.hashPassword(m.getUserPassword()));
 			u.setUserMobile(m.getUserMobile());
 			u.setUserEmail(m.getUserEmail());
 			userRepository.save(u);
-
 
 			logger.getLogger().info(this.getClass().getName() + "||User has been updated||");
 			return true;
