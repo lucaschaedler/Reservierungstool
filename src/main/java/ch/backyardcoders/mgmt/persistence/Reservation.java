@@ -1,15 +1,30 @@
 package ch.backyardcoders.mgmt.persistence;
 
+
+
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
+
 
 @Entity
 public class Reservation {
 
-	@Id
+	@Id @GeneratedValue
 	private int reservationId;
+	
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	private LocalDateTime bookingDate;
 
 	private int court = 1;
+	
+
+	
 	private String playerNames;
 	private int userIdReservation;
 
@@ -44,5 +59,15 @@ public class Reservation {
 	public void setPlayerNames(String playerNames) {
 		this.playerNames = playerNames;
 	}
+
+	public LocalDateTime getBookingDate() {
+		return bookingDate;
+	}
+
+	public void setBookingDate(LocalDateTime bookingDate) {
+		this.bookingDate = bookingDate;
+	}
+
+
 
 }

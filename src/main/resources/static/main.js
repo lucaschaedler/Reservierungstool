@@ -217,7 +217,7 @@ var year = new Date().getFullYear(); //aktuelles Jahr
 var monday = new Date();
 monday.setDate(today.getDate() - today.getDay() + 1);
 var weeksAhead = 0;
-var current_slot = "";
+var current_slot_date; //datum & startzeit der reservation
 var reservation_id = 0;
 var player_names = "";
 var idArray = [];
@@ -315,10 +315,10 @@ function timeSlotSelected(button) {
   convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
   booking_table.hidden = true;
   booking_form.hidden = false;
-  var month = parseInt(idArray[1]) + 1;
   var endTime = parseInt(idArray[2]) + 2;
-  var fullDate = idArray[0] + "/" + month + "/" + year;
-  let dayName = days[new Date(fullDate).getDay()];
+  //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
+  current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
+  let dayName = days[current_slot_date.getDay() - 1];
   let monthName = months[idArray[1]];
   currentReservationLbl.innerHTML =
     "Datum und Uhrzeit der Reservation: " +
@@ -348,17 +348,17 @@ confirmBookingBtn.addEventListener("click", () => {
     type: "POST",
     url: "/api/reservation",
     data: JSON.stringify({
-      reservationId: reservation_id,
+      dateAndStart: current_slot_date,
       playerNames: player_names,
       userIdReservation: user.userid,
     }),
-    success: reservationSuccess,
+    success: createReservationSuccess,
     dataType: "json",
     contentType: "application/json",
   });
 });
 
-function reservationSuccess(response) {
+function createreservationSuccess(response) {
   console.log("Reservaton erstellt! | " + response);
   //was passiert nachdem die reservation erfolgreich erstellt wurde??
 }

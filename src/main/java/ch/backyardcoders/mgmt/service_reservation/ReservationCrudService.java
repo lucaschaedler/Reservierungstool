@@ -57,9 +57,21 @@ public class ReservationCrudService {
 	}
 
 	@PostMapping(path = "api/reservation", produces = "application/json")
-	public int createReservation(@RequestBody MessageNewReservation m) {
+	public boolean createReservation(@RequestBody MessageNewReservation m) {
+		Reservation r = new Reservation();
+		r.setBookingDate(m.getBookingDate());
+		System.out.println(m.getBookingDate().toString());
+		r.setPlayerNames(m.getPlayerNames());
+		r.setUserIdReservation(m.getUserIdReservation());
 
-		return 0;
+		if (verificationClass.validateReservation(r)) {
+			reservationRepository.save(r);
+			logger.getLogger().info(this.getClass().getName() + "||Reservation created||");
+			return true;
+		} else {
+			logger.getLogger().info(this.getClass().getName() + "||Reservation failed||");
+			return false;
+		}
 	}
 
 	@PutMapping(path = "api/reservation/{reservationid}{userId}/modify", produces = "application/json")
