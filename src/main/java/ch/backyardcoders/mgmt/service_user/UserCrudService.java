@@ -24,7 +24,7 @@ import ch.backyardcoders.mgmt.security.PasswordHash;
 @RestController
 @RequestMapping("api/")
 public class UserCrudService {
-	
+
 	@Autowired
 	private PasswordHash passwordHash;
 
@@ -33,7 +33,7 @@ public class UserCrudService {
 
 	@Autowired
 	private VerificationClass verificationClass;
-	
+
 	@Autowired
 	private AccountRequestRepository accountRequestRepository;
 
@@ -45,27 +45,25 @@ public class UserCrudService {
 	public boolean createUser(@PathVariable int reqid) {
 		if (accountRequestRepository.existsById(reqid)) {
 			AccountRequest a = accountRequestRepository.getOne(reqid);
-		
-		User u = new User();
-		u.setUserName(a.getAccountRequestName());
-		u.setUserEmail(a.getAccountRequestEmail());
-		u.setUserMobile(a.getAccountRequestMobile());
-		u.setUserPassword(a.getAccountRequestPassword());
-		userRepository.save(u);
-		logger.getLogger().info(this.getClass().getName() + "||User has been created||");
-		accountRequestRepository.deleteById(reqid);
-		logger.getLogger().info(this.getClass().getName() + "||Accountrequest has been deleted||");
-		return true;
-		}else {
+
+			User u = new User();
+			u.setUserName(a.getAccountRequestName());
+			u.setUserEmail(a.getAccountRequestEmail());
+			u.setUserMobile(a.getAccountRequestMobile());
+			u.setUserPassword(a.getAccountRequestPassword());
+			userRepository.save(u);
+			logger.getLogger().info(this.getClass().getName() + "||User has been created||");
+			accountRequestRepository.deleteById(reqid);
+			logger.getLogger().info(this.getClass().getName() + "||Accountrequest has been deleted||");
+			return true;
+		} else {
 			logger.getLogger().info(this.getClass().getName() + "||Accountrequest not found||");
 			return false;
 		}
-		
 
-		
 	}
 
-@DeleteMapping(path = "user/delete/{userid}", produces = "application/json")
+	@DeleteMapping(path = "user/delete/{userid}", produces = "application/json")
 	public boolean deleteUser(@PathVariable int userid) {
 		if (userRepository.existsById(userid)) {
 			userRepository.deleteById(userid);
@@ -85,23 +83,19 @@ public class UserCrudService {
 	}
 
 	// Von allen User aufrufbar --> können so UserDaten ändern
-	@PutMapping(path = "user/{userid}/modify", produces = "application/json") // für user zugreifbar
+	@PutMapping(path = "user/modify/{userid}", produces = "application/json") // für user zugreifbar
 	public boolean modifyUser(@PathVariable int userid, @RequestBody MessageModifyUser m) {
 		if (userRepository.existsById(userid)) {
 			User u = userRepository.getOne(userid);
-			// prüft ob der das Messageattribut leer ist oder nicht
-			if (m.getUserName() != "") {
-				u.setUserName(m.getUserName());
-			}
-			if (m.getPassword() != "") {//hashen nicht vergessen
-				u.setUserPassword(m.getPassword());
-			}
-			if (m.getMobile() != "") {
-				u.setUserMobile(m.getMobile());
-			}
-			if (m.getEmail() != "") {
-				u.setUserEmail(m.getEmail());
-			}
+			if(m.getUserName()!="") {
+			u.setUserName(m.getUserName());}
+			if(m.getUserPassword()!="") {
+			u.setUserPassword(passwordHash.hashPassword(m.getUserPassword()));}
+			if(m.getUserMobile()!="") {
+			u.setUserMobile(m.getUserMobile());}
+			if(m.getUserEmail()!="") {
+			u.setUserEmail(m.getUserEmail());}
+			userRepository.save(u);
 
 			logger.getLogger().info(this.getClass().getName() + "||User has been updated||");
 			return true;
