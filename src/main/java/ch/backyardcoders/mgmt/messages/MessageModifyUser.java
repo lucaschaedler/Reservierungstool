@@ -1,40 +1,38 @@
 package ch.backyardcoders.mgmt.messages;
 
 public class MessageModifyUser {
-	public String email;
-	public String mobile;
+	public String userEmail;
+	public String userMobile;
 	public String userName;
-	public String password; //ev Typ ändern zu Password oder so
+	public String userPassword;
 	
-
-	public MessageModifyUser() {
+	public String getUserEmail() {
+		return userEmail;
 	}
-	
-	
-	public String getEmail() {
-		return email;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public String getUserMobile() {
+		return userMobile;
 	}
-	public String getMobile() {
-		return mobile;
-	}
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
+	public void setUserMobile(String userMmobile) {
+		this.userMobile = userMmobile;
 	}
 	public String getUserName() {
 		return userName;
 	}
-	public void setName(String userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getPassword() {
-		return password;
+	public String getUserPassword() {
+		return userPassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
+	
+
+	
 	
 	
 

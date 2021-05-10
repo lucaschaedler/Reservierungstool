@@ -151,6 +151,8 @@
            <button class="btn btn-secondary btn-lm" id="button_userlist" hidden >Userlist</button>
            <button class="btn btn-secondary btn-lm" id="button_accreqlist" hidden>Account Request List</button>
            <button class="btn btn-secondary btn-lm" id="logoutbtn">Logout</button>
+           <button class="btn btn-secondary btn-lm" id="userdetailbtn">Userangaben ändern</button>
+
 
       </div>
     <!--BOOKING_TABLE - START-->
@@ -235,6 +237,69 @@
 
     </div>
     <!--ACCREQLIST-END-->
+     <!--userdetail start--->
+     <div id="userdetail" hidden>
+       <h1>Accountdaten ändern</h1>
+       <form id="userdetailform">
+        <div class="form__message form__message--error"></div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="detail_name"
+            placeholder="Name"
+            autofocus
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Email"
+            id="detail_email"
+            autofocus
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="tel"
+            class="form-control"
+            placeholder="Mobile"
+            id="detail_mobile"
+            autofocus
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Passwort"
+            id="detail_password"
+            autofocus
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Passwort wiederholen"
+            id="detail_password_repeat"
+            autofocus
+            required
+          />
+        </div>
+
+        <button type="submit">Daten ändern</button>
+      </form>
+     <button id="userdetailreturnbtn">Zurück</button>
+     </div>
+     
+      <!--userdetail-END-->
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.js"

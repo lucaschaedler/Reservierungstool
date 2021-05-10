@@ -9,6 +9,7 @@ const accreqlist = document.querySelector("#accreqlist");
 
 const button_userlist = document.querySelector("#button_userlist");
 const button_accreqlist = document.querySelector("#button_accreqlist");
+const userdetailbtn = document.querySelector("#userdetailbtn");
 
 //current user object
 let user = {
@@ -169,6 +170,11 @@ let court1Btn = document.querySelector("#button_show_court1");
 let court2Btn = document.querySelector("#button_show_court2");
 let court1Tbl = document.querySelector("#table_court_1");
 let court2Tbl = document.querySelector("#table_court_2");
+
+userdetailbtn.addEventListener("click", () => {
+  calendar.hidden = true;
+  userdetail.hidden = false;
+});
 
 //überprüft die Berechtigung ob man die listen a^nschsuen darf
 
@@ -600,3 +606,88 @@ logoutbtn.addEventListener("click", () => {
   home.hidden = false;
   console.log(user);
 });
+
+//Userdetail ändern shizzle
+const userdetailreturnbtn = document.querySelector("#userdetailreturnbtn");
+const userdetailform = document.querySelector("#userdetailform");
+
+
+userdetailreturnbtn.addEventListener("click", () => {
+  calendar.hidden = false;
+  userdetail.hidden = true;
+});
+
+userdetailform.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let detail_name = document.querySelector("#detail_name").value;
+  let detail_email = document.querySelector("#detail_email").value;
+  let detail_mobile = document.querySelector("#detail_mobile").value;
+  let detail_password = document.querySelector("#detail_password").value;
+  let detail_password_repeat = document.querySelector("#detail_password_repeat").value;
+
+  if (
+    matchPassworddetail(detail_password, detail_password_repeat) &&
+    verifyPassworddetail(detail_password)
+  ) {
+    // Ajax Prozess --> Rest-Service Aufruf
+    $.ajax({
+      type: "PUT",
+      url: "api/user/modify/"+user.userid,//parameter anschauen
+      data: JSON.stringify({
+        userName: detail_name,
+        userEmail: detail_email,
+        userMobile: detail_mobile,
+        userPassword: detail_password,
+      }),
+      success: function (response) {
+        let message = "Accountdaten Änderung erfolgreich";
+        if (!response) {
+          message = "Accountdaten Änderung fehlgeschlagen";
+        }
+        setFormMessagedetail(userdetailform, message, response);
+      },
+      dataType: "json",
+      contentType: "application/json",
+    });
+  }
+});
+function verifyPassworddetail(password) {
+  isCorrect = false;
+  //minimum password length validation
+  if (password.length < 8) {
+    window.alert("Passwort muss zwischen 8-15 Zeichen enthalten");
+    return false;
+  }
+
+  //maximum length of password validation
+  if (password.length > 15) {
+    window.alert("Passwort muss zwischen 8-15 Zeichen enthalten");
+    return false;
+  } else {
+    return true;
+  }
+}
+function matchPassworddetail(password, password_repeat) {
+  isIdentical = false;
+  if (password == password_repeat) {
+    isIdentical = true;
+  } else {
+    window.alert("Passwörter stimmen nicht überein");
+  }
+  return isIdentical;
+}
+function setFormMessagedetail(formElement, message, response) {
+  const messageElement = formElement.querySelector(".form__message");
+  messageElement.textContent = message;
+  messageElement.classList.remove(
+    "form__message--success",
+    "form__message--error"
+  );
+  if (response) {
+    messageElement.classList.add("form__message--success");
+  } else {
+    messageElement.classList.add("form__message--error");
+  }
+  formElement.reset(); //Felder leeren
+}
+
