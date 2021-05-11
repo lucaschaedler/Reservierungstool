@@ -615,6 +615,7 @@ const userdetailform = document.querySelector("#userdetailform");
 userdetailreturnbtn.addEventListener("click", () => {
   calendar.hidden = false;
   userdetail.hidden = true;
+  message.remove = true;
 });
 
 userdetailform.addEventListener("submit", (e) => {
