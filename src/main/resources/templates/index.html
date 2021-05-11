@@ -135,53 +135,71 @@
     </div>
     <!--HOME-END-->
     <!--CALENDAR-START-->
-    <div id="calendar" hidden="true">
-    <div class="row">
-      <div id="title_container "class="col-sm-12">
-      <h1 id="hure" align="center">Booking Calendar</h1>
-      <h3 align="center">BC Rohrdorf</h3>
+    <div id="calendar" hidden>
+      <div align="center" class="row">
+        <div id="title_container " class="col-sm-12">
+          <h1>Booking Calendar</h1>
+          <h3>BC Rohrdorf</h3>
+        </div>
       </div>
- </div>
- <div id="calendar_container" class="row">
-      <div class="col-sm-4" id="table_navigation_bar">
-           <button class="btn btn-secondary btn-lm" id="button_show_court1" disabled="true">Court 1</button>
-           <button class="btn btn-secondary btn-lm" id="button_show_court2">Court 2</button>
-           <button class="btn btn-secondary btn-lm" id="button_userlist" hidden >Userlist</button>
-           <button class="btn btn-secondary btn-lm" id="button_accreqlist" hidden>Account Request List</button>
-           <button class="btn btn-secondary btn-lm" id="logoutbtn">Logout</button>
-           <button class="btn btn-secondary btn-lm" id="userdetailbtn">Userangaben ändern</button>
-      </div>
-    <!--BOOKING_TABLE - START-->
-    <div class="booking-container" id="booking_table">
-      <h1>Avaliable Bookings</h1>
-      <table id="booking-table" cellspacing="0"></table>
-      <div class="pagination" id="previous">Previous Week</div>
-      <div class="pagination" id="next">Next Week</div>
-    </div>
-    <!-- Start eingabe für Reservatîonen-->
-    <div class="booking-container" id="booking_form" hidden>
-      <h1 id="booking-label">Reservationangaben</h1>
-      <h3 id="currentReservationLbl"></h3>
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          id="playernames"
-          placeholder="Spielernamen"
-          autofocus
-          required
-        />
-      </div>
+      <div align="center" id="calendar_container" class="row">
+        <div class="col-sm-12" id="table_navigation_bar">
+          <button
+            class="btn btn-secondary btn-lm"
+            id="button_show_court1"
+            disabled="true"
+          >
+            Court 1
+          </button>
+          <button class="btn btn-secondary btn-lm" id="button_show_court2">
+            Court 2
+          </button>
+          <button class="btn btn-secondary btn-lm" id="button_userlist" hidden>
+            Userlist</button
+          >
+          <button class="btn btn-secondary btn-lm" id="button_accreqlist" hidden>
+            Account Request List</button
+          >
+          <button class="btn btn-secondary btn-lm" id="logoutbtn">
+            Logout
+          </button>
+          <button class="btn btn-secondary btn-lm" id="userdetailbtn">
+            Userangaben ändern
+          </button>
+        </div>
+        </div>
+        <!--BOOKING_TABLE - START-->
+        <div class="row">
+          <div class="booking-container" id="booking_table">
+            <table id="booking-table" cellspacing="0"></table>
+            <div class="pagination" id="previous">Previous Week</div>
+            <div class="pagination" id="next">Next Week</div>
+          </div>
+        </div>
+        <!-- Start eingabe für Reservatîonen-->
+        <div class="booking-container" id="booking_form" hidden>
+          <h1 id="booking-label">Reservationangaben</h1>
+          <h3 id="currentReservationLbl"></h3>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="playernames"
+              placeholder="Spielernamen"
+              autofocus
+              required
+            />
+          </div>
 
-      <button id="confirmBookingBtn">Reservieren</button>
-      <button id="backToBookingTblBtn">Zurück</button>
-    </div>
+          <button id="confirmBookingBtn">Reservieren</button>
+          <button id="backToBookingTblBtn">Zurück</button>
+        </div>
 
-    <!-- Ende eingabe für Reservatîonen-->
-    <!--BOOKING_TABLE - ENDE-->
- </div>  
-</div>
-<!--CALENDAR-END--> 
+        <!-- Ende eingabe für Reservatîonen-->
+        <!--BOOKING_TABLE - ENDE-->
+      </div>
+    </div>
+    <!--CALENDAR-END-->
     <!--USERLIST-START-->
     <div id="userlist" hidden="true">
       <h1>UserListService</h1>
