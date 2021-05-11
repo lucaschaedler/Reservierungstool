@@ -146,17 +146,13 @@ td {
 }
 
 table {
-  width: 700px;
+  width: 80%;
   text-align: center;
 }
 
 tr:first-child td,
 tr td:first-child {
   font-weight: normal;
-}
-
-input[type="checkbox"] {
-  display: none;
 }
 
 /*label {
@@ -172,13 +168,6 @@ input[type="checkbox"] {
 }
 */
 
-input[type="checkbox"]:checked + label {
-  background-color: #419bf9;
-  border-color: #2196f3;
-  background-image: url("http://groupzap.com/static/img/features/elements/badges/tick.png");
-  background-size: cover;
-}
-
 td {
   border-bottom: 1px solid #d2d2d2;
   padding-bottom: 12px;
@@ -186,12 +175,6 @@ td {
 
 .time {
   text-align: right;
-}
-
-.hours-counter {
-  display: inline-block;
-  margin-top: 15px;
-  margin-left: 1px;
 }
 
 #total {
