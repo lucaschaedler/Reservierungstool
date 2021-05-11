@@ -314,6 +314,31 @@
      </div>
      
       <!--userdetail-END-->
+      <!--Reservation bearbeiten/löschen-start-->
+<div id="reservationdetail" hidden>
+  <h1>Reservationsdetail</h1>
+  <h3 id="currentReservationLbl2"></h3>
+  <form id="resDetailform">
+    <div id=resdetail_message class="form__message form__message--error"></div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="playernames_detail"
+        placeholder="Playername"
+        autofocus
+        required
+      />
+    </div>
+    <button type="submit">Reservation ändern</button>
+      </form>
+  <button id="btndeleteRes">Reservation Löschen</button>
+  <button id="returnbtndeleteRes">Zurück</button>
+
+
+</div>
+      <!--Reservation bearbeiten/löschen-end-->
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.js"

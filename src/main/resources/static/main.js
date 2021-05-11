@@ -251,7 +251,11 @@ const booking_form = document.querySelector("#booking_form");
 const confirmBookingBtn = document.querySelector("#confirmBookingBtn");
 const backToBookingTblBtn = document.querySelector("#backToBookingTblBtn");
 const currentReservationLbl = document.querySelector("#currentReservationLbl");
-
+const currentReservationLbl2 = document.querySelector("#currentReservationLbl2");
+const reservationdetail = document.querySelector("#reservationdetail");
+const returnbtndeleteRes= document.querySelector("#returnbtndeleteRes");
+const btndeleteRes= document.querySelector("#btndeleteRes");
+const resDetailform = document.querySelector("#resDetailform");
 
 var days = [
   "Montag",
@@ -347,11 +351,8 @@ function timeSlotSelected(button) {
   reservation_id = convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
   if(button.value.localeCompare("reservieren")==0){
   booking_table.hidden = true;
-  booking_form.hidden = false;}
-  if(button.value.localeCompare("bearbeiten/löschen")== 0){
-    booking_table.hidden = true;
-    console.log("geht");
-  }
+  booking_form.hidden = false;
+
   var endTime = parseInt(idArray[2]) + 2;
   //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
   current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
@@ -373,6 +374,46 @@ function timeSlotSelected(button) {
     endTime +
     ":00 |";
 }
+  if(button.value.localeCompare("bearbeiten/löschen")== 0){
+    booking_table.hidden = true;
+    reservationdetail.hidden = false;
+    
+    var endTime = parseInt(idArray[2]) + 2;
+  //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
+  current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
+  let dayName = days[current_slot_date.getDay() - 1];
+  let monthName = months[idArray[1]];
+  currentReservationLbl2.innerHTML =
+    "Datum und Uhrzeit der Reservation: " +
+    dayName +
+    ", " +
+    idArray[0] +
+    ". " +
+    monthName +
+    " " +
+    year +
+    " | " +
+    idArray[2] +
+    ":00" +
+    " bis " +
+    endTime +
+    ":00 |";
+}
+}
+
+returnbtndeleteRes.addEventListener("click", ()=>{
+  booking_table.hidden = false;
+  reservationdetail.hidden = true;
+})
+
+btndeleteRes.addEventListener("click", ()=>{
+  console.log("löschen");
+})
+resDetailform.addEventListener("submit", (e)=>{
+  e.preventDefault();
+  const playernames_detail = document.querySelector("#playernames_detail").value;
+  //ajax
+})
 
 //createReservation-Prozess
 confirmBookingBtn.addEventListener("click", () => {
