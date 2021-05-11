@@ -32,13 +32,9 @@ public class ReservationCrudService {
 
 	LoggerClass logger = new LoggerClass();
 
-	@GetMapping(path = "/api/reservation/{reservationid}", produces = "application/json")
+	@GetMapping(path = "/api/reservation/{reservationid}{userId}", produces = "application/json")
 	public Reservation getReservation(@PathVariable int reservationid, int userId) {
 		
-		if(reservationRepository.existsById(reservationid)) {
-			Reservation r = reservationRepository.getOne(reservationid);
-
-		}
 		logger.getLogger().info(this.getClass().getName() + "||Reservation found by ID||");
 		return reservationRepository.findById(reservationid).get();
 	}
@@ -63,6 +59,7 @@ public class ReservationCrudService {
 		r.setBookingDate(m.getBookingDate());
 		r.setPlayerNames(m.getPlayerNames());
 		r.setUserIdReservation(m.getUserIdReservation());
+		r.setBtnId(m.getBtnId());
 
 		if (verificationClass.validateReservation(r)) {
 			reservationRepository.save(r);
@@ -94,7 +91,7 @@ public class ReservationCrudService {
 
 	}
 
-	@GetMapping(path = "api/reservations", produces = " apllication/json")
+	@GetMapping(path = "api/reservations", produces = " application/json")
 	public List<Reservation> getReservations() {
 		logger.getLogger().info(this.getClass().getName() + "||All reservation has been displayed||");
 		return reservationRepository.findAll();

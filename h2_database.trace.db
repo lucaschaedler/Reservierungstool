@@ -346,3 +346,7 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/Luc
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
 	... 61 more
+2021-05-11 14:26:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Datenumwandlungsfehler beim Umwandeln von "'12;4;8' (RESERVATION: ""BTN_ID"" INTEGER NOT NULL)"
+Data conversion error converting "'12;4;8' (RESERVATION: ""BTN_ID"" INTEGER NOT NULL)"; SQL statement:
+insert into reservation (booking_date, btn_id, court, player_names, user_id_reservation, reservation_id) values (?, ?, ?, ?, ?, ?) [22018-200]
