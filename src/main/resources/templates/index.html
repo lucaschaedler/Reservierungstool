@@ -35,7 +35,7 @@
         <div class="col-md-6 col-sm-12">
           <div class="login-form">
             <form class="form" id="login">
-              <div class="form__message form__message--error"></div>
+              <div id=login_message class="form__message form__message--error"></div>
               <div class="form-group">
                 <input
                   type="email"
@@ -71,7 +71,7 @@
         <div class="col-md-6 col-sm-12">
           <div class="register-form">
             <form class="form form--hidden" id="requestAccount">
-              <div class="form__message form__message--error"></div>
+              <div id=accreq_message class="form__message form__message--error"></div>
               <div class="form-group">
                 <input
                   type="text"
@@ -144,15 +144,12 @@
  </div>
  <div id="calendar_container" class="row">
       <div class="col-sm-4" id="table_navigation_bar">
-           <div id="datepicker"></div>
            <button class="btn btn-secondary btn-lm" id="button_show_court1" disabled="true">Court 1</button>
            <button class="btn btn-secondary btn-lm" id="button_show_court2">Court 2</button>
            <button class="btn btn-secondary btn-lm" id="button_userlist" hidden >Userlist</button>
            <button class="btn btn-secondary btn-lm" id="button_accreqlist" hidden>Account Request List</button>
            <button class="btn btn-secondary btn-lm" id="logoutbtn">Logout</button>
            <button class="btn btn-secondary btn-lm" id="userdetailbtn">Userangaben ändern</button>
-
-
       </div>
     <!--BOOKING_TABLE - START-->
     <div class="booking-container" id="booking_table">

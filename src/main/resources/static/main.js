@@ -1,6 +1,11 @@
 //LOGIN
 const loginForm = document.querySelector("#login");
 
+//ACCOUNT REQUEST
+const requestAccountForm = document.querySelector("#requestAccount");
+const accreqMessage = document.querySelector("#accreq_message");
+const loginMessage = document.querySelector("#login_message");
+
 //pages
 const home = document.querySelector("#home");
 const calendar = document.querySelector("#calendar");
@@ -15,16 +20,33 @@ const userdetailbtn = document.querySelector("#userdetailbtn");
 let user = {
   userid: null,
   authorization: "",
+  name: "",
 };
+
+function getUserObject(userid) {
+  $.ajax({
+    type: "GET",
+    url: "/api/user/" + userid,
+    success: (response) => {
+      user.authorization = response.authorization;
+      user.name = response.userName;
+    },
+    dataType: "json",
+    contentType: "application/json",
+  });
+}
 
 //Wenn Login erfolgreich wird die Kalendersicht angezeigen
 function showCalendar(response) {
-  if (response == null) {
-    alert("Login inkorrekt");
-    return;
+  let message = "";
+  let isOk = true;
+  if (response == -1) {
+    message = "Login inkorrekt";
+    isOk = false;
   } else {
-    user.userid = response.userId;
-    user.authorization = response.authorization;
+    message = "Login korrekt";
+    user.userid = response;
+    getUserObject(user.userid);
     home.hidden = true;
     calendar.hidden = false;
 
@@ -33,14 +55,7 @@ function showCalendar(response) {
       button_accreqlist.hidden = false;
     }
   }
-
-  /*console.log("modul main.js: " + active_user);
-  if (active_user != -1) {
-    setFormMessage(loginForm, "Login erfolgreich", true);
-    window.location.href = "calendar.html";
-  } else {
-    setFormMessage(loginForm, "Login fehlgeschlagen", false);
-  }*/
+  setFormMessage(loginForm, message, isOk);
 }
 
 //Eventlistener
@@ -115,9 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-//ACCOUNT REQUEST
-const requestAccountForm = document.querySelector("#requestAccount");
-
 //verify-methoden
 function verifyPassword(password) {
   isCorrect = false;
@@ -158,6 +170,9 @@ function setFormMessage(formElement, message, response) {
     messageElement.classList.add("form__message--error");
   }
   formElement.reset(); //Felder leeren
+  setTimeout(() => {
+    messageElement.textContent = "";
+  }, 3000); //nach 3 sek message löschen
 }
 
 //CALENDAR SHIZZZLE
@@ -652,26 +667,22 @@ accreqreturnbtn.addEventListener("click", () => {
 });
 
 //logout funktion
-let logoutbtn = document.querySelector("#logoutbtn");
+const logoutbtn = document.querySelector("#logoutbtn");
 
 logoutbtn.addEventListener("click", () => {
   (user.userid = null), (user.authorization = ""), (calendar.hidden = true);
   home.hidden = false;
-  console.log(user);
 });
 
 //Userdetail ändern shizzle
 const userdetailreturnbtn = document.querySelector("#userdetailreturnbtn");
 const userdetailform = document.querySelector("#userdetailform");
-const detailMessage = document.querySelector("#detail_message");
+//const detailMessage = document.querySelector("#detail_message");
 
 userdetailreturnbtn.addEventListener("click", () => {
   calendar.hidden = false;
   userdetail.hidden = true;
-  messageElement.classList.remove(
-    "form__message--success",
-    "form__message--error"
-  );
+  //detailMessage.hidden = true;
 });
 
 userdetailform.addEventListener("submit", (e) => {
@@ -704,6 +715,7 @@ userdetailform.addEventListener("submit", (e) => {
           message = "Userdatenänderung fehlgeschlagen";
         }
         setFormMessage(userdetailform, message, response);
+        detailMessage.hidden = false;
       },
       dataType: "json",
       contentType: "application/json",
