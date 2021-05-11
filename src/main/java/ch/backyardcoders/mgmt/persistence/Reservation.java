@@ -20,6 +20,14 @@ public class Reservation {
 	private int court = 1;
 	private String playerNames;
 	private int userIdReservation;
+	private String btnId;
+	
+	public String getBtnId() {
+		return btnId;
+	}
+	public void setBtnId(String btnId) {
+		this.btnId = btnId;
+	}
 	public int getReservationId() {
 		return reservationId;
 	}

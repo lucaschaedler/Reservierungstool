@@ -243,11 +243,13 @@ var reservation_id = 0;
 var player_names = "";
 var idArray = [];
 
+
 const booking_table = document.querySelector("#booking_table");
 const booking_form = document.querySelector("#booking_form");
 const confirmBookingBtn = document.querySelector("#confirmBookingBtn");
 const backToBookingTblBtn = document.querySelector("#backToBookingTblBtn");
 const currentReservationLbl = document.querySelector("#currentReservationLbl");
+
 
 var days = [
   "Montag",
@@ -332,7 +334,14 @@ function convertIdtoInteger(buttonid) {
   }
   return parseInt(idAsString);
 }
+var btnArray=[];
+var resbtnid="";
+var num = 0;
 function timeSlotSelected(button) {
+  console.log(button.id);
+ 
+  //document.getElementById(button.id).disabled = true;
+  resbtnid=button.id;
   reservation_id = convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
   booking_table.hidden = true;
   booking_form.hidden = false;
@@ -373,6 +382,7 @@ confirmBookingBtn.addEventListener("click", () => {
       bookingDate: current_slot_date,
       playerNames: player_names,
       userIdReservation: user.userid,
+      btnId: resbtnid,
     }),
     success: createReservationSuccess,
     dataType: "json",
@@ -383,7 +393,33 @@ confirmBookingBtn.addEventListener("click", () => {
 function createReservationSuccess(response) {
   console.log(reservation_id);
   console.log("Reservaton erstellt! | " + response);
+  if(response){
+  console.log("message erfolgreich");
+  document.getElementById(resbtnid).value = "bearbeiten/löschen";
+  fetchReservations();
+
+  }else{
+    console.log("message nicht erfolgreich");
+  }
   //was passiert nachdem die reservation erfolgreich erstellt wurde??
+}
+function fetchReservations(){
+  $.getJSON("/api/reservations").done(handleReservations);
+
+}
+function handleReservations(reservations){
+  console.log(reservations);
+  console.log(btnArray);
+
+
+  for(let reservation of reservations){
+    for ( let buttonid of btnArray){
+      if(reservation.btnId.localeCompare(buttonid) ==0){
+        document.getElementById(buttonid).disabled = true;
+      }    
+    }
+  }
+
 }
 
 backToBookingTblBtn.addEventListener("click", () => {
@@ -415,7 +451,7 @@ function addRows() {
       var open = openDays.indexOf(days[y]) != -1;
       $("#slot-" + i).append(
         open
-          ? "<td><input type='button' value='button' onClick='return timeSlotSelected(this)' id='" +
+          ? "<td><input type='button' value='reservieren' onClick='return timeSlotSelected(this)' id='" +
               identifier +
               "'></input><label for='" +
               identifier +
@@ -424,22 +460,37 @@ function addRows() {
       );
       if (window.checked.indexOf(identifier) != -1)
         document.getElementById(identifier).checked = true;
+
+        //buttons zu button array hinzufügen
+        let button = document.getElementById(identifier);
+        btnArray[num] = button.id;
+        num += 1;
     }
+   
   }
+  fetchReservations()
+}
+function clearBtnArray(){
+  btnArray=[];
+  num=0;
 }
 
 function incrementWeek() {
+  clearBtnArray();
   monday.setDate(monday.getDate() + 7);
   weeksAhead++;
   updateHeader();
   addRows();
+  fetchReservations()
 }
 
 function decrementWeek() {
+  clearBtnArray();
   monday.setDate(monday.getDate() - 7);
   weeksAhead--;
   updateHeader();
   addRows();
+  fetchReservations()
 }
 
 function generate() {
