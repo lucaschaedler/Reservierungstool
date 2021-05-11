@@ -110,18 +110,24 @@ public class UserCrudService {
 
 	// Login --> wird geprüft ob Email und Passswort stimmen
 	@PostMapping(path = "login", produces = "application/json")
-	public User login(@RequestBody MessageLogin m) {
+	public int login(@RequestBody MessageLogin m) {
 		String tempEmail = m.getUserEmail();
 		String tempPassword = passwordHash.hashPassword(m.getUserPassword());
 
 		User u = verificationClass.VerifyLogin(tempEmail, tempPassword);
 		if (u != null) {
 			logger.getLogger().info(this.getClass().getName() + "||Login Successfull||");
-			return u;
+			return u.getUserId();
 		} else {
-			return null;// wenn zahl -1 ist dann ist login fehlgeschlagen
+			logger.getLogger().info(this.getClass().getName() + "||Login Unsuccessfull||");
+			return -1;
 		}
 
+	}
+	
+	@GetMapping("user/{userid}")
+	public User getUser(@PathVariable int userid) {
+		return this.userRepository.findById(userid).get();
 	}
 
 }
