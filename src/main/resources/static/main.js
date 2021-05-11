@@ -223,7 +223,7 @@ var year = new Date().getFullYear(); //aktuelles Jahr
 var monday = new Date();
 monday.setDate(today.getDate() - today.getDay() + 1);
 var weeksAhead = 0;
-var current_slot = "";
+var current_slot_date; //datum & startzeit der reservation
 var reservation_id = 0;
 var player_names = "";
 var idArray = [];
@@ -315,16 +315,16 @@ function convertIdtoInteger(buttonid) {
   for (let i = 0; i < idArray.length; i++) {
     idAsString += idArray[i];
   }
-  reservation_id = parseInt(idAsString);
+  return parseInt(idAsString);
 }
 function timeSlotSelected(button) {
-  convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
+  reservation_id = convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
   booking_table.hidden = true;
   booking_form.hidden = false;
-  var month = parseInt(idArray[1]) + 1;
   var endTime = parseInt(idArray[2]) + 2;
-  var fullDate = idArray[0] + "/" + month + "/" + year;
-  let dayName = days[new Date(fullDate).getDay()];
+  //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
+  current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
+  let dayName = days[current_slot_date.getDay() - 1];
   let monthName = months[idArray[1]];
   currentReservationLbl.innerHTML =
     "Datum und Uhrzeit der Reservation: " +
@@ -355,16 +355,18 @@ confirmBookingBtn.addEventListener("click", () => {
     url: "/api/reservation",
     data: JSON.stringify({
       reservationId: reservation_id,
+      bookingDate: current_slot_date,
       playerNames: player_names,
       userIdReservation: user.userid,
     }),
-    success: reservationSuccess,
+    success: createReservationSuccess,
     dataType: "json",
     contentType: "application/json",
   });
 });
 
-function reservationSuccess(response) {
+function createReservationSuccess(response) {
+  console.log(reservation_id);
   console.log("Reservaton erstellt! | " + response);
   //was passiert nachdem die reservation erfolgreich erstellt wurde??
 }
@@ -611,7 +613,6 @@ logoutbtn.addEventListener("click", () => {
 const userdetailreturnbtn = document.querySelector("#userdetailreturnbtn");
 const userdetailform = document.querySelector("#userdetailform");
 
-
 userdetailreturnbtn.addEventListener("click", () => {
   calendar.hidden = false;
   userdetail.hidden = true;
@@ -624,7 +625,8 @@ userdetailform.addEventListener("submit", (e) => {
   let detail_email = document.querySelector("#detail_email").value;
   let detail_mobile = document.querySelector("#detail_mobile").value;
   let detail_password = document.querySelector("#detail_password").value;
-  let detail_password_repeat = document.querySelector("#detail_password_repeat").value;
+  let detail_password_repeat = document.querySelector("#detail_password_repeat")
+    .value;
 
   if (
     matchPassworddetail(detail_password, detail_password_repeat) &&
@@ -633,7 +635,7 @@ userdetailform.addEventListener("submit", (e) => {
     // Ajax Prozess --> Rest-Service Aufruf
     $.ajax({
       type: "PUT",
-      url: "api/user/modify/"+user.userid,//parameter anschauen
+      url: "api/user/modify/" + user.userid, //parameter anschauen
       data: JSON.stringify({
         userName: detail_name,
         userEmail: detail_email,
@@ -691,4 +693,3 @@ function setFormMessagedetail(formElement, message, response) {
   }
   formElement.reset(); //Felder leeren
 }
-

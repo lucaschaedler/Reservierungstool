@@ -1,11 +1,16 @@
 package ch.backyardcoders.mgmt.business;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ch.backyardcoders.mgmt.logger.LoggerClass;
 import ch.backyardcoders.mgmt.persistence.AccountRequest;
 import ch.backyardcoders.mgmt.persistence.AccountRequestRepository;
+import ch.backyardcoders.mgmt.persistence.Reservation;
+import ch.backyardcoders.mgmt.persistence.ReservationRepository;
 import ch.backyardcoders.mgmt.persistence.User;
 import ch.backyardcoders.mgmt.persistence.UserRepository;
 
@@ -17,6 +22,9 @@ public class VerificationClass {
 
 	@Autowired
 	AccountRequestRepository accountRequestrepository;
+	
+	@Autowired
+	ReservationRepository reservationRepository;
 
 	LoggerClass logger = new LoggerClass();
 
@@ -43,6 +51,16 @@ public class VerificationClass {
 			logger.getLogger().info(this.getClass().getName() + "||User not found||");
 		return null;
 
+	}
+
+	public boolean validateReservation(Reservation r) {
+		LocalDateTime tempDate = r.getBookingDate();
+//		if(reservationRepository.findByBookingDate(tempDate)){ // todo: + and Court
+//			logger.getLogger().info(this.getClass().getName() + "||Booking Slot is empty -- Reservation created||");
+//			return true;
+//		}
+//		logger.getLogger().info(this.getClass().getName() + "||Booking Slot is full -- Reservation failed||");
+		return true;
 	}
 
 }

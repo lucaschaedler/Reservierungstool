@@ -1,62 +1,30 @@
 package ch.backyardcoders.mgmt.messages;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class MessageNewReservation {
 	
-	// Date
-	private int year;
-	private int month;
-	private int day;
-	// Starttime
-	private int startHour, startMinute;
-	// Endtime
-	private int endHour, endMinute;
-
-	private int court;
+	private int reservationId;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	private LocalDateTime bookingDate;
+	//private int court = 1;
 	private String playerNames;
-	
-	public int getYear() {
-		return year;
+	private int userIdReservation;
+
+	public int getReservationId() {
+		return reservationId;
 	}
-	public void setYear(int year) {
-		this.year = year;
+	public void setReservationId(int reservationId) {
+		this.reservationId = reservationId;
 	}
-	public int getMonth() {
-		return month;
+	public LocalDateTime getBookingDate() {
+		return bookingDate;
 	}
-	public void setMonth(int month) {
-		this.month = month;
-	}
-	public int getStartHour() {
-		return startHour;
-	}
-	public void setStartHour(int startHour) {
-		this.startHour = startHour;
-	}
-	public int getStartMinute() {
-		return startMinute;
-	}
-	public void setStartMinute(int startMinute) {
-		this.startMinute = startMinute;
-	}
-	public int getEndHour() {
-		return endHour;
-	}
-	public void setEndHour(int endHour) {
-		this.endHour = endHour;
-	}
-	public int getEndMinute() {
-		return endMinute;
-	}
-	public void setEndMinute(int endMinute) {
-		this.endMinute = endMinute;
-	}
-	public int getCourt() {
-		return court;
-	}
-	public void setCourt(int court) {
-		this.court = court;
+	public void setBookingDate(LocalDateTime bookingDate) {
+		this.bookingDate = bookingDate;
 	}
 	public String getPlayerNames() {
 		return playerNames;
@@ -64,13 +32,11 @@ public class MessageNewReservation {
 	public void setPlayerNames(String playerNames) {
 		this.playerNames = playerNames;
 	}
-	public int getDay() {
-		return day;
+	public int getUserIdReservation() {
+		return userIdReservation;
 	}
-	public void setDay(int day) {
-		this.day = day;
+	public void setUserIdReservation(int userIdReservation) {
+		this.userIdReservation = userIdReservation;
 	}
-	
-
 
 }
