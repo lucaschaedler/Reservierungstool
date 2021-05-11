@@ -612,25 +612,27 @@ logoutbtn.addEventListener("click", () => {
 //Userdetail ändern shizzle
 const userdetailreturnbtn = document.querySelector("#userdetailreturnbtn");
 const userdetailform = document.querySelector("#userdetailform");
+const detailMessage = document.querySelector("#detail_message");
 
 userdetailreturnbtn.addEventListener("click", () => {
   calendar.hidden = false;
   userdetail.hidden = true;
-  message.remove = true;
+  detailMessage.remove();
 });
 
 userdetailform.addEventListener("submit", (e) => {
   e.preventDefault();
-  let detail_name = document.querySelector("#detail_name").value;
-  let detail_email = document.querySelector("#detail_email").value;
-  let detail_mobile = document.querySelector("#detail_mobile").value;
-  let detail_password = document.querySelector("#detail_password").value;
-  let detail_password_repeat = document.querySelector("#detail_password_repeat")
-    .value;
+  const detail_name = document.querySelector("#detail_name").value;
+  const detail_email = document.querySelector("#detail_email").value;
+  const detail_mobile = document.querySelector("#detail_mobile").value;
+  const detail_password = document.querySelector("#detail_password").value;
+  const detail_password_repeat = document.querySelector(
+    "#detail_password_repeat"
+  ).value;
 
   if (
-    matchPassworddetail(detail_password, detail_password_repeat) &&
-    verifyPassworddetail(detail_password)
+    matchPassword(detail_password, detail_password_repeat) &&
+    verifyPassword(detail_password)
   ) {
     // Ajax Prozess --> Rest-Service Aufruf
     $.ajax({
@@ -643,53 +645,14 @@ userdetailform.addEventListener("submit", (e) => {
         userPassword: detail_password,
       }),
       success: function (response) {
-        let message = "Accountdaten Änderung erfolgreich";
+        let message = "Userdatenänderung erfolgreich";
         if (!response) {
-          message = "Accountdaten Änderung fehlgeschlagen";
+          message = "Userdatenänderung fehlgeschlagen";
         }
-        setFormMessagedetail(userdetailform, message, response);
+        setFormMessage(userdetailform, message, response);
       },
       dataType: "json",
       contentType: "application/json",
     });
   }
 });
-function verifyPassworddetail(password) {
-  isCorrect = false;
-  //minimum password length validation
-  if (password.length < 8) {
-    window.alert("Passwort muss zwischen 8-15 Zeichen enthalten");
-    return false;
-  }
-
-  //maximum length of password validation
-  if (password.length > 15) {
-    window.alert("Passwort muss zwischen 8-15 Zeichen enthalten");
-    return false;
-  } else {
-    return true;
-  }
-}
-function matchPassworddetail(password, password_repeat) {
-  isIdentical = false;
-  if (password == password_repeat) {
-    isIdentical = true;
-  } else {
-    window.alert("Passwörter stimmen nicht überein");
-  }
-  return isIdentical;
-}
-function setFormMessagedetail(formElement, message, response) {
-  const messageElement = formElement.querySelector(".form__message");
-  messageElement.textContent = message;
-  messageElement.classList.remove(
-    "form__message--success",
-    "form__message--error"
-  );
-  if (response) {
-    messageElement.classList.add("form__message--success");
-  } else {
-    messageElement.classList.add("form__message--error");
-  }
-  formElement.reset(); //Felder leeren
-}
