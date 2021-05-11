@@ -30,6 +30,13 @@ function getUserObject(userid) {
     success: (response) => {
       user.authorization = response.authorization;
       user.name = response.userName;
+      if (user.authorization.localeCompare("administrator") == 0) {
+        button_userlist.hidden = false;
+        button_accreqlist.hidden = false;
+      }else{
+        button_userlist.hidden = true;
+        button_accreqlist.hidden = true;
+      }
     },
     dataType: "json",
     contentType: "application/json",
@@ -46,14 +53,9 @@ function showCalendar(response) {
   } else {
     message = "Login korrekt";
     user.userid = response;
-    getUserObject(user.userid);
+    getUserObject(user.userid)
     home.hidden = true;
     calendar.hidden = false;
-
-    if (user.authorization.localeCompare("administrator") == 0) {
-      button_userlist.hidden = false;
-      button_accreqlist.hidden = false;
-    }
   }
   setFormMessage(loginForm, message, isOk);
 }
@@ -343,8 +345,13 @@ function timeSlotSelected(button) {
   //document.getElementById(button.id).disabled = true;
   resbtnid=button.id;
   reservation_id = convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
+  if(button.value.localeCompare("reservieren")==0){
   booking_table.hidden = true;
-  booking_form.hidden = false;
+  booking_form.hidden = false;}
+  if(button.value.localeCompare("bearbeiten/löschen")== 0){
+    booking_table.hidden = true;
+    console.log("geht");
+  }
   var endTime = parseInt(idArray[2]) + 2;
   //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
   current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
@@ -391,18 +398,18 @@ confirmBookingBtn.addEventListener("click", () => {
 });
 
 function createReservationSuccess(response) {
-  console.log(reservation_id);
-  console.log("Reservaton erstellt! | " + response);
   if(response){
-  console.log("message erfolgreich");
-  document.getElementById(resbtnid).value = "bearbeiten/löschen";
+ // console.log("message erfolgreich");
+  document.getElementById(resbtnid).value = "bearbeiten/reservieren";
   fetchReservations();
 
   }else{
-    console.log("message nicht erfolgreich");
+  //  console.log("message nicht erfolgreich");
   }
-  //was passiert nachdem die reservation erfolgreich erstellt wurde??
+
 }
+
+
 function fetchReservations(){
   $.getJSON("/api/reservations").done(handleReservations);
 
@@ -414,9 +421,9 @@ function handleReservations(reservations){
 
   for(let reservation of reservations){
     for ( let buttonid of btnArray){
-      if(reservation.btnId.localeCompare(buttonid) ==0){
-        document.getElementById(buttonid).disabled = true;
-      }    
+      if(reservation.btnId.localeCompare(buttonid) == 0){
+        document.getElementById(buttonid).value = "bearbeiten/löschen";
+      } 
     }
   }
 
@@ -670,8 +677,9 @@ accreqreturnbtn.addEventListener("click", () => {
 const logoutbtn = document.querySelector("#logoutbtn");
 
 logoutbtn.addEventListener("click", () => {
-  (user.userid = null), (user.authorization = ""), (calendar.hidden = true);
+  (user.userid = null), (user.authorization = ""),(user.name=""), (calendar.hidden = true);
   home.hidden = false;
+  console.log(user);
 });
 
 //Userdetail ändern shizzle
