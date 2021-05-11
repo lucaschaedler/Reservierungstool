@@ -7,20 +7,25 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class MessageNewReservation {
 	
-	//private int court;
+	private int reservationId;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	private LocalDateTime bookingDate;
-	
+	//private int court = 1;
+	private String playerNames;
+	private int userIdReservation;
+
+	public int getReservationId() {
+		return reservationId;
+	}
+	public void setReservationId(int reservationId) {
+		this.reservationId = reservationId;
+	}
 	public LocalDateTime getBookingDate() {
 		return bookingDate;
 	}
 	public void setBookingDate(LocalDateTime bookingDate) {
 		this.bookingDate = bookingDate;
 	}
-	private String playerNames;
-	private int userIdReservation;
-	
-	
 	public String getPlayerNames() {
 		return playerNames;
 	}
@@ -33,10 +38,5 @@ public class MessageNewReservation {
 	public void setUserIdReservation(int userIdReservation) {
 		this.userIdReservation = userIdReservation;
 	}
-
-	
-
-	
-
 
 }

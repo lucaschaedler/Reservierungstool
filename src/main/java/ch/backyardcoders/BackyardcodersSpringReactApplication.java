@@ -43,15 +43,15 @@ public class BackyardcodersSpringReactApplication {
 //		r.setPlayerNames("thomas");
 //		
 //		//Test User erstellt
-//		User u = new User();
-//		u.setUserEmail("baba123");
-//		u.setUserMobile("0695554323");
-//		u.setUserName("roberto");
-//		u.setUserPassword("d855ac619827b58d3ba90e74f326c4c2");
-//		u.setAuthorization(Authorization.administrator);
+		User u = new User();
+		u.setUserEmail("baba123");
+		u.setUserMobile("0695554323");
+		u.setUserName("roberto");
+		u.setUserPassword("d855ac619827b58d3ba90e74f326c4c2");
+		u.setAuthorization(Authorization.administrator);
 
 //		reservationRepository.save(r);
-//		userRepository.save(u);
+		userRepository.save(u);
 
 	}
 }

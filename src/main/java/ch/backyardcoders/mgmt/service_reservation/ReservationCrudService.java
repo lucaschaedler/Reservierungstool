@@ -59,8 +59,8 @@ public class ReservationCrudService {
 	@PostMapping(path = "api/reservation", produces = "application/json")
 	public boolean createReservation(@RequestBody MessageNewReservation m) {
 		Reservation r = new Reservation();
+		r.setReservationId(m.getReservationId());
 		r.setBookingDate(m.getBookingDate());
-		System.out.println(m.getBookingDate().toString());
 		r.setPlayerNames(m.getPlayerNames());
 		r.setUserIdReservation(m.getUserIdReservation());
 
