@@ -617,7 +617,10 @@ const detailMessage = document.querySelector("#detail_message");
 userdetailreturnbtn.addEventListener("click", () => {
   calendar.hidden = false;
   userdetail.hidden = true;
-  detailMessage.remove();
+  messageElement.classList.remove(
+    "form__message--success",
+    "form__message--error"
+  );
 });
 
 userdetailform.addEventListener("submit", (e) => {
