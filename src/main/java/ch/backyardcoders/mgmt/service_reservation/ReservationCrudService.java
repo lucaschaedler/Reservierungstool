@@ -76,7 +76,7 @@ public class ReservationCrudService {
 		Reservation r = reservationRepository.getOne(reservationid);
 		if (reservationRepository.existsById(reservationid)) {
 			r.setPlayerNames(m.getPlayerNames());
-
+			reservationRepository.save(r);
 			logger.getLogger().info(this.getClass().getName() + "||Reservation has been updated||");
 			return true;
 		} else {

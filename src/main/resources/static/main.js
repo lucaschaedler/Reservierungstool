@@ -476,22 +476,27 @@ resDetailform.addEventListener("submit", (e)=>{
 //ändern der reservation
 function modifyReservation(reservation_id){
   names = playernames_detail.value;
-  console.log("ändern von "+  reservation_id);
+  console.log(names);
   //ajax zum ändern
   $.ajax({
     type: "PUT",
-    url: "api/reservation/modify/" + reservation.userid, //parameter anschauen
+    url: "api/reservation/modify/" + reservation_id,
     data: JSON.stringify({
-      userName: detail_name,
+      playerNames: names,
     }),
     success: function (response) {
-      let message = "Userdatenänderung erfolgreich";
-      if (!response) {
-        message = "Userdatenänderung fehlgeschlagen";
-      }
-      setFormMessage(userdetailform, message, response);
-      detailMessage.hidden = false;
-    },
+      if(response){
+        console.log("erfolgreicht geändert");
+      }else{
+        console.log("nicht geändert");
+      }},
+      //let message = "Userdatenänderung erfolgreich";
+      //if (!response) {
+      //  message = "Userdatenänderung fehlgeschlagen";
+     // }
+     // setFormMessage(userdetailform, message, response);
+     // detailMessage.hidden = false;
+    //},
     dataType: "json",
     contentType: "application/json",
   });
@@ -802,7 +807,8 @@ accreqreturnbtn.addEventListener("click", () => {
 const logoutbtn = document.querySelector("#logoutbtn");
 
 logoutbtn.addEventListener("click", () => {
-  (user.userid = null), (user.authorization = ""),(user.name=""), (calendar.hidden = true),(reservationdetail.hidden=true);
+  (user.userid = null), (user.authorization = ""),(user.name=""), (calendar.hidden = true)
+  ,(reservationdetail.hidden=true);
   home.hidden = false;
   //console.log(user);
 });
