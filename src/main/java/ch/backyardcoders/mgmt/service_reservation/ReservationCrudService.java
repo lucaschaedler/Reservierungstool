@@ -39,7 +39,7 @@ public class ReservationCrudService {
 		return reservationRepository.findById(reservationid).get();
 	}
 
-	@DeleteMapping(path = "/api/reservation/{reservationid}{userId}", produces = "application/json")
+	@DeleteMapping(path = "/api/reservation/{reservationid}", produces = "application/json")
 	public boolean deleteReservation(@PathVariable int reservationid) {
 
 		if (reservationRepository.existsById(reservationid)) {// berechtigung hinzufügen nur eigene löschen

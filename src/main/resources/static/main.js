@@ -217,7 +217,7 @@ court1Btn.addEventListener("click", () => {
   court2Tbl.hidden = true;
   court2Btn.disabled = false;
   court1Btn.disabled = true;
-  console.log("Tabelle 1 wird angezeigt");
+  //console.log("Tabelle 1 wird angezeigt");
 });
 
 //Wenn Platz 1 angezeigt wird, ist der Button für Platz 1 disabled + Button für Platz 2 enabled
@@ -226,7 +226,7 @@ court1Btn.addEventListener("click", () => {
   court2Tbl.hidden = true;
   court2Btn.disabled = false;
   court1Btn.disabled = true;
-  console.log("Tabelle 1 wird angezeigt");
+ // console.log("Tabelle 1 wird angezeigt");
 });
 
 //Wenn Platz 2 angezeigt wird, ist der Button für Platz 2 disabled + Button für Platz 1 enabled
@@ -235,7 +235,7 @@ court2Btn.addEventListener("click", () => {
   court2Tbl.hidden = false;
   court2Btn.disabled = true;
   court1Btn.disabled = false;
-  console.log("Tabelle 2 wird angezeigt");
+ // console.log("Tabelle 2 wird angezeigt");
 });
 
 // Booking - START
@@ -414,10 +414,8 @@ btndeleteRes.addEventListener("click", ()=>{
       reservation.userIdReservation = response.userIdReservation;
       //console.log(reservation);
       if(user.authorization.localeCompare("administrator")==0){
-        console.log("test");
         deleteReservation(reservation_id);
       }else if(reservation.userIdReservation == user.userid){
-        console.log("test2");
         deleteReservation(reservation_id);
       }else{
         window.alert("Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!")
@@ -429,8 +427,22 @@ btndeleteRes.addEventListener("click", ()=>{
 });
 //ajx zum löschen btn wieder zu reservieren nennen
 function deleteReservation(reservation_id){
-console.log("gelöscht "+ reservation_id);
-
+  $.ajax({
+    type: "DELETE",
+    url: "/api/reservation/" + reservation_id,
+    success: (response) => {
+      if(response){
+        console.log("löschen war erfolgreich");
+        
+      }else{
+        console.log("löschen war nicht erfolgreich");
+      }
+     document.getElementById(resbtnid).value = "reservieren";
+     fetchReservations();
+    },
+    dataType: "json",
+    contentType: "application/json",
+  });
 }
 //zurück btn
 returnbtndeleteRes.addEventListener("click", ()=>{
@@ -463,12 +475,12 @@ resDetailform.addEventListener("submit", (e)=>{
     contentType: "application/json",
   });
 });
-
+//ändern der reservation
 function modifyReservation(reservation_id){
   names = playernames_detail.value;
   console.log("ändern von "+  reservation_id);
   //ajax zum ändern
-  
+
 }
 const player_namesfield =document.querySelector("#playernames");
 //createReservation-Prozess
@@ -497,12 +509,11 @@ confirmBookingform.addEventListener("submit", (e) => {
 
 function createReservationSuccess(response) {
   if(response){
- // console.log("message erfolgreich");
+  console.log("message erfolgreich");
   document.getElementById(resbtnid).value = "bearbeiten/reservieren";
   fetchReservations();
-
   }else{
-  //  console.log("message nicht erfolgreich");
+   console.log("message nicht erfolgreich");
   }
 
 }
@@ -648,7 +659,7 @@ function handleUserlistReply(users) {
 
 function addUserToList(user) {
   let id = user["userId"];
-  console.log(id);
+  //console.log(id);
 
   var newRow = "<tr>";
   newRow += "<td>" + user["userId"] + "<td>";
@@ -677,7 +688,7 @@ function handleAccountRequestlistReply(reqs) {
 
 function addReqToList(req) {
   let id = req["accountRequestId"];
-  console.log(id);
+  //console.log(id);
 
   var newRow = "<tr>";
   newRow += "<td>" + req["accountRequestId"] + "<td>";
@@ -703,7 +714,6 @@ function addReqToList(req) {
 //userlöschen
 function deleteUser(id) {
   var urlstring = "api/user/delete/" + id;
-  console.log("delete  " + id);
   $.ajax({
     type: "DELETE",
     url: urlstring,
@@ -714,7 +724,6 @@ function deleteUser(id) {
 }
 //accreq löschen
 function deleteAccRequest(id) {
-  console.log("delete request" + id);
   var urlstring = "/api/deleteAccountRequest/" + id;
   $.ajax({
     type: "DELETE",
@@ -726,7 +735,6 @@ function deleteAccRequest(id) {
 }
 //user erstellen
 function createUser(id) {
-  console.log("create user" + id);
   var urlstring = "api/createUser/" + id;
   $.ajax({
     type: "Post",
@@ -739,6 +747,7 @@ function createUser(id) {
 //antwort von userlöschen und update gui
 function deleteUserRespons(response) {
   if (response == true) {
+    console.log("delete user " + id);
     userlistclicked();
   } else {
     console.log("fehler beim löschen des users");
@@ -747,6 +756,7 @@ function deleteUserRespons(response) {
 //antwort von accreq löschen und update gui
 function deleteReqRespons(response) {
   if (response == true) {
+    console.log("delete request" + id);
     accountRequestlistclicked();
   } else {
     console.log("fehler beim löschen des request");
@@ -755,6 +765,7 @@ function deleteReqRespons(response) {
 //antwort von user erstellen und aktulisieren
 function createUserResponse(response) {
   if (response == true) {
+    console.log("create user" + id);
     accountRequestlistclicked();
   } else {
     console.log("fehler beim erstellen des users");
@@ -778,7 +789,7 @@ const logoutbtn = document.querySelector("#logoutbtn");
 logoutbtn.addEventListener("click", () => {
   (user.userid = null), (user.authorization = ""),(user.name=""), (calendar.hidden = true),(reservationdetail.hidden=true);
   home.hidden = false;
-  console.log(user);
+  //console.log(user);
 });
 
 //Userdetail ändern shizzle
