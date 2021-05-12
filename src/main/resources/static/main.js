@@ -22,6 +22,10 @@ let user = {
   authorization: "",
   name: "",
 };
+//current reservation object
+let reservation ={
+  userIdReservation: null,
+};
 
 function getUserObject(userid) {
   $.ajax({
@@ -248,7 +252,8 @@ var idArray = [];
 
 const booking_table = document.querySelector("#booking_table");
 const booking_form = document.querySelector("#booking_form");
-const confirmBookingBtn = document.querySelector("#confirmBookingBtn");
+const confirmBookingform = document.querySelector("#confirmBookingform");
+//const confirmBookingBtn = document.querySelector("#confirmBookingBtn");
 const backToBookingTblBtn = document.querySelector("#backToBookingTblBtn");
 const currentReservationLbl = document.querySelector("#currentReservationLbl");
 const currentReservationLbl2 = document.querySelector("#currentReservationLbl2");
@@ -344,7 +349,7 @@ var btnArray=[];
 var resbtnid="";
 var num = 0;
 function timeSlotSelected(button) {
-  console.log(button.id);
+ // console.log(button.id);
  
   //document.getElementById(button.id).disabled = true;
   resbtnid=button.id;
@@ -400,23 +405,75 @@ function timeSlotSelected(button) {
     ":00 |";
 }
 }
+//Reservation löschen
+btndeleteRes.addEventListener("click", ()=>{
+  $.ajax({
+    type: "GET",
+    url: "/api/reservation/" + reservation_id,
+    success: (response) => {
+      reservation.userIdReservation = response.userIdReservation;
+      //console.log(reservation);
+      if(user.authorization.localeCompare("administrator")==0){
+        console.log("test");
+        deleteReservation(reservation_id);
+      }else if(reservation.userIdReservation == user.userid){
+        console.log("test2");
+        deleteReservation(reservation_id);
+      }else{
+        window.alert("Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!")
+      }
+    },
+    dataType: "json",
+    contentType: "application/json",
+  });
+});
+//ajx zum löschen btn wieder zu reservieren nennen
+function deleteReservation(reservation_id){
+console.log("gelöscht "+ reservation_id);
 
+}
+//zurück btn
 returnbtndeleteRes.addEventListener("click", ()=>{
   booking_table.hidden = false;
   reservationdetail.hidden = true;
+  reservation.userIdReservation = null;
+  playernames_detail.value ="";
 })
-
-btndeleteRes.addEventListener("click", ()=>{
-  console.log("löschen");
-})
+const playernames_detail = document.querySelector("#playernames_detail");
+//reservation bearbeiten
 resDetailform.addEventListener("submit", (e)=>{
   e.preventDefault();
-  const playernames_detail = document.querySelector("#playernames_detail").value;
-  //ajax
-})
+  $.ajax({
+    type: "GET",
+    url: "/api/reservation/" + reservation_id,
+    success: (response) => {
+      reservation.userIdReservation = response.userIdReservation;
+     // console.log(reservation);
+      if(user.authorization.localeCompare("administrator")==0){
+        console.log("test");
+        modifyReservation(reservation_id);
+      }else if(reservation.userIdReservation == user.userid){
+        console.log("test2");
+        modifyReservation(reservation_id);
+      }else{
+        window.alert("Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!")
+      }
+    },
+    dataType: "json",
+    contentType: "application/json",
+  });
+});
 
+function modifyReservation(reservation_id){
+  names = playernames_detail.value;
+  console.log("ändern von "+  reservation_id);
+  //ajax zum ändern
+  
+}
+const player_namesfield =document.querySelector("#playernames");
 //createReservation-Prozess
-confirmBookingBtn.addEventListener("click", () => {
+confirmBookingform.addEventListener("submit", (e) => {
+  e.preventDefault();
   player_names = document.querySelector("#playernames").value;
   if (player_names == null) {
     alert("Bitte Spieler einschreiben");
@@ -456,8 +513,8 @@ function fetchReservations(){
 
 }
 function handleReservations(reservations){
-  console.log(reservations);
-  console.log(btnArray);
+  //console.log(reservations);
+  //console.log(btnArray);
 
 
   for(let reservation of reservations){
@@ -473,6 +530,7 @@ function handleReservations(reservations){
 backToBookingTblBtn.addEventListener("click", () => {
   booking_table.hidden = false;
   booking_form.hidden = true;
+  player_namesfield.value = "";
 });
 function addRows() {
   //Create a new row for each time
@@ -718,7 +776,7 @@ accreqreturnbtn.addEventListener("click", () => {
 const logoutbtn = document.querySelector("#logoutbtn");
 
 logoutbtn.addEventListener("click", () => {
-  (user.userid = null), (user.authorization = ""),(user.name=""), (calendar.hidden = true);
+  (user.userid = null), (user.authorization = ""),(user.name=""), (calendar.hidden = true),(reservationdetail.hidden=true);
   home.hidden = false;
   console.log(user);
 });

@@ -32,8 +32,8 @@ public class ReservationCrudService {
 
 	LoggerClass logger = new LoggerClass();
 
-	@GetMapping(path = "/api/reservation/{reservationid}{userId}", produces = "application/json")
-	public Reservation getReservation(@PathVariable int reservationid, int userId) {
+	@GetMapping(path = "/api/reservation/{reservationid}", produces = "application/json")
+	public Reservation getReservation(@PathVariable int reservationid) {
 		
 		logger.getLogger().info(this.getClass().getName() + "||Reservation found by ID||");
 		return reservationRepository.findById(reservationid).get();
@@ -71,17 +71,12 @@ public class ReservationCrudService {
 		}
 	}
 
-	@PutMapping(path = "api/reservation/{reservationid}{userId}/modify", produces = "application/json")
+	@PutMapping(path = "api/reservation/modify/{reservationid}", produces = "application/json")
 	public boolean updateReservation(@PathVariable int reservationid, @RequestBody MessageModifyReservation m) {
 		Reservation r = reservationRepository.getOne(reservationid);
 		if (reservationRepository.existsById(reservationid)) {
-			r.setCourt(m.getCourt());
 			r.setPlayerNames(m.getPlayerNames());
-//			r.setDate(m.getYear(), m.getMonth(), m.getDay());
-//			r.setStartTime(m.getStartHour(), m.getStartMinute());
-//			r.setEndTime(m.getEndHour(), m.getEndMinute());
 
-			// ev eingabe prüfen
 			logger.getLogger().info(this.getClass().getName() + "||Reservation has been updated||");
 			return true;
 		} else {
