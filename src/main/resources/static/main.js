@@ -462,10 +462,8 @@ resDetailform.addEventListener("submit", (e)=>{
       reservation.userIdReservation = response.userIdReservation;
      // console.log(reservation);
       if(user.authorization.localeCompare("administrator")==0){
-        console.log("test");
         modifyReservation(reservation_id);
       }else if(reservation.userIdReservation == user.userid){
-        console.log("test2");
         modifyReservation(reservation_id);
       }else{
         window.alert("Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!")
@@ -480,6 +478,23 @@ function modifyReservation(reservation_id){
   names = playernames_detail.value;
   console.log("ändern von "+  reservation_id);
   //ajax zum ändern
+  $.ajax({
+    type: "PUT",
+    url: "api/reservation/modify/" + reservation.userid, //parameter anschauen
+    data: JSON.stringify({
+      userName: detail_name,
+    }),
+    success: function (response) {
+      let message = "Userdatenänderung erfolgreich";
+      if (!response) {
+        message = "Userdatenänderung fehlgeschlagen";
+      }
+      setFormMessage(userdetailform, message, response);
+      detailMessage.hidden = false;
+    },
+    dataType: "json",
+    contentType: "application/json",
+  });
 
 }
 const player_namesfield =document.querySelector("#playernames");
