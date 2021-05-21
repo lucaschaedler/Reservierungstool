@@ -141,7 +141,6 @@ h1 {
   color: #2b2b2b;
 }
 
-
 td {
   padding: 10px;
   border-bottom: 1px solid #d2d2d2;
@@ -187,21 +186,17 @@ h1 {
   cursor: pointer;
   color: blue;
 }
-.btnCalendar{
-  color: red;
+.btnCalendar {
+  background-color: var(--color-primary);
+  height: 5em;
+  width: 10em;
 }
 
-.tablelist{
-  table-layout: fixed;
-  width: 100%;
+#title_container {
+  color: white !important;
+  background-color: var(--color-secondary);
+}
+
+nav {
   text-align: center;
 }
-.tablelist td{
-  width: 100px;
-}
-.tablelist th{
-  align-self: center;
-  width: 200px;
-}
-
-

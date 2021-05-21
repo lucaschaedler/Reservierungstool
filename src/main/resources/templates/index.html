@@ -136,15 +136,14 @@
     <!--HOME-END-->
     <!--CALENDAR-START-->
     <div id="calendar" hidden>
-      <div align="center" class="row">
-        <div id="title_container " class="col-sm-12">
+      <div class="row">
+        <div align="center" id="title_container" class="col-sm-12">
           <h1>Booking Calendar</h1>
-          <h3>BC Rohrdorf</h3>
+          <p id = "nameUser"></p>
         </div>
       </div>
-      <div align="center" id="calendar_container" class="row">
-        <div class="col-sm-12" id="table_navigation_bar">
-          <p id = "nameUser">Name</p>
+      <div id="calendar_container" class="row">
+        <nav class="col-sm-12" id="table_navigation_bar">
           <button class="btn btn-secondary btn-lm" id="button_userlist" hidden>
             Userlist</button
           >
@@ -157,7 +156,7 @@
           <button class="btn btn-secondary btn-lm" id="userdetailbtn">
             Userangaben ändern
           </button>
-        </div>
+        </nav>
         </div>
         <!--BOOKING_TABLE - START-->
         <div class="row">
@@ -182,10 +181,10 @@
               autofocus
               required
             />
-            <button type="submit">Reservieren</button>
+            <button class="btn btn-secondary btn-lm" type="submit">Reservieren</button>
           </div>
         </form>
-          <button id="backToBookingTblBtn">Zurück</button>
+          <button class="btn btn-secondary btn-lm" id="backToBookingTblBtn">Zurück</button>
         </div>
 
         <!-- Ende eingabe für Reservatîonen-->
@@ -196,7 +195,7 @@
     <!--USERLIST-START-->
     <div id="userlist" hidden="true">
       <h1>UserListService</h1>
-      <button id="userlistreturnbtn">zurück</button>
+      <button class="btn btn-secondary btn-lm" id="userlistreturnbtn">zurück</button>
     <!--
            Filter : <input type = "text" id = "inpUserList"/>
            <button onClick = "javascript:applyFilter()"> Filter anweden </button>
@@ -223,7 +222,7 @@
     <!--ACCREQLIST-START-->
     <div id="accreqlist" hidden="true">
       <h1>Accountanfragen Liste</h1>
-      <button id="accreqreturnbtn">zurück</button>
+      <button class="btn btn-secondary btn-lm" id="accreqreturnbtn">zurück</button>
     <!--
         Filter : <input type = "text" id = "inpAcc"/>
         <button onClick = "javascript:applyFilterAcc()"> Filter anweden </button>
@@ -306,9 +305,9 @@
           />
         </div>
 
-        <button type="submit">Daten ändern</button>
+        <button class="btn btn-secondary btn-lm" type="submit">Daten ändern</button>
       </form>
-     <button id="userdetailreturnbtn">Zurück</button>
+     <button class="btn btn-secondary btn-lm" id="userdetailreturnbtn">Zurück</button>
      </div>
      
       <!--userdetail-END-->

@@ -49,7 +49,7 @@ function getUserObject(userid) {
   });
 }
 
-function updateNameUser(){
+function updateNameUser() {
   nameUser.innerHTML = "Hallo, " + user.name;
 }
 //Wenn Login erfolgreich wird die Kalendersicht angezeigen
@@ -317,13 +317,12 @@ var btnArray = [];
 var resbtnid = "";
 var num = 0;
 function timeSlotSelected(button) {
- 
   //document.getElementById(button.id).disabled = true;
-  resbtnid=button.id;
+  resbtnid = button.id;
   reservation_id = convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
-  if(button.value.localeCompare("reservieren")==0){
-  booking_table.hidden = true;
-  booking_form.hidden = false;
+  if (button.value.localeCompare("reservieren") == 0) {
+    booking_table.hidden = true;
+    booking_form.hidden = false;
 
     var endTime = parseInt(idArray[2]) + 2;
     //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
@@ -518,11 +517,10 @@ function createReservationSuccess(response) {
 function fetchReservations() {
   $.getJSON("/api/reservations").done(handleReservations);
 }
-function handleReservations(reservations){
-
-  for(let reservation of reservations){
-    for ( let buttonid of btnArray){
-      if(reservation.btnId.localeCompare(buttonid) == 0){
+function handleReservations(reservations) {
+  for (let reservation of reservations) {
+    for (let buttonid of btnArray) {
+      if (reservation.btnId.localeCompare(buttonid) == 0) {
         document.getElementById(buttonid).value = "bearbeiten/löschen";
       }
     }
@@ -559,7 +557,7 @@ function addRows() {
       var open = openDays.indexOf(days[y]) != -1;
       $("#slot-" + i).append(
         open
-          ? "<td><input type='button' class= 'btnCalendar' value='reservieren' onClick='return timeSlotSelected(this)' id='" +
+          ? "<td><input type='button' class='btnCalendar' value='reservieren' onClick='return timeSlotSelected(this)' id='" +
               identifier +
               "'></input><label for='" +
               identifier +
