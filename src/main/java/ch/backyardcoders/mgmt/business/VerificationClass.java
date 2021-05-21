@@ -22,18 +22,26 @@ public class VerificationClass {
 
 	@Autowired
 	AccountRequestRepository accountRequestrepository;
-	
+
 	@Autowired
 	ReservationRepository reservationRepository;
 
 	LoggerClass logger = new LoggerClass();
 
-	public boolean validateAccountRequest(AccountRequest accountRequest) {
+	public boolean validateAdmin(String email) {
+		User u = userRepository.findUserByUserEmail(email);
+		if (u == null) {
+			return true;
+		} else
+			return false;
+	}
+
+	public boolean validateEmail(AccountRequest accountRequest) {
 
 		String tempEmail = accountRequest.getAccountRequestEmail();
 		AccountRequest x = accountRequestrepository.findByAccountRequestEmail(tempEmail);
-		User u = userRepository.findUserByUserEmail(tempEmail);// überprüft ob es user mit dieser e mail gibt und auch
-																// request
+		User u = userRepository.findUserByUserEmail(tempEmail);
+
 		if (x == null && u == null) {
 			logger.getLogger().info(this.getClass().getName() + "||UserEmail are unique||");
 			return true;

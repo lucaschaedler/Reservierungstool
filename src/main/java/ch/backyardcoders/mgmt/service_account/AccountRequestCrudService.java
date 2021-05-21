@@ -40,7 +40,7 @@ public class AccountRequestCrudService {
 		
 		a.setAccountRequestPassword(passwordHash.hashPassword(m.getAccountRequestPassword()));
 		
-		if (verificationClass.validateAccountRequest(a)) {// ob email schon vergeben ist noch vom user überprüfen auch noch
+		if (verificationClass.validateEmail(a)) {// ob email schon vergeben ist noch vom user überprüfen auch noch
 			accountRepository.save(a);
 			logger.getLogger().info(this.getClass().getName() + "||AccountRequest created||");
 			return true;

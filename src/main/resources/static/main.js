@@ -15,6 +15,7 @@ const accreqlist = document.querySelector("#accreqlist");
 const button_userlist = document.querySelector("#button_userlist");
 const button_accreqlist = document.querySelector("#button_accreqlist");
 const userdetailbtn = document.querySelector("#userdetailbtn");
+const nameUser = document.querySelector("#nameUser");
 
 //current user object
 let user = {
@@ -34,6 +35,7 @@ function getUserObject(userid) {
     success: (response) => {
       user.authorization = response.authorization;
       user.name = response.userName;
+      updateNameUser();
       if (user.authorization.localeCompare("administrator") == 0) {
         button_userlist.hidden = false;
         button_accreqlist.hidden = false;
@@ -47,6 +49,9 @@ function getUserObject(userid) {
   });
 }
 
+function updateNameUser(){
+  nameUser.innerHTML = "Hallo, " + user.name;
+}
 //Wenn Login erfolgreich wird die Kalendersicht angezeigen
 function showCalendar(response) {
   let message = "";
@@ -183,15 +188,6 @@ function setFormMessage(formElement, message, response) {
 
 //CALENDAR SHIZZZLE
 
-/*import { active_user } from "./main.js";
-const id = active_user;
-console.log("modul calendar_script.js: " + id);*/
-
-let court1Btn = document.querySelector("#button_show_court1");
-let court2Btn = document.querySelector("#button_show_court2");
-let court1Tbl = document.querySelector("#table_court_1");
-let court2Tbl = document.querySelector("#table_court_2");
-
 userdetailbtn.addEventListener("click", () => {
   calendar.hidden = true;
   userdetail.hidden = false;
@@ -211,33 +207,6 @@ button_accreqlist.addEventListener("click", () => {
   accountRequestlistclicked();
 });
 
-//buttons on click methoden
-court1Btn.addEventListener("click", () => {
-  court1Tbl.hidden = false;
-  court2Tbl.hidden = true;
-  court2Btn.disabled = false;
-  court1Btn.disabled = true;
-  //console.log("Tabelle 1 wird angezeigt");
-});
-
-//Wenn Platz 1 angezeigt wird, ist der Button für Platz 1 disabled + Button für Platz 2 enabled
-court1Btn.addEventListener("click", () => {
-  court1Tbl.hidden = false;
-  court2Tbl.hidden = true;
-  court2Btn.disabled = false;
-  court1Btn.disabled = true;
- // console.log("Tabelle 1 wird angezeigt");
-});
-
-//Wenn Platz 2 angezeigt wird, ist der Button für Platz 2 disabled + Button für Platz 1 enabled
-court2Btn.addEventListener("click", () => {
-  court1Tbl.hidden = true;
-  court2Tbl.hidden = false;
-  court2Btn.disabled = true;
-  court1Btn.disabled = false;
- // console.log("Tabelle 2 wird angezeigt");
-});
-
 // Booking - START
 var today = new Date();
 var year = new Date().getFullYear(); //aktuelles Jahr
@@ -253,7 +222,6 @@ var idArray = [];
 const booking_table = document.querySelector("#booking_table");
 const booking_form = document.querySelector("#booking_form");
 const confirmBookingform = document.querySelector("#confirmBookingform");
-//const confirmBookingBtn = document.querySelector("#confirmBookingBtn");
 const backToBookingTblBtn = document.querySelector("#backToBookingTblBtn");
 const currentReservationLbl = document.querySelector("#currentReservationLbl");
 const currentReservationLbl2 = document.querySelector("#currentReservationLbl2");
@@ -349,7 +317,6 @@ var btnArray=[];
 var resbtnid="";
 var num = 0;
 function timeSlotSelected(button) {
- // console.log(button.id);
  
   //document.getElementById(button.id).disabled = true;
   resbtnid=button.id;
@@ -544,9 +511,6 @@ function fetchReservations(){
 
 }
 function handleReservations(reservations){
-  //console.log(reservations);
-  //console.log(btnArray);
-
 
   for(let reservation of reservations){
     for ( let buttonid of btnArray){
@@ -588,7 +552,7 @@ function addRows() {
       var open = openDays.indexOf(days[y]) != -1;
       $("#slot-" + i).append(
         open
-          ? "<td><input type='button' value='reservieren' onClick='return timeSlotSelected(this)' id='" +
+          ? "<td><input type='button' class= 'btnCalendar' value='reservieren' onClick='return timeSlotSelected(this)' id='" +
               identifier +
               "'></input><label for='" +
               identifier +
