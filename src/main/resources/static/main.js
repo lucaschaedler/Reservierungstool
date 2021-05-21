@@ -206,38 +206,7 @@ button_accreqlist.addEventListener("click", () => {
   accreqlist.hidden = false;
   accountRequestlistclicked();
 });
-
-<<<<<<< HEAD
-=======
-//buttons on click methoden
-court1Btn.addEventListener("click", () => {
-  court1Tbl.hidden = false;
-  court2Tbl.hidden = true;
-  court2Btn.disabled = false;
-  court1Btn.disabled = true;
-  //console.log("Tabelle 1 wird angezeigt");
-});
-
-//Wenn Platz 1 angezeigt wird, ist der Button für Platz 1 disabled + Button für Platz 2 enabled
-court1Btn.addEventListener("click", () => {
-  court1Tbl.hidden = false;
-  court2Tbl.hidden = true;
-  court2Btn.disabled = false;
-  court1Btn.disabled = true;
-  // console.log("Tabelle 1 wird angezeigt");
-});
-
-//Wenn Platz 2 angezeigt wird, ist der Button für Platz 2 disabled + Button für Platz 1 enabled
-court2Btn.addEventListener("click", () => {
-  court1Tbl.hidden = true;
-  court2Tbl.hidden = false;
-  court2Btn.disabled = true;
-  court1Btn.disabled = false;
-  // console.log("Tabelle 2 wird angezeigt");
-});
-
->>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
-// Booking - START
+//Booking - START
 var today = new Date();
 var year = new Date().getFullYear(); //aktuelles Jahr
 var monday = new Date();
@@ -250,12 +219,7 @@ var idArray = [];
 
 const booking_table = document.querySelector("#booking_table");
 const booking_form = document.querySelector("#booking_form");
-<<<<<<< HEAD
 const confirmBookingform = document.querySelector("#confirmBookingform");
-=======
-const confirmBookingform = document.querySelector("#confirmBookingform"); //create
-//const confirmBookingBtn = document.querySelector("#confirmBookingBtn");
->>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
 const backToBookingTblBtn = document.querySelector("#backToBookingTblBtn");
 const currentReservationLbl = document.querySelector("#currentReservationLbl");
 const currentReservationLbl2 = document.querySelector(
@@ -353,7 +317,6 @@ var btnArray = [];
 var resbtnid = "";
 var num = 0;
 function timeSlotSelected(button) {
-<<<<<<< HEAD
  
   //document.getElementById(button.id).disabled = true;
   resbtnid=button.id;
@@ -361,16 +324,6 @@ function timeSlotSelected(button) {
   if(button.value.localeCompare("reservieren")==0){
   booking_table.hidden = true;
   booking_form.hidden = false;
-=======
-  // console.log(button.id);
->>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
-
-  //document.getElementById(button.id).disabled = true;
-  resbtnid = button.id;
-  reservation_id = convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
-  if (button.value.localeCompare("reservieren") == 0) {
-    booking_table.hidden = true;
-    booking_form.hidden = false;
 
     var endTime = parseInt(idArray[2]) + 2;
     //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
@@ -565,21 +518,11 @@ function createReservationSuccess(response) {
 function fetchReservations() {
   $.getJSON("/api/reservations").done(handleReservations);
 }
-<<<<<<< HEAD
 function handleReservations(reservations){
 
   for(let reservation of reservations){
     for ( let buttonid of btnArray){
       if(reservation.btnId.localeCompare(buttonid) == 0){
-=======
-function handleReservations(reservations) {
-  //console.log(reservations);
-  //console.log(btnArray);
-
-  for (let reservation of reservations) {
-    for (let buttonid of btnArray) {
-      if (reservation.btnId.localeCompare(buttonid) == 0) {
->>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
         document.getElementById(buttonid).value = "bearbeiten/löschen";
       }
     }
