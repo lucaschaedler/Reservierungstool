@@ -15,6 +15,7 @@ const accreqlist = document.querySelector("#accreqlist");
 const button_userlist = document.querySelector("#button_userlist");
 const button_accreqlist = document.querySelector("#button_accreqlist");
 const userdetailbtn = document.querySelector("#userdetailbtn");
+const nameUser = document.querySelector("#nameUser");
 
 //current user object
 let user = {
@@ -34,6 +35,7 @@ function getUserObject(userid) {
     success: (response) => {
       user.authorization = response.authorization;
       user.name = response.userName;
+      updateNameUser();
       if (user.authorization.localeCompare("administrator") == 0) {
         button_userlist.hidden = false;
         button_accreqlist.hidden = false;
@@ -47,6 +49,9 @@ function getUserObject(userid) {
   });
 }
 
+function updateNameUser(){
+  nameUser.innerHTML = "Hallo, " + user.name;
+}
 //Wenn Login erfolgreich wird die Kalendersicht angezeigen
 function showCalendar(response) {
   let message = "";
@@ -183,15 +188,6 @@ function setFormMessage(formElement, message, response) {
 
 //CALENDAR SHIZZZLE
 
-/*import { active_user } from "./main.js";
-const id = active_user;
-console.log("modul calendar_script.js: " + id);*/
-
-let court1Btn = document.querySelector("#button_show_court1");
-let court2Btn = document.querySelector("#button_show_court2");
-let court1Tbl = document.querySelector("#table_court_1");
-let court2Tbl = document.querySelector("#table_court_2");
-
 userdetailbtn.addEventListener("click", () => {
   calendar.hidden = true;
   userdetail.hidden = false;
@@ -211,6 +207,8 @@ button_accreqlist.addEventListener("click", () => {
   accountRequestlistclicked();
 });
 
+<<<<<<< HEAD
+=======
 //buttons on click methoden
 court1Btn.addEventListener("click", () => {
   court1Tbl.hidden = false;
@@ -238,6 +236,7 @@ court2Btn.addEventListener("click", () => {
   // console.log("Tabelle 2 wird angezeigt");
 });
 
+>>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
 // Booking - START
 var today = new Date();
 var year = new Date().getFullYear(); //aktuelles Jahr
@@ -251,8 +250,12 @@ var idArray = [];
 
 const booking_table = document.querySelector("#booking_table");
 const booking_form = document.querySelector("#booking_form");
+<<<<<<< HEAD
+const confirmBookingform = document.querySelector("#confirmBookingform");
+=======
 const confirmBookingform = document.querySelector("#confirmBookingform"); //create
 //const confirmBookingBtn = document.querySelector("#confirmBookingBtn");
+>>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
 const backToBookingTblBtn = document.querySelector("#backToBookingTblBtn");
 const currentReservationLbl = document.querySelector("#currentReservationLbl");
 const currentReservationLbl2 = document.querySelector(
@@ -350,7 +353,17 @@ var btnArray = [];
 var resbtnid = "";
 var num = 0;
 function timeSlotSelected(button) {
+<<<<<<< HEAD
+ 
+  //document.getElementById(button.id).disabled = true;
+  resbtnid=button.id;
+  reservation_id = convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
+  if(button.value.localeCompare("reservieren")==0){
+  booking_table.hidden = true;
+  booking_form.hidden = false;
+=======
   // console.log(button.id);
+>>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
 
   //document.getElementById(button.id).disabled = true;
   resbtnid = button.id;
@@ -552,6 +565,13 @@ function createReservationSuccess(response) {
 function fetchReservations() {
   $.getJSON("/api/reservations").done(handleReservations);
 }
+<<<<<<< HEAD
+function handleReservations(reservations){
+
+  for(let reservation of reservations){
+    for ( let buttonid of btnArray){
+      if(reservation.btnId.localeCompare(buttonid) == 0){
+=======
 function handleReservations(reservations) {
   //console.log(reservations);
   //console.log(btnArray);
@@ -559,6 +579,7 @@ function handleReservations(reservations) {
   for (let reservation of reservations) {
     for (let buttonid of btnArray) {
       if (reservation.btnId.localeCompare(buttonid) == 0) {
+>>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
         document.getElementById(buttonid).value = "bearbeiten/löschen";
       }
     }
@@ -595,7 +616,7 @@ function addRows() {
       var open = openDays.indexOf(days[y]) != -1;
       $("#slot-" + i).append(
         open
-          ? "<td><input type='button' value='reservieren' onClick='return timeSlotSelected(this)' id='" +
+          ? "<td><input type='button' class= 'btnCalendar' value='reservieren' onClick='return timeSlotSelected(this)' id='" +
               identifier +
               "'></input><label for='" +
               identifier +

@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import ch.backyardcoders.mgmt.business.VerificationClass;
 import ch.backyardcoders.mgmt.logger.LoggerClass;
 import ch.backyardcoders.mgmt.persistence.Authorization;
-import ch.backyardcoders.mgmt.persistence.Reservation;
-import ch.backyardcoders.mgmt.persistence.ReservationRepository;
 import ch.backyardcoders.mgmt.persistence.User;
 import ch.backyardcoders.mgmt.persistence.UserRepository;
 
@@ -17,7 +16,7 @@ import ch.backyardcoders.mgmt.persistence.UserRepository;
 public class BackyardcodersSpringReactApplication {
 	
 	@Autowired
-	private ReservationRepository reservationRepository;
+	private VerificationClass verificationClass;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -33,25 +32,19 @@ public class BackyardcodersSpringReactApplication {
 	public void createHardCodedData() {
 		logger.getLogger().info(this.getClass().getName() + "||Application has successfully started||");
 
-		
-		//test Reservation erstellt
-//		Reservation r = new Reservation();
-//		r.setCourt(2);
-//		r.setDate(2021, 5, 7);
-//		r.setStartTime(11, 0);
-//		r.setEndTime(12, 0);
-//		r.setPlayerNames("thomas");
-//		
-//		//Test User erstellt
+		if(verificationClass.validateAdmin("a@admin.ch")) {
 		User u = new User();
-		u.setUserEmail("baba123");
-		u.setUserMobile("0695554323");
-		u.setUserName("roberto");
-		u.setUserPassword("d855ac619827b58d3ba90e74f326c4c2");
+		u.setUserEmail("a@admin.ch");
+		u.setUserMobile("0795555555");
+		u.setUserName("Admin");
+		u.setUserPassword("0192023a7bbd73250516f069df18b500");//passwort ist admin123
 		u.setAuthorization(Authorization.administrator);
 
-//		reservationRepository.save(r);
 		userRepository.save(u);
+		logger.getLogger().info(this.getClass().getName() + "||Admin erstellt||");
+		}else {
+			logger.getLogger().info(this.getClass().getName() + "||Admin schon vorhanden||");
+		}
 
 	}
 }
