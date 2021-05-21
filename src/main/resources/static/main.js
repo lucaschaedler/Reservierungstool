@@ -251,7 +251,7 @@ var idArray = [];
 
 const booking_table = document.querySelector("#booking_table");
 const booking_form = document.querySelector("#booking_form");
-const confirmBookingform = document.querySelector("#confirmBookingform");
+const confirmBookingform = document.querySelector("#confirmBookingform"); //create
 //const confirmBookingBtn = document.querySelector("#confirmBookingBtn");
 const backToBookingTblBtn = document.querySelector("#backToBookingTblBtn");
 const currentReservationLbl = document.querySelector("#currentReservationLbl");
@@ -261,7 +261,7 @@ const currentReservationLbl2 = document.querySelector(
 const reservationdetail = document.querySelector("#reservationdetail");
 const returnbtndeleteRes = document.querySelector("#returnbtndeleteRes");
 const btndeleteRes = document.querySelector("#btndeleteRes");
-const resDetailform = document.querySelector("#resDetailform");
+const resDetailform = document.querySelector("#resDetailform"); //löschen/ändern
 
 var days = [
   "Montag",
@@ -435,9 +435,9 @@ function deleteReservation(reservation_id) {
     url: "/api/reservation/" + reservation_id,
     success: (response) => {
       if (response) {
-        console.log("löschen war erfolgreich");
+        setFormMessage(resDetailform, "Reservation gelöscht", response);
       } else {
-        console.log("löschen war nicht erfolgreich");
+        setFormMessage(resDetailform, "Reservation geändert", response);
       }
       document.getElementById(resbtnid).value = "reservieren";
       fetchReservations();
@@ -490,9 +490,13 @@ function modifyReservation(reservation_id) {
     }),
     success: function (response) {
       if (response) {
-        console.log("erfolgreicht geändert");
+        setFormMessage(resDetailform, "Reservation geändert", response);
       } else {
-        console.log("nicht geändert");
+        setFormMessage(
+          resDetailform,
+          "Reservation konnte nicht geändert werden",
+          response
+        );
       }
     },
     //let message = "Userdatenänderung erfolgreich";
@@ -533,11 +537,15 @@ confirmBookingform.addEventListener("submit", (e) => {
 
 function createReservationSuccess(response) {
   if (response) {
-    console.log("message erfolgreich");
+    setFormMessage(confirmBookingform, "Reservation erstellt", response);
     document.getElementById(resbtnid).value = "bearbeiten/reservieren";
     fetchReservations();
   } else {
-    console.log("message nicht erfolgreich");
+    setFormMessage(
+      confirmBookingform,
+      "Reservation konnte nicht erstellt werden",
+      response
+    );
   }
 }
 
