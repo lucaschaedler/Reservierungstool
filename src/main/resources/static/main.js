@@ -679,7 +679,6 @@ function handleUserlistReply(users) {
 
 function addUserToList(user) {
   let id = user["userId"];
-  //console.log(id);
 
   var newRow = "<tr>";
   newRow += "<td>" + user["userId"] + "<td>";
@@ -708,7 +707,6 @@ function handleAccountRequestlistReply(reqs) {
 
 function addReqToList(req) {
   let id = req["accountRequestId"];
-  //console.log(id);
 
   var newRow = "<tr>";
   newRow += "<td>" + req["accountRequestId"] + "<td>";
@@ -767,7 +765,6 @@ function createUser(id) {
 //antwort von userlöschen und update gui
 function deleteUserRespons(response) {
   if (response == true) {
-    console.log("delete user " + id);
     userlistclicked();
   } else {
     console.log("fehler beim löschen des users");
@@ -776,7 +773,6 @@ function deleteUserRespons(response) {
 //antwort von accreq löschen und update gui
 function deleteReqRespons(response) {
   if (response == true) {
-    console.log("delete request" + id);
     accountRequestlistclicked();
   } else {
     console.log("fehler beim löschen des request");
@@ -785,7 +781,6 @@ function deleteReqRespons(response) {
 //antwort von user erstellen und aktulisieren
 function createUserResponse(response) {
   if (response == true) {
-    console.log("create user" + id);
     accountRequestlistclicked();
   } else {
     console.log("fehler beim erstellen des users");
