@@ -24,7 +24,7 @@ let user = {
   name: "",
 };
 //current reservation object
-let reservation ={
+let reservation = {
   userIdReservation: null,
 };
 
@@ -39,7 +39,7 @@ function getUserObject(userid) {
       if (user.authorization.localeCompare("administrator") == 0) {
         button_userlist.hidden = false;
         button_accreqlist.hidden = false;
-      }else{
+      } else {
         button_userlist.hidden = true;
         button_accreqlist.hidden = true;
       }
@@ -62,7 +62,7 @@ function showCalendar(response) {
   } else {
     message = "Login korrekt";
     user.userid = response;
-    getUserObject(user.userid)
+    getUserObject(user.userid);
     home.hidden = true;
     calendar.hidden = false;
   }
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         success: function (response) {
           let message = "Accountanfrage erfolgreich";
           if (!response) {
-            message = "Accountanfrage fehlgeschlagen";
+            message = "Email-Adresse ist schon vergeben";
           }
           setFormMessage(requestAccountForm, message, response);
         },
@@ -207,6 +207,36 @@ button_accreqlist.addEventListener("click", () => {
   accountRequestlistclicked();
 });
 
+<<<<<<< HEAD
+=======
+//buttons on click methoden
+court1Btn.addEventListener("click", () => {
+  court1Tbl.hidden = false;
+  court2Tbl.hidden = true;
+  court2Btn.disabled = false;
+  court1Btn.disabled = true;
+  //console.log("Tabelle 1 wird angezeigt");
+});
+
+//Wenn Platz 1 angezeigt wird, ist der Button für Platz 1 disabled + Button für Platz 2 enabled
+court1Btn.addEventListener("click", () => {
+  court1Tbl.hidden = false;
+  court2Tbl.hidden = true;
+  court2Btn.disabled = false;
+  court1Btn.disabled = true;
+  // console.log("Tabelle 1 wird angezeigt");
+});
+
+//Wenn Platz 2 angezeigt wird, ist der Button für Platz 2 disabled + Button für Platz 1 enabled
+court2Btn.addEventListener("click", () => {
+  court1Tbl.hidden = true;
+  court2Tbl.hidden = false;
+  court2Btn.disabled = true;
+  court1Btn.disabled = false;
+  // console.log("Tabelle 2 wird angezeigt");
+});
+
+>>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
 // Booking - START
 var today = new Date();
 var year = new Date().getFullYear(); //aktuelles Jahr
@@ -218,17 +248,23 @@ var reservation_id = 0;
 var player_names = "";
 var idArray = [];
 
-
 const booking_table = document.querySelector("#booking_table");
 const booking_form = document.querySelector("#booking_form");
+<<<<<<< HEAD
 const confirmBookingform = document.querySelector("#confirmBookingform");
+=======
+const confirmBookingform = document.querySelector("#confirmBookingform"); //create
+//const confirmBookingBtn = document.querySelector("#confirmBookingBtn");
+>>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
 const backToBookingTblBtn = document.querySelector("#backToBookingTblBtn");
 const currentReservationLbl = document.querySelector("#currentReservationLbl");
-const currentReservationLbl2 = document.querySelector("#currentReservationLbl2");
+const currentReservationLbl2 = document.querySelector(
+  "#currentReservationLbl2"
+);
 const reservationdetail = document.querySelector("#reservationdetail");
-const returnbtndeleteRes= document.querySelector("#returnbtndeleteRes");
-const btndeleteRes= document.querySelector("#btndeleteRes");
-const resDetailform = document.querySelector("#resDetailform");
+const returnbtndeleteRes = document.querySelector("#returnbtndeleteRes");
+const btndeleteRes = document.querySelector("#btndeleteRes");
+const resDetailform = document.querySelector("#resDetailform"); //löschen/ändern
 
 var days = [
   "Montag",
@@ -313,10 +349,11 @@ function convertIdtoInteger(buttonid) {
   }
   return parseInt(idAsString);
 }
-var btnArray=[];
-var resbtnid="";
+var btnArray = [];
+var resbtnid = "";
 var num = 0;
 function timeSlotSelected(button) {
+<<<<<<< HEAD
  
   //document.getElementById(button.id).disabled = true;
   resbtnid=button.id;
@@ -324,68 +361,80 @@ function timeSlotSelected(button) {
   if(button.value.localeCompare("reservieren")==0){
   booking_table.hidden = true;
   booking_form.hidden = false;
+=======
+  // console.log(button.id);
+>>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
 
-  var endTime = parseInt(idArray[2]) + 2;
-  //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
-  current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
-  let dayName = days[current_slot_date.getDay() - 1];
-  let monthName = months[idArray[1]];
-  currentReservationLbl.innerHTML =
-    "Datum und Uhrzeit der Reservation: " +
-    dayName +
-    ", " +
-    idArray[0] +
-    ". " +
-    monthName +
-    " " +
-    year +
-    " | " +
-    idArray[2] +
-    ":00" +
-    " bis " +
-    endTime +
-    ":00 |";
-}
-  if(button.value.localeCompare("bearbeiten/löschen")== 0){
+  //document.getElementById(button.id).disabled = true;
+  resbtnid = button.id;
+  reservation_id = convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
+  if (button.value.localeCompare("reservieren") == 0) {
+    booking_table.hidden = true;
+    booking_form.hidden = false;
+
+    var endTime = parseInt(idArray[2]) + 2;
+    //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
+    current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
+    let dayName = days[current_slot_date.getDay() - 1];
+    let monthName = months[idArray[1]];
+    currentReservationLbl.innerHTML =
+      "Datum und Uhrzeit der Reservation: " +
+      dayName +
+      ", " +
+      idArray[0] +
+      ". " +
+      monthName +
+      " " +
+      year +
+      " | " +
+      idArray[2] +
+      ":00" +
+      " bis " +
+      endTime +
+      ":00 |";
+  }
+  if (button.value.localeCompare("bearbeiten/löschen") == 0) {
     booking_table.hidden = true;
     reservationdetail.hidden = false;
-    
+
     var endTime = parseInt(idArray[2]) + 2;
-  //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
-  current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
-  let dayName = days[current_slot_date.getDay() - 1];
-  let monthName = months[idArray[1]];
-  currentReservationLbl2.innerHTML =
-    "Datum und Uhrzeit der Reservation: " +
-    dayName +
-    ", " +
-    idArray[0] +
-    ". " +
-    monthName +
-    " " +
-    year +
-    " | " +
-    idArray[2] +
-    ":00" +
-    " bis " +
-    endTime +
-    ":00 |";
-}
+    //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
+    current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
+    let dayName = days[current_slot_date.getDay() - 1];
+    let monthName = months[idArray[1]];
+    currentReservationLbl2.innerHTML =
+      "Datum und Uhrzeit der Reservation: " +
+      dayName +
+      ", " +
+      idArray[0] +
+      ". " +
+      monthName +
+      " " +
+      year +
+      " | " +
+      idArray[2] +
+      ":00" +
+      " bis " +
+      endTime +
+      ":00 |";
+  }
 }
 //Reservation löschen
-btndeleteRes.addEventListener("click", ()=>{
+btndeleteRes.addEventListener("click", () => {
   $.ajax({
     type: "GET",
     url: "/api/reservation/" + reservation_id,
     success: (response) => {
       reservation.userIdReservation = response.userIdReservation;
       //console.log(reservation);
-      if(user.authorization.localeCompare("administrator")==0){
+      if (user.authorization.localeCompare("administrator") == 0) {
         deleteReservation(reservation_id);
-      }else if(reservation.userIdReservation == user.userid){
+      } else if (reservation.userIdReservation == user.userid) {
         deleteReservation(reservation_id);
-      }else{
-        window.alert("Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!")
+      } else {
+        window.alert(
+          "Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!"
+        );
       }
     },
     dataType: "json",
@@ -393,47 +442,48 @@ btndeleteRes.addEventListener("click", ()=>{
   });
 });
 //ajx zum löschen btn wieder zu reservieren nennen
-function deleteReservation(reservation_id){
+function deleteReservation(reservation_id) {
   $.ajax({
     type: "DELETE",
     url: "/api/reservation/" + reservation_id,
     success: (response) => {
-      if(response){
-        console.log("löschen war erfolgreich");
-        
-      }else{
-        console.log("löschen war nicht erfolgreich");
+      if (response) {
+        setFormMessage(resDetailform, "Reservation gelöscht", response);
+      } else {
+        setFormMessage(resDetailform, "Reservation geändert", response);
       }
-     document.getElementById(resbtnid).value = "reservieren";
-     fetchReservations();
+      document.getElementById(resbtnid).value = "reservieren";
+      fetchReservations();
     },
     dataType: "json",
     contentType: "application/json",
   });
 }
 //zurück btn
-returnbtndeleteRes.addEventListener("click", ()=>{
+returnbtndeleteRes.addEventListener("click", () => {
   booking_table.hidden = false;
   reservationdetail.hidden = true;
   reservation.userIdReservation = null;
-  playernames_detail.value ="";
-})
+  playernames_detail.value = "";
+});
 const playernames_detail = document.querySelector("#playernames_detail");
 //reservation bearbeiten
-resDetailform.addEventListener("submit", (e)=>{
+resDetailform.addEventListener("submit", (e) => {
   e.preventDefault();
   $.ajax({
     type: "GET",
     url: "/api/reservation/" + reservation_id,
     success: (response) => {
       reservation.userIdReservation = response.userIdReservation;
-     // console.log(reservation);
-      if(user.authorization.localeCompare("administrator")==0){
+      // console.log(reservation);
+      if (user.authorization.localeCompare("administrator") == 0) {
         modifyReservation(reservation_id);
-      }else if(reservation.userIdReservation == user.userid){
+      } else if (reservation.userIdReservation == user.userid) {
         modifyReservation(reservation_id);
-      }else{
-        window.alert("Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!")
+      } else {
+        window.alert(
+          "Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!"
+        );
       }
     },
     dataType: "json",
@@ -441,7 +491,7 @@ resDetailform.addEventListener("submit", (e)=>{
   });
 });
 //ändern der reservation
-function modifyReservation(reservation_id){
+function modifyReservation(reservation_id) {
   names = playernames_detail.value;
   console.log(names);
   //ajax zum ändern
@@ -452,24 +502,28 @@ function modifyReservation(reservation_id){
       playerNames: names,
     }),
     success: function (response) {
-      if(response){
-        console.log("erfolgreicht geändert");
-      }else{
-        console.log("nicht geändert");
-      }},
-      //let message = "Userdatenänderung erfolgreich";
-      //if (!response) {
-      //  message = "Userdatenänderung fehlgeschlagen";
-     // }
-     // setFormMessage(userdetailform, message, response);
-     // detailMessage.hidden = false;
+      if (response) {
+        setFormMessage(resDetailform, "Reservation geändert", response);
+      } else {
+        setFormMessage(
+          resDetailform,
+          "Reservation konnte nicht geändert werden",
+          response
+        );
+      }
+    },
+    //let message = "Userdatenänderung erfolgreich";
+    //if (!response) {
+    //  message = "Userdatenänderung fehlgeschlagen";
+    // }
+    // setFormMessage(userdetailform, message, response);
+    // detailMessage.hidden = false;
     //},
     dataType: "json",
     contentType: "application/json",
   });
-
 }
-const player_namesfield =document.querySelector("#playernames");
+const player_namesfield = document.querySelector("#playernames");
 //createReservation-Prozess
 confirmBookingform.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -495,31 +549,41 @@ confirmBookingform.addEventListener("submit", (e) => {
 });
 
 function createReservationSuccess(response) {
-  if(response){
-  console.log("message erfolgreich");
-  document.getElementById(resbtnid).value = "bearbeiten/reservieren";
-  fetchReservations();
-  }else{
-   console.log("message nicht erfolgreich");
+  if (response) {
+    setFormMessage(confirmBookingform, "Reservation erstellt", response);
+    document.getElementById(resbtnid).value = "bearbeiten/reservieren";
+    fetchReservations();
+  } else {
+    setFormMessage(
+      confirmBookingform,
+      "Reservation konnte nicht erstellt werden",
+      response
+    );
   }
-
 }
 
-
-function fetchReservations(){
+function fetchReservations() {
   $.getJSON("/api/reservations").done(handleReservations);
-
 }
+<<<<<<< HEAD
 function handleReservations(reservations){
 
   for(let reservation of reservations){
     for ( let buttonid of btnArray){
       if(reservation.btnId.localeCompare(buttonid) == 0){
+=======
+function handleReservations(reservations) {
+  //console.log(reservations);
+  //console.log(btnArray);
+
+  for (let reservation of reservations) {
+    for (let buttonid of btnArray) {
+      if (reservation.btnId.localeCompare(buttonid) == 0) {
+>>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
         document.getElementById(buttonid).value = "bearbeiten/löschen";
-      } 
+      }
     }
   }
-
 }
 
 backToBookingTblBtn.addEventListener("click", () => {
@@ -562,18 +626,17 @@ function addRows() {
       if (window.checked.indexOf(identifier) != -1)
         document.getElementById(identifier).checked = true;
 
-        //buttons zu button array hinzufügen
-        let button = document.getElementById(identifier);
-        btnArray[num] = button.id;
-        num += 1;
+      //buttons zu button array hinzufügen
+      let button = document.getElementById(identifier);
+      btnArray[num] = button.id;
+      num += 1;
     }
-   
   }
-  fetchReservations()
+  fetchReservations();
 }
-function clearBtnArray(){
-  btnArray=[];
-  num=0;
+function clearBtnArray() {
+  btnArray = [];
+  num = 0;
 }
 
 function incrementWeek() {
@@ -582,7 +645,7 @@ function incrementWeek() {
   weeksAhead++;
   updateHeader();
   addRows();
-  fetchReservations()
+  fetchReservations();
 }
 
 function decrementWeek() {
@@ -591,7 +654,7 @@ function decrementWeek() {
   weeksAhead--;
   updateHeader();
   addRows();
-  fetchReservations()
+  fetchReservations();
 }
 
 function generate() {
@@ -766,8 +829,11 @@ accreqreturnbtn.addEventListener("click", () => {
 const logoutbtn = document.querySelector("#logoutbtn");
 
 logoutbtn.addEventListener("click", () => {
-  (user.userid = null), (user.authorization = ""),(user.name=""), (calendar.hidden = true)
-  ,(reservationdetail.hidden=true);
+  (user.userid = null),
+    (user.authorization = ""),
+    (user.name = ""),
+    (calendar.hidden = true),
+    (reservationdetail.hidden = true);
   home.hidden = false;
   //console.log(user);
 });

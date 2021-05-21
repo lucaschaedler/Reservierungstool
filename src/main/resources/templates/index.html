@@ -172,6 +172,7 @@
           <h1 id="booking-label">Reservationangaben</h1>
           <h3 id="currentReservationLbl"></h3>
           <form id="confirmBookingform">
+            <div id=reservation_message class="form__message form__message--error"></div>
           <div class="form-group">
             <input
               type="text"
@@ -200,6 +201,9 @@
            Filter : <input type = "text" id = "inpUserList"/>
            <button onClick = "javascript:applyFilter()"> Filter anweden </button>
            -->
+           <form id="userlist_form">
+            <div id=user_message class="form__message form__message--error"></div>
+           </form>
       <table id="tblUserList">
          <thead>
           <tr>
@@ -225,6 +229,9 @@
         Filter : <input type = "text" id = "inpAcc"/>
         <button onClick = "javascript:applyFilterAcc()"> Filter anweden </button>
         -->
+        <form id="accreqlist_form">
+          <div id=accreq_message class="form__message form__message--error"></div>
+         </form>
    <table id="tblAccList">
       <thead>
        <tr>
