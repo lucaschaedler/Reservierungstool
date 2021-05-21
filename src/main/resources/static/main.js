@@ -650,6 +650,8 @@ generate();
 // Booking - END
 
 //userlist js sachen
+const userlist_form = document.querySelector("#userlist_form");
+const accreqlist_form = document.querySelector("#accreqlist_form");
 //abrufen von userdaten
 function userlistclicked() {
   $.getJSON("api/users").done(handleUserlistReply);
@@ -770,26 +772,37 @@ function createUser(id) {
 }
 //antwort von userlöschen und update gui
 function deleteUserRespons(response) {
-  if (response == true) {
+  if (response) {
     userlistclicked();
+    setFormMessage(userlist_form, "User gelöscht", response);
   } else {
     console.log("fehler beim löschen des users");
   }
 }
 //antwort von accreq löschen und update gui
 function deleteReqRespons(response) {
-  if (response == true) {
+  if (response) {
     accountRequestlistclicked();
+    setFormMessage(accreqlist_form, "Accountrequest gelöscht", response);
   } else {
-    console.log("fehler beim löschen des request");
+    setFormMessage(
+      accreqlist_form,
+      "Accountrequest konnte nicht gelöscht werden",
+      response
+    );
   }
 }
 //antwort von user erstellen und aktulisieren
 function createUserResponse(response) {
-  if (response == true) {
+  if (response) {
     accountRequestlistclicked();
+    setFormMessage(accreqlist_form, "User wurde erstellt", response);
   } else {
-    console.log("fehler beim erstellen des users");
+    setFormMessage(
+      accreqlist_form,
+      "User konnte nicht erstellt werden",
+      response
+    );
   }
 }
 let userlistreturnbtn = document.querySelector("#userlistreturnbtn");
