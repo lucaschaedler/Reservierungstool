@@ -316,9 +316,11 @@ function convertIdtoInteger(buttonid) {
 var btnArray = [];
 var resbtnid = "";
 var num = 0;
+var currentButtonValue = "";
 function timeSlotSelected(button) {
   //document.getElementById(button.id).disabled = true;
   resbtnid = button.id;
+  currentButtonValue = button.value;
   reservation_id = convertIdtoInteger(button.id); //aus String der btn ID ein int gemacht für Reservationsid
   if (button.value.localeCompare("reservieren") == 0) {
     booking_table.hidden = true;

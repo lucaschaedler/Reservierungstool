@@ -150,11 +150,11 @@
           <button class="btn btn-secondary btn-lm" id="button_accreqlist" hidden>
             Account Request List</button
           >
-          <button class="btn btn-secondary btn-lm" id="logoutbtn">
-            Logout
-          </button>
           <button class="btn btn-secondary btn-lm" id="userdetailbtn">
             Userangaben ändern
+          </button>
+          <button class="btn btn-secondary btn-lm" id="logoutbtn">
+            Logout
           </button>
         </nav>
         </div>
@@ -182,9 +182,10 @@
               required
             />
             <button class="btn btn-secondary btn-lm" type="submit">Reservieren</button>
+            <button class="btn btn-secondary btn-lm" id="backToBookingTblBtn">Zurück</button>
           </div>
         </form>
-          <button class="btn btn-secondary btn-lm" id="backToBookingTblBtn">Zurück</button>
+          
         </div>
 
         <!-- Ende eingabe für Reservatîonen-->
@@ -313,7 +314,7 @@
       <!--userdetail-END-->
       <!--Reservation bearbeiten/löschen-start-->
 <div id="reservationdetail" hidden>
-  <h1>Reservationsdetail</h1>
+  <h1>Reservationsdetails</h1>
   <h3 id="currentReservationLbl2"></h3>
   <form id="resDetailform">
     <div id=resdetail_message class="form__message form__message--error"></div>
@@ -328,10 +329,10 @@
         required
       />
     </div>
-    <button type="submit">Reservation ändern</button>
+    <button type="submit" class="btn btn-secondary btn-lm">Reservation ändern</button>
       </form>
-  <button id="btndeleteRes">Reservation Löschen</button>
-  <button id="returnbtndeleteRes">Zurück</button>
+  <button id="btndeleteRes" class="btn btn-secondary btn-lm">Reservation Löschen</button> <br>
+  <button id="returnbtndeleteRes" class="btn btn-secondary btn-lm">Zurück</button>
 
 
 </div>
