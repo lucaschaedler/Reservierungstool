@@ -550,10 +550,14 @@ function addRows() {
 
       var hour = i;
 
-      var day = new Date();
-      day.setDate(monday.getDate() + y);
+      //var day = new Date();
+      //day.setDate(monday.getDate() + y);
+//hier war problem
+      var day = getMonday();
+      day.setDate(day.getDate() + y);
 
       var identifier = day.getDate() + ";" + day.getMonth() + ";" + hour;
+      console.log(day.getMonth());
       var open = openDays.indexOf(days[y]) != -1;
       $("#slot-" + i).append(
         open
@@ -571,6 +575,8 @@ function addRows() {
       let button = document.getElementById(identifier);
       btnArray[num] = button.id;
       num += 1;
+      //console.log(btnArray);
+      //console.log(day.getMonth());
     }
   }
   fetchReservations();
