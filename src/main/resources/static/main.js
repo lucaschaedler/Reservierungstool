@@ -405,6 +405,7 @@ function deleteReservation(reservation_id) {
         setFormMessage(resDetailform, "Reservation geändert", response);
       }
       document.getElementById(resbtnid).value = "reservieren";
+      document.getElementById(resbtnid).style.background ="#009579";
       fetchReservations();
     },
     dataType: "json",
@@ -504,6 +505,9 @@ function createReservationSuccess(response) {
   if (response) {
     setFormMessage(confirmBookingform, "Reservation erstellt", response);
     document.getElementById(resbtnid).value = "bearbeiten/reservieren";
+    //eventuell entfernen
+    document.getElementById(resbtnid).style.background="red";
+
     fetchReservations();
   } else {
     setFormMessage(
@@ -522,6 +526,7 @@ function handleReservations(reservations) {
     for (let buttonid of btnArray) {
       if (reservation.btnId.localeCompare(buttonid) == 0) {
         document.getElementById(buttonid).value = "bearbeiten/löschen";
+        document.getElementById(buttonid).style.background = "red";
       }
     }
   }
