@@ -407,7 +407,7 @@ function deleteReservation(reservation_id) {
         setFormMessage(resDetailform, "Reservation geändert", response);
       }
       document.getElementById(resbtnid).value = "reservieren";
-      document.getElementById(resbtnid).style.background ="#009579";
+      document.getElementById(resbtnid).style.background = "#009579";
       fetchReservations();
     },
     dataType: "json",
@@ -508,7 +508,7 @@ function createReservationSuccess(response) {
     setFormMessage(confirmBookingform, "Reservation erstellt", response);
     document.getElementById(resbtnid).value = "bearbeiten/reservieren";
     //eventuell entfernen
-    document.getElementById(resbtnid).style.background="red";
+    document.getElementById(resbtnid).style.background = "red";
 
     fetchReservations();
   } else {
@@ -559,7 +559,7 @@ function addRows() {
 
       //var day = new Date();
       //day.setDate(monday.getDate() + y);
-//hier war problem
+      //hier war problem
       var day = getMonday();
       day.setDate(day.getDate() + y);
 
@@ -664,11 +664,11 @@ function addUserToList(user) {
   let id = user["userId"];
 
   var newRow = "<tr>";
-  newRow += "<td>" + user["userId"] + "<td>";
-  newRow += "<td>" + user["userName"] + "<td>";
-  newRow += "<td>" + user["userEmail"] + "<td>";
-  newRow += "<td>" + user["userMobile"] + "<td>";
-  newRow += "<td>" + user["authorization"] + "<td>";
+  newRow += "<th scope='row'>" + user["userId"] + "</th>";
+  newRow += "<td>" + user["userName"] + "</td>";
+  newRow += "<td>" + user["userEmail"] + "</td>";
+  newRow += "<td>" + user["userMobile"] + "</td>";
+  newRow += "<td>" + user["authorization"] + "</td>";
   newRow +=
     "<td> <button id = 'u" +
     user["userId"] +
@@ -692,10 +692,10 @@ function addReqToList(req) {
   let id = req["accountRequestId"];
 
   var newRow = "<tr>";
-  newRow += "<td>" + req["accountRequestId"] + "<td>";
-  newRow += "<td>" + req["accountRequestName"] + "<td>";
-  newRow += "<td>" + req["accountRequestEmail"] + "<td>";
-  newRow += "<td>" + req["accountRequestMobile"] + "<td>";
+  newRow += "<th scope='row'>" + req["accountRequestId"] + "</th>";
+  newRow += "<td>" + req["accountRequestName"] + "</td>";
+  newRow += "<td>" + req["accountRequestEmail"] + "</td>";
+  newRow += "<td>" + req["accountRequestMobile"] + "</td>";
   newRow +=
     "<td> <button id = 'u" +
     req["accountRequestId"] +
