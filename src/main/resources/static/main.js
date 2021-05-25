@@ -211,6 +211,8 @@ button_accreqlist.addEventListener("click", () => {
   accountRequestlistclicked();
 });
 //Booking - START
+
+//alle benötigten booking-variablen
 var today = new Date();
 var year = new Date().getFullYear(); //aktuelles Jahr
 var monday = new Date();
@@ -269,6 +271,7 @@ var openDays = [
 var openTime = 8;
 var closeTime = 18;
 
+//booking-funktionen
 function getMonday() {
   return new Date(monday.getTime());
 }
@@ -288,7 +291,7 @@ function save() {
 function updateHeader() {
   $("#booking-table").empty();
   $("#booking-table").prepend("<tr id='header'></tr>");
-  $("#header").append("<td class='time'>Time</td>");
+  $("#header").append("<td class='time'>Uhrzeit</td>");
 
   //Add all days to headers
   for (var i = 0; i < days.length; i++) {
@@ -371,7 +374,9 @@ function timeSlotSelected(button) {
       ":00" +
       " bis " +
       endTime +
-      ":00 |";
+      ":00 |" +
+      " Spielernamen" +
+      "";
   }
 }
 //Reservation löschen
@@ -387,7 +392,7 @@ btndeleteRes.addEventListener("click", () => {
         deleteReservation(reservation_id);
       } else {
         window.alert(
-          "Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!"
+          "Sie sind nicht berechtigt Reservationen anderer Benutzer zu löschen!"
         );
       }
     },
@@ -402,9 +407,9 @@ function deleteReservation(reservation_id) {
     url: "/api/reservation/" + reservation_id,
     success: (response) => {
       if (response) {
-        setFormMessage(resDetailform, "Reservation gelöscht", response);
+        setFormMessage(resDetailform, "Reservation wurde gelöscht", response);
       } else {
-        setFormMessage(resDetailform, "Reservation geändert", response);
+        setFormMessage(resDetailform, "Reservation wurde geändert", response);
       }
       document.getElementById(resbtnid).value = "reservieren";
       document.getElementById(resbtnid).style.background = "#009579";
@@ -436,7 +441,7 @@ resDetailform.addEventListener("submit", (e) => {
         modifyReservation(reservation_id);
       } else {
         window.alert(
-          "Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!"
+          "Sie sind nicht berechtigt Reservationen anderer Benutzer zu bearbeiten!"
         );
       }
     },
@@ -456,7 +461,7 @@ function modifyReservation(reservation_id) {
     }),
     success: function (response) {
       if (response) {
-        setFormMessage(resDetailform, "Reservation geändert", response);
+        setFormMessage(resDetailform, "Reservation wurde geändert", response);
       } else {
         setFormMessage(
           resDetailform,
@@ -645,7 +650,7 @@ function addUserToList(user) {
     user["userId"] +
     "' onClick='deleteUser(" +
     user["userId"] +
-    ")'> Delete </button> </td>";
+    ")'>Löschen</button> </td>";
   newRow += "</tr>";
 
   $("#tblUserList tbody").append(newRow);
@@ -672,13 +677,13 @@ function addReqToList(req) {
     req["accountRequestId"] +
     "' onClick='deleteAccRequest(" +
     req["accountRequestId"] +
-    ")'> Delete </button> </td>";
+    ")'>Anfrage Löschen</button> </td>";
   newRow +=
     "<td> <button id = 'u" +
     req["accountRequestId"] +
     "' onClick='createUser(" +
     req["accountRequestId"] +
-    ")'> Account erstellen </button> </td>";
+    ")'>Account Erstellen</button> </td>";
   newRow += "</tr>";
 
   $("#tblAccList tbody").append(newRow);
@@ -720,16 +725,16 @@ function createUser(id) {
 function deleteUserRespons(response) {
   if (response) {
     userlistclicked();
-    setFormMessage(userlist_form, "User gelöscht", response);
+    setFormMessage(userlist_form, "User wurde gelöscht", response);
   } else {
-    console.log("fehler beim löschen des users");
+    console.log("Fehler Beim Löschen des Users");
   }
 }
 //antwort von accreq löschen und update gui
 function deleteReqRespons(response) {
   if (response) {
     accountRequestlistclicked();
-    setFormMessage(accreqlist_form, "Accountrequest gelöscht", response);
+    setFormMessage(accreqlist_form, "Accountrequest wurde gelöscht", response);
   } else {
     setFormMessage(
       accreqlist_form,
