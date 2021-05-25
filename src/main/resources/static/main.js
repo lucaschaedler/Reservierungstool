@@ -1,3 +1,9 @@
+//ask user if he really wants to leave the application
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+  e.returnValue = "";
+});
+
 //LOGIN
 const loginForm = document.querySelector("#login");
 
@@ -186,15 +192,13 @@ function setFormMessage(formElement, message, response) {
   }, 3000); //nach 3 sek message löschen
 }
 
-//CALENDAR SHIZZZLE
-
+//CALENDAR
 userdetailbtn.addEventListener("click", () => {
   calendar.hidden = true;
   userdetail.hidden = false;
 });
 
-//überprüft die Berechtigung ob man die listen a^nschsuen darf
-
+//überprüft die Berechtigung des Users
 button_userlist.addEventListener("click", () => {
   calendar.hidden = true;
   userlist.hidden = false;
@@ -228,7 +232,7 @@ const currentReservationLbl2 = document.querySelector(
 const reservationdetail = document.querySelector("#reservationdetail");
 const returnbtndeleteRes = document.querySelector("#returnbtndeleteRes");
 const btndeleteRes = document.querySelector("#btndeleteRes");
-const resDetailform = document.querySelector("#resDetailform"); //löschen/ändern
+const resDetailform = document.querySelector("#resDetailform");
 
 var days = [
   "Montag",
@@ -304,7 +308,6 @@ function updateHeader() {
   }
 }
 function convertIdtoInteger(buttonid) {
-  //aus btnid Reservationsid gemacht
   let str = buttonid;
   idArray = str.split(";");
   let idAsString = "";
@@ -327,7 +330,6 @@ function timeSlotSelected(button) {
     booking_form.hidden = false;
 
     var endTime = parseInt(idArray[2]) + 2;
-    //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
     current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
     let dayName = days[current_slot_date.getDay() - 1];
     let monthName = months[idArray[1]];
@@ -352,7 +354,6 @@ function timeSlotSelected(button) {
     reservationdetail.hidden = false;
 
     var endTime = parseInt(idArray[2]) + 2;
-    //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
     current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
     let dayName = days[current_slot_date.getDay() - 1];
     let monthName = months[idArray[1]];
@@ -380,7 +381,6 @@ btndeleteRes.addEventListener("click", () => {
     url: "/api/reservation/" + reservation_id,
     success: (response) => {
       reservation.userIdReservation = response.userIdReservation;
-      //console.log(reservation);
       if (user.authorization.localeCompare("administrator") == 0) {
         deleteReservation(reservation_id);
       } else if (reservation.userIdReservation == user.userid) {
@@ -395,7 +395,7 @@ btndeleteRes.addEventListener("click", () => {
     contentType: "application/json",
   });
 });
-//ajx zum löschen btn wieder zu reservieren nennen
+
 function deleteReservation(reservation_id) {
   $.ajax({
     type: "DELETE",
@@ -414,7 +414,7 @@ function deleteReservation(reservation_id) {
     contentType: "application/json",
   });
 }
-//zurück btn
+
 returnbtndeleteRes.addEventListener("click", () => {
   booking_table.hidden = false;
   reservationdetail.hidden = true;
@@ -449,7 +449,6 @@ resDetailform.addEventListener("submit", (e) => {
 function modifyReservation(reservation_id) {
   names = playernames_detail.value;
   console.log(names);
-  //ajax zum ändern
   $.ajax({
     type: "PUT",
     url: "api/reservation/modify/" + reservation_id,
@@ -540,7 +539,7 @@ backToBookingTblBtn.addEventListener("click", () => {
   player_namesfield.value = "";
 });
 function addRows() {
-  //Create a new row for each time
+  //Create a new row for each timeslot
   for (var i = openTime; i < closeTime; i += 2) {
     $("#booking-table").append("<tr id='slot-" + i + "'></tr>");
     $("#slot-" + i).append(
@@ -564,7 +563,6 @@ function addRows() {
       day.setDate(day.getDate() + y);
 
       var identifier = day.getDate() + ";" + day.getMonth() + ";" + hour;
-      console.log(day.getMonth());
       var open = openDays.indexOf(days[y]) != -1;
       $("#slot-" + i).append(
         open
@@ -582,8 +580,6 @@ function addRows() {
       let button = document.getElementById(identifier);
       btnArray[num] = button.id;
       num += 1;
-      //console.log(btnArray);
-      //console.log(day.getMonth());
     }
   }
   fetchReservations();
@@ -621,10 +617,9 @@ document.getElementById("next").addEventListener("click", incrementWeek);
 document.getElementById("previous").addEventListener("click", decrementWeek);
 
 generate();
+// CalendarBooking - END
 
-// Booking - END
-
-//userlist js sachen
+//USERLIST
 const userlist_form = document.querySelector("#userlist_form");
 const accreqlist_form = document.querySelector("#accreqlist_form");
 //abrufen von userdaten
@@ -632,7 +627,7 @@ function userlistclicked() {
   $.getJSON("api/users").done(handleUserlistReply);
 }
 
-//abrufen von account anfragen daten
+//abrufen von accountanfragen-daten
 function accountRequestlistclicked() {
   $.getJSON("/api/accountRequests").done(handleAccountRequestlistReply);
 }
@@ -805,15 +800,13 @@ logoutbtn.addEventListener("click", () => {
   //console.log(user);
 });
 
-//Userdetail ändern shizzle
+//Userdetails ändern
 const userdetailreturnbtn = document.querySelector("#userdetailreturnbtn");
 const userdetailform = document.querySelector("#userdetailform");
-//const detailMessage = document.querySelector("#detail_message");
 
 userdetailreturnbtn.addEventListener("click", () => {
   calendar.hidden = false;
   userdetail.hidden = true;
-  //detailMessage.hidden = true;
 });
 
 userdetailform.addEventListener("submit", (e) => {
