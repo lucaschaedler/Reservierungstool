@@ -779,11 +779,6 @@ logoutbtn.addEventListener("click", () => {
 //Userdetails ändern
 const userdetailreturnbtn = document.querySelector("#userdetailreturnbtn");
 const userdetailform = document.querySelector("#userdetailform");
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
-
 userdetailreturnbtn.addEventListener("click", () => {
   calendar.hidden = false;
   userdetail.hidden = true;
