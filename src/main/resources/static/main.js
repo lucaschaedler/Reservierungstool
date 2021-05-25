@@ -430,7 +430,6 @@ resDetailform.addEventListener("submit", (e) => {
     url: "/api/reservation/" + reservation_id,
     success: (response) => {
       reservation.userIdReservation = response.userIdReservation;
-      // console.log(reservation);
       if (user.authorization.localeCompare("administrator") == 0) {
         modifyReservation(reservation_id);
       } else if (reservation.userIdReservation == user.userid) {
@@ -466,13 +465,6 @@ function modifyReservation(reservation_id) {
         );
       }
     },
-    //let message = "Userdatenänderung erfolgreich";
-    //if (!response) {
-    //  message = "Userdatenänderung fehlgeschlagen";
-    // }
-    // setFormMessage(userdetailform, message, response);
-    // detailMessage.hidden = false;
-    //},
     dataType: "json",
     contentType: "application/json",
   });
@@ -506,7 +498,6 @@ function createReservationSuccess(response) {
   if (response) {
     setFormMessage(confirmBookingform, "Reservation erstellt", response);
     document.getElementById(resbtnid).value = "bearbeiten/reservieren";
-    //eventuell entfernen
     document.getElementById(resbtnid).style.background = "red";
 
     fetchReservations();
@@ -631,21 +622,6 @@ function userlistclicked() {
 function accountRequestlistclicked() {
   $.getJSON("/api/accountRequests").done(handleAccountRequestlistReply);
 }
-//filter muss noch angeschaut werden
-/*
-function applyFilter() {
-  var filter = $("#inpUserList").val();
-  $.getJSON("api/users", { filter: filter }).done(handleUsersReply);
-}
-
-//filter muss noch angeschaut werden
-function applyFilter() {
-  var filter = $("#inpAcc").val();
-  $.getJSON("/api/accountRequests", { filter: filter }).done(
-    handleAccountRequestlistReply
-  );
-}
-*/
 //fügt daten hinzu zu userlist
 function handleUserlistReply(users) {
   $("#tblUserList tbody").empty();
@@ -803,6 +779,10 @@ logoutbtn.addEventListener("click", () => {
 //Userdetails ändern
 const userdetailreturnbtn = document.querySelector("#userdetailreturnbtn");
 const userdetailform = document.querySelector("#userdetailform");
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://gitlab.fhnw.ch/luca.schaedler/backyardcodersproject.git
 
 userdetailreturnbtn.addEventListener("click", () => {
   calendar.hidden = false;
