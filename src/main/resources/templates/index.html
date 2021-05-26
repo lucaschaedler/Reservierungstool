@@ -28,7 +28,7 @@
             Reservierungstool<br />
             Login
           </h2>
-          <p>Login or register from here to access.</p>
+          <p>Anmelden oder eine Accountanfrage versenden.</p>
         </div>
       </div>
       <div class="main">
@@ -127,7 +127,7 @@
                   >Im Besitz eines Accounts?</a
                 >
               </div>
-              <button type="submit" class="btn btn-info">Registrieren</button>
+              <button type="submit" class="btn btn-info">Account Anfragen</button>
             </form>
           </div>
         </div>
@@ -138,20 +138,20 @@
     <div id="calendar" hidden>
       <div class="row">
         <div align="center" id="title_container" class="col-sm-12">
-          <h1>Booking Calendar</h1>
+          <h1>Buchungskalender</h1>
           <p id = "nameUser"></p>
         </div>
       </div>
       <div id="calendar_container" class="row">
         <nav class="col-sm-12" id="table_navigation_bar">
           <button class="btn btn-secondary btn-lm" id="button_userlist" hidden>
-            Userlist</button
+            Userliste</button
           >
           <button class="btn btn-secondary btn-lm" id="button_accreqlist" hidden>
-            Account Request List</button
+            Accountanfragenliste</button
           >
           <button class="btn btn-secondary btn-lm" id="userdetailbtn">
-            Userangaben ändern
+            Userangaben Ändern
           </button>
           <button class="btn btn-secondary btn-lm" id="logoutbtn">
             Logout
@@ -162,13 +162,13 @@
         <div class="row">
           <div class="booking-container" id="booking_table">
             <table id="booking-table" cellspacing="0"></table>
-            <div class="pagination" id="previous">Previous Week</div>
-            <div class="pagination" id="next">Next Week</div>
+            <div class="pagination" id="previous">Vorherige Woche</div>
+            <div class="pagination" id="next">Nächste Woche</div>
           </div>
         </div>
         <!-- Start eingabe für Reservatîonen-->
         <div class="booking-container" id="booking_form" hidden>
-          <h1 id="booking-label">Reservationangaben</h1>
+          <h1 id="booking-label">Reservationsangaben</h1>
           <h3 id="currentReservationLbl"></h3>
           <form id="confirmBookingform">
             <div id=reservation_message class="form__message form__message--error"></div>
@@ -195,8 +195,8 @@
     <!--CALENDAR-END-->
     <!--USERLIST-START-->
     <div id="userlist" hidden="true">
-      <h1>UserListService</h1>
-      <button class="btn btn-secondary btn-lm" id="userlistreturnbtn">zurück</button>
+      <h1>Userliste</h1>
+      <button class="btn btn-secondary btn-lm" id="userlistreturnbtn">Zurück</button>
     <!--
            Filter : <input type = "text" id = "inpUserList"/>
            <button onClick = "javascript:applyFilter()"> Filter anweden </button>
@@ -212,7 +212,7 @@
              <th scope="col">E-Mail</th>
              <th scope="col">Mobile</th>
              <th scope="col">Rolle</th>
-             <th scope="col">Action 1</th>
+             <th scope="col">Aktion</th>
           </tr>
          </thead>
       <tbody>
@@ -223,8 +223,8 @@
     <!--USERLIST-END-->
     <!--ACCREQLIST-START-->
     <div id="accreqlist" hidden="true">
-      <h1>Accountanfragen Liste</h1>
-      <button class="btn btn-secondary btn-lm" id="accreqreturnbtn">zurück</button>
+      <h1>Accountanfragenliste</h1>
+      <button class="btn btn-secondary btn-lm" id="accreqreturnbtn">Zurück</button>
     <!--
         Filter : <input type = "text" id = "inpAcc"/>
         <button onClick = "javascript:applyFilterAcc()"> Filter anweden </button>
@@ -239,8 +239,8 @@
           <th scope="col">Name</th>
           <th scope="col">E-Mail</th>
           <th scope="col">Mobile</th>
-          <th scope="col">Action 1</th>
-          <th scope="col">Action 2</th>
+          <th scope="col">Aktion 1</th>
+          <th scope="col">Aktion 2</th>
        </tr>
       </thead>
    <tbody>
@@ -254,7 +254,7 @@
     <!--ACCREQLIST-END-->
      <!--userdetail start required ev entfernen und aktuelle daten anzeigen lassen--->
      <div id="userdetail" hidden>
-       <h1>Accountdaten ändern</h1>
+       <h1>Accountdaten Ändern</h1>
        <form id="userdetailform">
         <div id=detail_message class="form__message form__message--error"></div>
 
@@ -309,7 +309,7 @@
           />
         </div>
 
-        <button class="btn btn-secondary btn-lm" type="submit">Daten ändern</button>
+        <button class="btn btn-secondary btn-lm" type="submit">Änderungen Speichern</button>
       </form>
      <button class="btn btn-secondary btn-lm" id="userdetailreturnbtn">Zurück</button>
      </div>
@@ -332,7 +332,7 @@
         required
       />
     </div>
-    <button type="submit" class="btn btn-secondary btn-lm">Reservation ändern</button>
+    <button type="submit" class="btn btn-secondary btn-lm">Reservation Ändern</button>
       </form>
   <button id="btndeleteRes" class="btn btn-secondary btn-lm">Reservation Löschen</button> <br>
   <button id="returnbtndeleteRes" class="btn btn-secondary btn-lm">Zurück</button>

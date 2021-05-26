@@ -1,3 +1,9 @@
+//ask user if he really wants to leave the application
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+  e.returnValue = "";
+});
+
 //LOGIN
 const loginForm = document.querySelector("#login");
 
@@ -186,15 +192,13 @@ function setFormMessage(formElement, message, response) {
   }, 3000); //nach 3 sek message löschen
 }
 
-//CALENDAR SHIZZZLE
-
+//CALENDAR
 userdetailbtn.addEventListener("click", () => {
   calendar.hidden = true;
   userdetail.hidden = false;
 });
 
-//überprüft die Berechtigung ob man die listen a^nschsuen darf
-
+//überprüft die Berechtigung des Users
 button_userlist.addEventListener("click", () => {
   calendar.hidden = true;
   userlist.hidden = false;
@@ -207,6 +211,8 @@ button_accreqlist.addEventListener("click", () => {
   accountRequestlistclicked();
 });
 //Booking - START
+
+//alle benötigten booking-variablen
 var today = new Date();
 var year = new Date().getFullYear(); //aktuelles Jahr
 var monday = new Date();
@@ -228,7 +234,7 @@ const currentReservationLbl2 = document.querySelector(
 const reservationdetail = document.querySelector("#reservationdetail");
 const returnbtndeleteRes = document.querySelector("#returnbtndeleteRes");
 const btndeleteRes = document.querySelector("#btndeleteRes");
-const resDetailform = document.querySelector("#resDetailform"); //löschen/ändern
+const resDetailform = document.querySelector("#resDetailform");
 
 var days = [
   "Montag",
@@ -265,6 +271,7 @@ var openDays = [
 var openTime = 8;
 var closeTime = 18;
 
+//booking-funktionen
 function getMonday() {
   return new Date(monday.getTime());
 }
@@ -284,7 +291,7 @@ function save() {
 function updateHeader() {
   $("#booking-table").empty();
   $("#booking-table").prepend("<tr id='header'></tr>");
-  $("#header").append("<td class='time'>Time</td>");
+  $("#header").append("<td class='time'>Uhrzeit</td>");
 
   //Add all days to headers
   for (var i = 0; i < days.length; i++) {
@@ -304,7 +311,6 @@ function updateHeader() {
   }
 }
 function convertIdtoInteger(buttonid) {
-  //aus btnid Reservationsid gemacht
   let str = buttonid;
   idArray = str.split(";");
   let idAsString = "";
@@ -327,7 +333,6 @@ function timeSlotSelected(button) {
     booking_form.hidden = false;
 
     var endTime = parseInt(idArray[2]) + 2;
-    //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
     current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
     let dayName = days[current_slot_date.getDay() - 1];
     let monthName = months[idArray[1]];
@@ -352,7 +357,6 @@ function timeSlotSelected(button) {
     reservationdetail.hidden = false;
 
     var endTime = parseInt(idArray[2]) + 2;
-    //js date format (vollständiges datum und startzeit integriert) -> (year,month,day,hours) --> datum + startzeit in einem objekt
     current_slot_date = new Date(year, idArray[1], idArray[0], idArray[2]);
     let dayName = days[current_slot_date.getDay() - 1];
     let monthName = months[idArray[1]];
@@ -370,7 +374,9 @@ function timeSlotSelected(button) {
       ":00" +
       " bis " +
       endTime +
-      ":00 |";
+      ":00 |" +
+      " Spielernamen" +
+      "";
   }
 }
 //Reservation löschen
@@ -386,7 +392,7 @@ btndeleteRes.addEventListener("click", () => {
         deleteReservation(reservation_id);
       } else {
         window.alert(
-          "Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!"
+          "Sie sind nicht berechtigt Reservationen anderer Benutzer zu löschen!"
         );
       }
     },
@@ -394,16 +400,16 @@ btndeleteRes.addEventListener("click", () => {
     contentType: "application/json",
   });
 });
-//ajx zum löschen btn wieder zu reservieren nennen
+
 function deleteReservation(reservation_id) {
   $.ajax({
     type: "DELETE",
     url: "/api/reservation/" + reservation_id,
     success: (response) => {
       if (response) {
-        setFormMessage(resDetailform, "Reservation gelöscht", response);
+        setFormMessage(resDetailform, "Reservation wurde gelöscht", response);
       } else {
-        setFormMessage(resDetailform, "Reservation geändert", response);
+        setFormMessage(resDetailform, "Reservation wurde geändert", response);
       }
       document.getElementById(resbtnid).value = "reservieren";
       document.getElementById(resbtnid).style.background = "#009579";
@@ -413,7 +419,7 @@ function deleteReservation(reservation_id) {
     contentType: "application/json",
   });
 }
-//zurück btn
+
 returnbtndeleteRes.addEventListener("click", () => {
   booking_table.hidden = false;
   reservationdetail.hidden = true;
@@ -435,7 +441,7 @@ resDetailform.addEventListener("submit", (e) => {
         modifyReservation(reservation_id);
       } else {
         window.alert(
-          "Sie sind nicht berechtigt fremde reservationen zu bearbeiten/löschen!"
+          "Sie sind nicht berechtigt Reservationen anderer Benutzer zu bearbeiten!"
         );
       }
     },
@@ -447,7 +453,6 @@ resDetailform.addEventListener("submit", (e) => {
 function modifyReservation(reservation_id) {
   names = playernames_detail.value;
   console.log(names);
-  //ajax zum ändern
   $.ajax({
     type: "PUT",
     url: "api/reservation/modify/" + reservation_id,
@@ -456,7 +461,7 @@ function modifyReservation(reservation_id) {
     }),
     success: function (response) {
       if (response) {
-        setFormMessage(resDetailform, "Reservation geändert", response);
+        setFormMessage(resDetailform, "Reservation wurde geändert", response);
       } else {
         setFormMessage(
           resDetailform,
@@ -530,7 +535,7 @@ backToBookingTblBtn.addEventListener("click", () => {
   player_namesfield.value = "";
 });
 function addRows() {
-  //Create a new row for each time
+  //Create a new row for each timeslot
   for (var i = openTime; i < closeTime; i += 2) {
     $("#booking-table").append("<tr id='slot-" + i + "'></tr>");
     $("#slot-" + i).append(
@@ -554,7 +559,6 @@ function addRows() {
       day.setDate(day.getDate() + y);
 
       var identifier = day.getDate() + ";" + day.getMonth() + ";" + hour;
-      console.log(day.getMonth());
       var open = openDays.indexOf(days[y]) != -1;
       $("#slot-" + i).append(
         open
@@ -609,10 +613,9 @@ document.getElementById("next").addEventListener("click", incrementWeek);
 document.getElementById("previous").addEventListener("click", decrementWeek);
 
 generate();
+// CalendarBooking - END
 
-// Booking - END
-
-//userlist js sachen
+//USERLIST
 const userlist_form = document.querySelector("#userlist_form");
 const accreqlist_form = document.querySelector("#accreqlist_form");
 //abrufen von userdaten
@@ -620,7 +623,7 @@ function userlistclicked() {
   $.getJSON("api/users").done(handleUserlistReply);
 }
 
-//abrufen von account anfragen daten
+//abrufen von accountanfragen-daten
 function accountRequestlistclicked() {
   $.getJSON("/api/accountRequests").done(handleAccountRequestlistReply);
 }
@@ -647,7 +650,7 @@ function addUserToList(user) {
     user["userId"] +
     "' onClick='deleteUser(" +
     user["userId"] +
-    ")'> Delete </button> </td>";
+    ")'>Löschen</button> </td>";
   newRow += "</tr>";
 
   $("#tblUserList tbody").append(newRow);
@@ -674,13 +677,13 @@ function addReqToList(req) {
     req["accountRequestId"] +
     "' onClick='deleteAccRequest(" +
     req["accountRequestId"] +
-    ")'> Delete </button> </td>";
+    ")'>Anfrage Löschen</button> </td>";
   newRow +=
     "<td> <button id = 'u" +
     req["accountRequestId"] +
     "' onClick='createUser(" +
     req["accountRequestId"] +
-    ")'> Account erstellen </button> </td>";
+    ")'>Account Erstellen</button> </td>";
   newRow += "</tr>";
 
   $("#tblAccList tbody").append(newRow);
@@ -722,16 +725,16 @@ function createUser(id) {
 function deleteUserRespons(response) {
   if (response) {
     userlistclicked();
-    setFormMessage(userlist_form, "User gelöscht", response);
+    setFormMessage(userlist_form, "User wurde gelöscht", response);
   } else {
-    console.log("fehler beim löschen des users");
+    console.log("Fehler Beim Löschen des Users");
   }
 }
 //antwort von accreq löschen und update gui
 function deleteReqRespons(response) {
   if (response) {
     accountRequestlistclicked();
-    setFormMessage(accreqlist_form, "Accountrequest gelöscht", response);
+    setFormMessage(accreqlist_form, "Accountrequest wurde gelöscht", response);
   } else {
     setFormMessage(
       accreqlist_form,
@@ -778,11 +781,9 @@ logoutbtn.addEventListener("click", () => {
   //console.log(user);
 });
 
-//Userdetail ändern shizzle
+//Userdetails ändern
 const userdetailreturnbtn = document.querySelector("#userdetailreturnbtn");
 const userdetailform = document.querySelector("#userdetailform");
-
-
 userdetailreturnbtn.addEventListener("click", () => {
   calendar.hidden = false;
   userdetail.hidden = true;
