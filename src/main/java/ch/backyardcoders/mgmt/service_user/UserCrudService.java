@@ -1,6 +1,8 @@
 package ch.backyardcoders.mgmt.service_user;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,10 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ch.backyardcoders.mgmt.business.VerificationClass;
-import ch.backyardcoders.mgmt.logger.LoggerClass;
 import ch.backyardcoders.mgmt.messages.MessageLogin;
 import ch.backyardcoders.mgmt.messages.MessageModifyUser;
 import ch.backyardcoders.mgmt.persistence.AccountRequest;
@@ -37,10 +37,8 @@ public class UserCrudService {
 	@Autowired
 	private AccountRequestRepository accountRequestRepository;
 
-	LoggerClass logger = new LoggerClass();
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserCrudService.class.getSimpleName());
 
-	// Wird nur von ITVerantwortlichen aufgerufen idem er die AccountAnfrage
-	// bestätigt --> wandelt dann anfrage in User um
 	@PostMapping(path = "createUser/{reqid}", produces = "application/json")
 	public boolean createUser(@PathVariable int reqid) {
 		if (accountRequestRepository.existsById(reqid)) {
@@ -52,12 +50,12 @@ public class UserCrudService {
 			u.setUserMobile(a.getAccountRequestMobile());
 			u.setUserPassword(a.getAccountRequestPassword());
 			userRepository.save(u);
-			logger.getLogger().info(this.getClass().getName() + "||User has been created||");
+			LOGGER.info("User created");
 			accountRequestRepository.deleteById(reqid);
-			logger.getLogger().info(this.getClass().getName() + "||Accountrequest has been deleted||");
+			LOGGER.info("Accountrequest deleted");
 			return true;
 		} else {
-			logger.getLogger().info(this.getClass().getName() + "||Accountrequest not found||");
+			LOGGER.info("Accountrequest not found");
 			return false;
 		}
 
@@ -67,22 +65,21 @@ public class UserCrudService {
 	public boolean deleteUser(@PathVariable int userid) {
 		if (userRepository.existsById(userid)) {
 			userRepository.deleteById(userid);
-			logger.getLogger().info(this.getClass().getName() + "||User has been deleted||");
+			LOGGER.info("User has been deleted");
 			return true;
 		} else {
-			logger.getLogger().info(this.getClass().getName() + "||User hasnt been found||");
+			LOGGER.info("User not found");
 			return false;
 		}
 	}
 
-	// Listes alle Users auf, wird für Deletemethode verwendet
 	@GetMapping("users")
 	public List<User> getUsers() {
-		logger.getLogger().info(this.getClass().getName() + "||List of user displayed||");
-		return this.userRepository.findAll();
+		List<User> list = this.userRepository.findAll();
+		LOGGER.info("List of user found");
+		return list;
 	}
 
-	// Von allen User aufrufbar --> können so UserDaten ändern
 	@PutMapping(path = "user/modify/{userid}", produces = "application/json") // für user zugreifbar
 	public boolean modifyUser(@PathVariable int userid, @RequestBody MessageModifyUser m) {
 		if (userRepository.existsById(userid)) {
@@ -96,19 +93,17 @@ public class UserCrudService {
 			if(m.getUserEmail()!="") {
 			u.setUserEmail(m.getUserEmail());}
 			userRepository.save(u);
-
-			logger.getLogger().info(this.getClass().getName() + "||User has been updated||");
+			LOGGER.info("User has been updated");
 			return true;
 
 		} else {
-			logger.getLogger().info(this.getClass().getName() + "||User hasnt been found||");
+			LOGGER.info("User has not found");
 			return false;
 
 		}
 
 	}
 
-	// Login --> wird geprüft ob Email und Passswort stimmen
 	@PostMapping(path = "login", produces = "application/json")
 	public int login(@RequestBody MessageLogin m) {
 		String tempEmail = m.getUserEmail();
@@ -116,10 +111,10 @@ public class UserCrudService {
 
 		User u = verificationClass.VerifyLogin(tempEmail, tempPassword);
 		if (u != null) {
-			logger.getLogger().info(this.getClass().getName() + "||Login Successfull||");
+			LOGGER.info("Login Successfull");
 			return u.getUserId();
 		} else {
-			logger.getLogger().info(this.getClass().getName() + "||Login Unsuccessfull||");
+			LOGGER.info("Login Unsuccessfull");
 			return -1;
 		}
 
@@ -127,7 +122,9 @@ public class UserCrudService {
 	
 	@GetMapping("user/{userid}")
 	public User getUser(@PathVariable int userid) {
-		return this.userRepository.findById(userid).get();
+		User u = this.userRepository.findById(userid).get();
+		LOGGER.info("User found");
+		return u;
 	}
 
 }
