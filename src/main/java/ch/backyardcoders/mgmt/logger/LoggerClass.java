@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class LoggerClass {
 
 	public static final String LOGGER_NAME = LoggerClass.class.getSimpleName();
-	private Logger logger = null; // The logger object for this class
+	public static Logger logger = null; // The logger object for this class
 
 	//write logs on a textfile in xml an din the console
 	
