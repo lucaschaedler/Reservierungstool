@@ -355,3 +355,172 @@
 2021-05-28 13:31:23.756  INFO 9080 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-05-28 13:31:23.760  INFO 9080 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2021-05-28 13:31:23.763  INFO 9080 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-05-28 13:36:25.689  INFO 12616 --- [main] c.b.BackyardcodersSpringReactApplication : Starting BackyardcodersSpringReactApplication using Java 15.0.2 on SurfaceRobertoBrandão with PID 12616 (C:\Users\robin\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\backyardcodersproject\target\classes started by Robin in C:\Users\robin\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\backyardcodersproject)
+2021-05-28 13:36:25.693  INFO 12616 --- [main] c.b.BackyardcodersSpringReactApplication : No active profile set, falling back to default profiles: default
+2021-05-28 13:36:26.416  INFO 12616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-28 13:36:26.481  INFO 12616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 3 JPA repository interfaces.
+2021-05-28 13:36:27.123  INFO 12616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-28 13:36:27.136  INFO 12616 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-28 13:36:27.136  INFO 12616 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-28 13:36:27.305  INFO 12616 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-28 13:36:27.306  INFO 12616 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1554 ms
+2021-05-28 13:36:27.353  INFO 12616 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-05-28 13:36:27.609  INFO 12616 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-05-28 13:36:27.618  INFO 12616 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/console'. Database available at 'jdbc:h2:file:./h2_database'
+2021-05-28 13:36:27.797  INFO 12616 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-28 13:36:27.856  INFO 12616 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.30.Final
+2021-05-28 13:36:28.025  INFO 12616 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-05-28 13:36:28.170  INFO 12616 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-05-28 13:36:28.942  INFO 12616 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-28 13:36:28.952  INFO 12616 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-28 13:36:29.443  INFO 12616 --- [main] BackyardcodersSpringReactApplication     : Application Successfully Started
+2021-05-28 13:36:29.606  INFO 12616 --- [main] BackyardcodersSpringReactApplication     : Admin already available
+2021-05-28 13:36:29.658  WARN 12616 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-28 13:36:29.758  INFO 12616 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-28 13:36:29.887  INFO 12616 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-05-28 13:36:30.176  INFO 12616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-28 13:36:30.194  INFO 12616 --- [main] c.b.BackyardcodersSpringReactApplication : Started BackyardcodersSpringReactApplication in 5.124 seconds (JVM running for 6.228)
+2021-05-28 13:36:43.600  INFO 12616 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-28 13:36:43.601  INFO 12616 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-28 13:36:43.602  INFO 12616 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-05-28 13:36:43.799  INFO 12616 --- [http-nio-8080-exec-1] VerificationClass                        : User found
+2021-05-28 13:36:43.799  INFO 12616 --- [http-nio-8080-exec-1] UserCrudService                          : Login Successfull
+2021-05-28 13:36:43.908  INFO 12616 --- [http-nio-8080-exec-2] UserCrudService                          : User found
+2021-05-28 13:36:45.524  INFO 12616 --- [http-nio-8080-exec-3] UserCrudService                          : List of user found
+2021-05-28 13:37:26.053  INFO 12616 --- [http-nio-8080-exec-9] UserCrudService                          : List of user found
+2021-05-28 13:37:36.817  INFO 12616 --- [http-nio-8080-exec-3] ReservationCrudService                   : Reservations found
+2021-05-28 13:37:41.611  INFO 12616 --- [http-nio-8080-exec-2] VerificationClass                        : User found
+2021-05-28 13:37:41.612  INFO 12616 --- [http-nio-8080-exec-2] UserCrudService                          : Login Successfull
+2021-05-28 13:37:41.676  INFO 12616 --- [http-nio-8080-exec-1] UserCrudService                          : User found
+2021-05-28 13:37:43.163  INFO 12616 --- [http-nio-8080-exec-8] UserCrudService                          : List of user found
+2021-05-28 13:37:51.202  INFO 12616 --- [http-nio-8080-exec-3] UserCrudService                          : User has been deleted
+2021-05-28 13:37:51.227  INFO 12616 --- [http-nio-8080-exec-2] UserCrudService                          : List of user found
+2021-05-28 13:38:35.823  INFO 12616 --- [http-nio-8080-exec-9] VerificationClass                        : Useremail is unique
+2021-05-28 13:38:35.849  INFO 12616 --- [http-nio-8080-exec-9] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:39:26.288  INFO 12616 --- [http-nio-8080-exec-6] VerificationClass                        : Useremail is unique
+2021-05-28 13:39:26.290  INFO 12616 --- [http-nio-8080-exec-6] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:40:18.679  INFO 12616 --- [http-nio-8080-exec-4] VerificationClass                        : Useremail is unique
+2021-05-28 13:40:18.682  INFO 12616 --- [http-nio-8080-exec-4] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:40:54.314  INFO 12616 --- [http-nio-8080-exec-3] VerificationClass                        : Useremail is unique
+2021-05-28 13:40:54.319  INFO 12616 --- [http-nio-8080-exec-3] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:41:49.064  INFO 12616 --- [http-nio-8080-exec-2] VerificationClass                        : Useremail is unique
+2021-05-28 13:41:49.067  INFO 12616 --- [http-nio-8080-exec-2] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:42:27.536  INFO 12616 --- [http-nio-8080-exec-8] VerificationClass                        : Useremail is unique
+2021-05-28 13:42:27.539  INFO 12616 --- [http-nio-8080-exec-8] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:42:56.196  INFO 12616 --- [http-nio-8080-exec-1] VerificationClass                        : Useremail is unique
+2021-05-28 13:42:56.199  INFO 12616 --- [http-nio-8080-exec-1] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:43:08.148  INFO 12616 --- [http-nio-8080-exec-5] VerificationClass                        : User found
+2021-05-28 13:43:08.149  INFO 12616 --- [http-nio-8080-exec-5] UserCrudService                          : Login Successfull
+2021-05-28 13:43:08.169  INFO 12616 --- [http-nio-8080-exec-9] UserCrudService                          : User found
+2021-05-28 13:43:10.973  INFO 12616 --- [http-nio-8080-exec-7] UserCrudService                          : List of user found
+2021-05-28 13:43:13.377  INFO 12616 --- [http-nio-8080-exec-10] AccountRequestCrudService                : Accountrequests found
+2021-05-28 13:43:20.507  INFO 12616 --- [http-nio-8080-exec-6] UserCrudService                          : User created
+2021-05-28 13:43:20.513  INFO 12616 --- [http-nio-8080-exec-6] UserCrudService                          : Accountrequest deleted
+2021-05-28 13:43:20.531  INFO 12616 --- [http-nio-8080-exec-4] AccountRequestCrudService                : Accountrequests found
+2021-05-28 13:43:25.363  INFO 12616 --- [http-nio-8080-exec-3] UserCrudService                          : User created
+2021-05-28 13:43:25.369  INFO 12616 --- [http-nio-8080-exec-3] UserCrudService                          : Accountrequest deleted
+2021-05-28 13:43:25.433  INFO 12616 --- [http-nio-8080-exec-2] AccountRequestCrudService                : Accountrequests found
+2021-05-28 13:43:29.488  INFO 12616 --- [http-nio-8080-exec-8] UserCrudService                          : User created
+2021-05-28 13:43:29.493  INFO 12616 --- [http-nio-8080-exec-8] UserCrudService                          : Accountrequest deleted
+2021-05-28 13:43:29.513  INFO 12616 --- [http-nio-8080-exec-1] AccountRequestCrudService                : Accountrequests found
+2021-05-28 13:43:37.016  INFO 12616 --- [http-nio-8080-exec-5] UserCrudService                          : List of user found
+2021-05-28 13:44:06.088  INFO 12616 --- [http-nio-8080-exec-9] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:06.089  INFO 12616 --- [http-nio-8080-exec-7] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:06.241  INFO 12616 --- [http-nio-8080-exec-6] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:06.241  INFO 12616 --- [http-nio-8080-exec-10] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:07.317  INFO 12616 --- [http-nio-8080-exec-4] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:07.317  INFO 12616 --- [http-nio-8080-exec-3] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:07.526  INFO 12616 --- [http-nio-8080-exec-2] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:07.531  INFO 12616 --- [http-nio-8080-exec-8] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:07.720  INFO 12616 --- [http-nio-8080-exec-5] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:07.720  INFO 12616 --- [http-nio-8080-exec-1] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:08.798  INFO 12616 --- [http-nio-8080-exec-7] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:08.798  INFO 12616 --- [http-nio-8080-exec-9] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:09.985  INFO 12616 --- [http-nio-8080-exec-6] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:09.987  INFO 12616 --- [http-nio-8080-exec-10] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:11.365  INFO 12616 --- [http-nio-8080-exec-4] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:11.365  INFO 12616 --- [http-nio-8080-exec-3] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:20.698  INFO 12616 --- [http-nio-8080-exec-2] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:20.702  INFO 12616 --- [http-nio-8080-exec-8] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:21.101  INFO 12616 --- [http-nio-8080-exec-1] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:21.101  INFO 12616 --- [http-nio-8080-exec-5] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:21.478  INFO 12616 --- [http-nio-8080-exec-7] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:21.478  INFO 12616 --- [http-nio-8080-exec-9] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:21.879  INFO 12616 --- [http-nio-8080-exec-10] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:21.879  INFO 12616 --- [http-nio-8080-exec-6] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:22.278  INFO 12616 --- [http-nio-8080-exec-3] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:22.285  INFO 12616 --- [http-nio-8080-exec-4] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:23.023  INFO 12616 --- [http-nio-8080-exec-8] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:23.023  INFO 12616 --- [http-nio-8080-exec-2] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:23.435  INFO 12616 --- [http-nio-8080-exec-5] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:23.435  INFO 12616 --- [http-nio-8080-exec-1] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:23.674  INFO 12616 --- [http-nio-8080-exec-9] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:23.674  INFO 12616 --- [http-nio-8080-exec-7] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:23.893  INFO 12616 --- [http-nio-8080-exec-10] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:23.894  INFO 12616 --- [http-nio-8080-exec-6] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:24.327  INFO 12616 --- [http-nio-8080-exec-3] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:24.327  INFO 12616 --- [http-nio-8080-exec-4] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:25.585  INFO 12616 --- [http-nio-8080-exec-8] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:25.585  INFO 12616 --- [http-nio-8080-exec-2] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:40.473  INFO 12616 --- [http-nio-8080-exec-5] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:40.473  INFO 12616 --- [http-nio-8080-exec-1] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:41.757  INFO 12616 --- [http-nio-8080-exec-7] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:41.757  INFO 12616 --- [http-nio-8080-exec-9] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:42.156  INFO 12616 --- [http-nio-8080-exec-6] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:42.156  INFO 12616 --- [http-nio-8080-exec-10] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:42.530  INFO 12616 --- [http-nio-8080-exec-3] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:42.530  INFO 12616 --- [http-nio-8080-exec-4] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:42.916  INFO 12616 --- [http-nio-8080-exec-8] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:42.916  INFO 12616 --- [http-nio-8080-exec-2] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:43.227  INFO 12616 --- [http-nio-8080-exec-1] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:43.227  INFO 12616 --- [http-nio-8080-exec-5] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:44.213  INFO 12616 --- [http-nio-8080-exec-7] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:44.213  INFO 12616 --- [http-nio-8080-exec-9] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:44.560  INFO 12616 --- [http-nio-8080-exec-6] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:44.560  INFO 12616 --- [http-nio-8080-exec-10] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:44.914  INFO 12616 --- [http-nio-8080-exec-4] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:44.914  INFO 12616 --- [http-nio-8080-exec-3] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:45.664  INFO 12616 --- [http-nio-8080-exec-8] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:45.664  INFO 12616 --- [http-nio-8080-exec-2] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:46.000  INFO 12616 --- [http-nio-8080-exec-5] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:46.000  INFO 12616 --- [http-nio-8080-exec-1] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:46.285  INFO 12616 --- [http-nio-8080-exec-9] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:46.285  INFO 12616 --- [http-nio-8080-exec-7] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:47.617  INFO 12616 --- [http-nio-8080-exec-10] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:47.624  INFO 12616 --- [http-nio-8080-exec-6] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:48.735  INFO 12616 --- [http-nio-8080-exec-4] ReservationCrudService                   : Reservations found
+2021-05-28 13:44:48.735  INFO 12616 --- [http-nio-8080-exec-3] ReservationCrudService                   : Reservations found
+2021-05-28 13:45:41.216  INFO 12616 --- [http-nio-8080-exec-8] VerificationClass                        : Useremail is unique
+2021-05-28 13:45:41.219  INFO 12616 --- [http-nio-8080-exec-8] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:46:25.511  INFO 12616 --- [http-nio-8080-exec-5] VerificationClass                        : Useremail is unique
+2021-05-28 13:46:25.514  INFO 12616 --- [http-nio-8080-exec-5] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:47:01.575  INFO 12616 --- [http-nio-8080-exec-1] VerificationClass                        : Useremail is unique
+2021-05-28 13:47:01.578  INFO 12616 --- [http-nio-8080-exec-1] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:47:52.289  INFO 12616 --- [http-nio-8080-exec-9] VerificationClass                        : Useremail is unique
+2021-05-28 13:47:52.291  INFO 12616 --- [http-nio-8080-exec-9] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:48:03.554  INFO 12616 --- [http-nio-8080-exec-7] VerificationClass                        : User found
+2021-05-28 13:48:03.555  INFO 12616 --- [http-nio-8080-exec-7] UserCrudService                          : Login Successfull
+2021-05-28 13:48:03.575  INFO 12616 --- [http-nio-8080-exec-10] UserCrudService                          : User found
+2021-05-28 13:48:06.045  INFO 12616 --- [http-nio-8080-exec-6] AccountRequestCrudService                : Accountrequests found
+2021-05-28 13:48:12.354  INFO 12616 --- [http-nio-8080-exec-4] UserCrudService                          : User created
+2021-05-28 13:48:12.357  INFO 12616 --- [http-nio-8080-exec-4] UserCrudService                          : Accountrequest deleted
+2021-05-28 13:48:12.421  INFO 12616 --- [http-nio-8080-exec-3] AccountRequestCrudService                : Accountrequests found
+2021-05-28 13:48:19.689  INFO 12616 --- [http-nio-8080-exec-8] UserCrudService                          : List of user found
+2021-05-28 13:48:24.238  INFO 12616 --- [http-nio-8080-exec-2] AccountRequestCrudService                : Accountrequests found
+2021-05-28 13:49:17.009  INFO 12616 --- [http-nio-8080-exec-5] VerificationClass                        : Useremail is unique
+2021-05-28 13:49:17.012  INFO 12616 --- [http-nio-8080-exec-5] AccountRequestCrudService                : Accountrequest created
+2021-05-28 13:49:30.297  INFO 12616 --- [http-nio-8080-exec-1] VerificationClass                        : User found
+2021-05-28 13:49:30.297  INFO 12616 --- [http-nio-8080-exec-1] UserCrudService                          : Login Successfull
+2021-05-28 13:49:30.317  INFO 12616 --- [http-nio-8080-exec-9] UserCrudService                          : User found
+2021-05-28 13:49:46.573  INFO 12616 --- [http-nio-8080-exec-7] AccountRequestCrudService                : Accountrequests found
+2021-05-28 13:50:24.052  INFO 12616 --- [http-nio-8080-exec-4] AccountRequestCrudService                : Accountrequests found
+2021-05-28 13:50:46.202  INFO 12616 --- [http-nio-8080-exec-3] ReservationCrudService                   : Reservations found
+2021-05-28 13:50:46.202  INFO 12616 --- [http-nio-8080-exec-8] ReservationCrudService                   : Reservations found
+2021-05-28 13:50:47.048  INFO 12616 --- [http-nio-8080-exec-2] ReservationCrudService                   : Reservations found
+2021-05-28 13:50:47.051  INFO 12616 --- [http-nio-8080-exec-5] ReservationCrudService                   : Reservations found
+2021-05-28 14:05:10.279  INFO 12616 --- [http-nio-8080-exec-4] AccountRequestCrudService                : Accountrequests found
+2021-05-28 14:12:10.842  INFO 12616 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-05-28 14:12:10.918  INFO 12616 --- [RMI TCP Connection(2)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-28 14:12:10.920  INFO 12616 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-28 14:12:10.926  INFO 12616 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-05-28 14:12:10.932  INFO 12616 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
