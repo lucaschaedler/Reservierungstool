@@ -63,13 +63,18 @@ public class UserCrudService {
 
 	@DeleteMapping(path = "user/delete/{userid}", produces = "application/json")
 	public boolean deleteUser(@PathVariable int userid) {
-		if (userRepository.existsById(userid)) {
-			userRepository.deleteById(userid);
-			LOGGER.info("User has been deleted");
-			return true;
-		} else {
-			LOGGER.info("User not found");
+		if (userRepository.getOne(userid).getUserName().equalsIgnoreCase("Admin")) {
+			LOGGER.info("Admin kann nicht gelöscht werden");
 			return false;
+		} else {
+			if (userRepository.existsById(userid)) {
+				userRepository.deleteById(userid);
+				LOGGER.info("User has been deleted");
+				return true;
+			} else {
+				LOGGER.info("User not found");
+				return false;
+			}
 		}
 	}
 
@@ -84,14 +89,18 @@ public class UserCrudService {
 	public boolean modifyUser(@PathVariable int userid, @RequestBody MessageModifyUser m) {
 		if (userRepository.existsById(userid)) {
 			User u = userRepository.getOne(userid);
-			if(m.getUserName()!="") {
-			u.setUserName(m.getUserName());}
-			if(m.getUserPassword()!="") {
-			u.setUserPassword(passwordHash.hashPassword(m.getUserPassword()));}
-			if(m.getUserMobile()!="") {
-			u.setUserMobile(m.getUserMobile());}
-			if(m.getUserEmail()!="") {
-			u.setUserEmail(m.getUserEmail());}
+			if (m.getUserName() != "") {
+				u.setUserName(m.getUserName());
+			}
+			if (m.getUserPassword() != "") {
+				u.setUserPassword(passwordHash.hashPassword(m.getUserPassword()));
+			}
+			if (m.getUserMobile() != "") {
+				u.setUserMobile(m.getUserMobile());
+			}
+			if (m.getUserEmail() != "") {
+				u.setUserEmail(m.getUserEmail());
+			}
 			userRepository.save(u);
 			LOGGER.info("User has been updated");
 			return true;
@@ -119,7 +128,7 @@ public class UserCrudService {
 		}
 
 	}
-	
+
 	@GetMapping("user/{userid}")
 	public User getUser(@PathVariable int userid) {
 		User u = this.userRepository.findById(userid).get();
