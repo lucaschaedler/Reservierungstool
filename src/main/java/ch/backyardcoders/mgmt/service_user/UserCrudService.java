@@ -63,7 +63,7 @@ public class UserCrudService {
 
 	@DeleteMapping(path = "user/delete/{userid}", produces = "application/json")
 	public boolean deleteUser(@PathVariable int userid) {
-		if (userRepository.getOne(userid).getUserName().equalsIgnoreCase("Admin")) {
+		if (userRepository.getOne(userid).getUserEmail().equalsIgnoreCase("a@admin.ch")) {
 			LOGGER.info("Admin kann nicht gelöscht werden");
 			return false;
 		} else {
