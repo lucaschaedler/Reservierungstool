@@ -8,9 +8,11 @@ body {
   --color-success: #4bb544;
   --border-radius: 4px;
 }
+
 button:hover {
   background: var(--color-primary) !important;
 }
+
 button:active {
   transform: scale(0.9);
 }
@@ -114,23 +116,9 @@ button:active {
   color: var(--color-error);
 }
 
-/*
-* booking - css shizzle
-*/
-
 body {
   padding: 20px;
 }
-
-/*.booking-container {
-  font-family: "Roboto", "Arial";
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 2px 1px -1px rgba(0, 0, 0, 0.12);
-  display: inline-block;
-}
-*/
 
 h1 {
   margin: 0;
@@ -154,19 +142,6 @@ tr:first-child td,
 tr td:first-child {
   font-weight: normal;
 }
-
-/*label {
-  display: block;
-  height: 15px;
-  width: 15px;
-  border: 2px solid #b5b5b5;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 5px;
-  cursor: pointer;
-}
-*/
 
 .time {
   text-align: right;
