@@ -726,7 +726,7 @@ function deleteUserRespons(response) {
     userlistclicked();
     setFormMessage(userlist_form, "User wurde gelöscht", response);
   } else {
-    etFormMessage(userlist_form, "Admin kann nicht gelöscht werden", response);
+    setFormMessage(userlist_form, "Admin kann nicht gelöscht werden", response);
     console.log("Fehler Beim Löschen des Users");
   }
 }
