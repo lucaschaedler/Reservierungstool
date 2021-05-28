@@ -452,7 +452,6 @@ resDetailform.addEventListener("submit", (e) => {
 //ändern der reservation
 function modifyReservation(reservation_id) {
   names = playernames_detail.value;
-  console.log(names);
   $.ajax({
     type: "PUT",
     url: "api/reservation/modify/" + reservation_id,
